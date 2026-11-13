@@ -5,6 +5,7 @@
 #>
 . (Join-Path $PSScriptRoot 'lib\QuickCart.DevStack.ps1')
 . (Join-Path $PSScriptRoot 'lib\QuickCart.Magento.ps1')
+. (Join-Path $PSScriptRoot 'lib\QuickCart.Share.ps1')
 
 $command = 'help'
 $rest = @()
@@ -18,6 +19,8 @@ QuickCart dev stack - usage: devstack\qc <command> [args]
   install-stack      Download + configure PHP, Composer, MySQL, OpenSearch, Nginx
   install-magento    composer install + bin/magento setup:install (idempotent)
   start | stop | restart | status
+  share | unshare    Publish the storefront on a public https URL (Cloudflare tunnel);
+                     admin stays local-only. unshare restores the local URLs
   clean-static       Rebuild theme CSS/JS after editing app/design (clears pub/static,
                      var/view_preprocessed, bumps the static version, flushes cache)
   magento <args>     Run bin/magento         e.g. qc magento cache:flush
@@ -35,7 +38,9 @@ try {
         'start'           { Start-QcStack; Show-QcStatus }
         'stop'            { Stop-QcStack }
         'restart'         { Stop-QcStack; Start-QcStack; Show-QcStatus }
-        'status'          { Show-QcStatus }
+        'status'          { Show-QcStatus; Show-QcShareStatus }
+        'share'           { Start-QcShare }
+        'unshare'         { Stop-QcShare }
         'clean-static' {
             $cfg = Get-QcConfig
             foreach ($rel in @('pub\static\frontend', 'pub\static\adminhtml', 'var\view_preprocessed', 'pub\static\deployed_version.txt')) {

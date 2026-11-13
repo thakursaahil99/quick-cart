@@ -38,6 +38,25 @@ http {
         listen       [::1]:{{HTTP_PORT}};
         server_name  {{SERVER_NAME}} localhost 127.0.0.1;
 
+        # `qc share` publishes the storefront through a Cloudflare tunnel. Requests that
+        # arrive through Cloudflare carry a Cf-Ray header: they never reach the admin,
+        # the setup tools or the admin token API (admin stays on this machine only).
+        set $qc_via_tunnel "";
+        if ($http_cf_ray) {
+            set $qc_via_tunnel "1";
+        }
+        set $qc_private "";
+        if ($request_uri ~* "^/(index\.php/)?({{ADMIN_FRONTNAME}}|admin|setup|update)(/|\?|$)") {
+            set $qc_private "1";
+        }
+        if ($request_uri ~* "^/(index\.php/)?rest/([^/]+/)?V1/integration/admin/") {
+            set $qc_private "1";
+        }
+        set $qc_block "$qc_via_tunnel$qc_private";
+        if ($qc_block = "11") {
+            return 403;
+        }
+
         set $MAGE_ROOT "{{MAGE_ROOT}}";
         include "{{MAGE_ROOT}}/nginx.conf.sample";
     }

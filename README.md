@@ -172,6 +172,8 @@ devstack\qc start                  :: MySQL, OpenSearch, PHP-CGI workers, Nginx
 devstack\qc status                 :: service health + storefront/admin HTTP codes
 devstack\qc stop
 
+devstack\qc share                  :: public https link (Cloudflare quick tunnel), admin stays local
+devstack\qc unshare                :: stop sharing, restore the local URLs
 devstack\qc clean-static           :: after editing the theme (LESS/JS/templates)
 devstack\qc magento cache:flush    :: any bin/magento command
 devstack\qc magento setup:upgrade

@@ -431,6 +431,7 @@ function Install-QcNginx($cfg) {
         HTTP_PORT     = $cfg.HTTP_PORT
         SERVER_NAME   = $cfg.SERVER_NAME
         MAGE_ROOT     = ConvertTo-QcForwardSlash $cfg.MAGENTO_ROOT
+        ADMIN_FRONTNAME = [regex]::Escape($cfg.ADMIN_FRONTNAME)
     }
     Write-QcOk 'Nginx configured (Magento rules included from src/nginx.conf.sample)'
 }
