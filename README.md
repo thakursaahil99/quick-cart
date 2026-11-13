@@ -4,19 +4,61 @@
 
 QuickCart is a multi-category electronics store built on **Magento Open Source 2.4.9**.
 It is a portfolio project that shows real-world Magento development: custom modules
-built on service contracts, a custom Luma-based theme, declarative schema, REST APIs,
-admin tooling and performance tuning. It changes no Magento core files.
+built on service contracts, a custom Luma-based theme with Motion animations,
+declarative schema, data patches, REST APIs, admin tooling and performance tuning.
+It changes no Magento core files.
+
+![QuickCart homepage](docs/screenshots/home-desktop.jpg)
 
 | Status | Phase |
 | :----: | ----- |
-| ✅ | **Phase 1** — Magento installation & native Windows dev stack |
-| ⏳ | Phase 2 — QuickCart branding & responsive theme |
-| ⏳ | Phase 3 — Homepage & catalog customization |
-| ⏳ | Phase 4 — Product & checkout enhancements |
-| ⏳ | Phase 5 — Custom modules (catalog, recommendations, order tracking, checkout) |
-| ⏳ | Phase 6 — REST API (`QuickCart_CustomApi`) |
-| ⏳ | Phase 7 — Admin sales dashboard, grids, ACL |
-| ⏳ | Phase 8 — Testing, optimization & final documentation |
+| ✅ | **Phase 1:** Magento installation & native Windows dev stack |
+| ✅ | **Phase 2:** QuickCart branding, logo & responsive theme with Motion animations |
+| ✅ | **Phase 3:** Homepage, catalog attributes, layered navigation, 48 demo products |
+| ⏳ | Phase 4: Product & checkout enhancements (reviews, cross-sells, checkout UI) |
+| ⏳ | Phase 5: Custom modules (labels admin, recommendations, order tracking, checkout) |
+| ⏳ | Phase 6: REST API (`QuickCart_CustomApi`) |
+| ⏳ | Phase 7: Admin sales dashboard, grids, ACL |
+| ⏳ | Phase 8: Testing, optimization & final documentation |
+
+---
+
+## Features built so far
+
+**Storefront (theme `QuickCart/default`, Luma child)**
+- Brand identity: SVG logo (wordmark converted to outlines), favicon, brand palette
+  (#2563EB, #111827, #F59E0B, #F8FAFC), self-hosted Inter and Plus Jakarta Sans fonts.
+- Glass sticky header (the promo bar scrolls away, so there's no layout shift), pill search,
+  account and wish list shortcuts, and an animated underline mega menu.
+- Homepage built from editable CMS blocks and widgets: hero slider, trust bar, category
+  tiles, product rails (trending, deals, new arrivals, best sellers), promo banners and
+  a brand marquee.
+- Product cards with real-data badges (sale %, New, Trending), brand line, swatches,
+  wish list and compare.
+- Category banner, layered navigation (brand, color swatch, RAM, storage, connectivity,
+  price), and a product page with brand, badges, swatches and delivery and returns
+  assurances.
+- Responsive from 360 px to 1920 px+.
+
+**Motion design** ([Motion](https://motion.dev), the framework-agnostic engine behind
+Framer Motion, loaded through RequireJS):
+- Hero slides choreographed (copy staggers out and in, product art springs in), with
+  autoplay and a progress bar, swipe and keyboard control, and pointer parallax.
+- Scroll reveals and staggered grids, 3D tilt with light glare, button press feedback, a
+  fly-to-cart image arc, a cart badge bump and a reading progress bar on product pages.
+- `prefers-reduced-motion` is respected. Content is server-rendered and visible without JS.
+
+**Catalog (data patches, no manual setup)**
+- 8 categories and 15 subcategories, 48 products (4 configurable products with 12 color
+  variants), 21 deals, 17 trending, 12 new arrivals.
+- Fictional brands (Voltix, Nexora, Aurion, Pixelon, Sonavo, Zentra, Orbix, Kairo) and
+  original product illustrations, so there are no trademark or stock-photo concerns.
+- Store settings that match the storefront copy: free delivery above ₹999, ₹79 flat
+  rate, and cash on delivery.
+
+| Category page | Product page | Mobile |
+| --- | --- | --- |
+| ![Category](docs/screenshots/category-desktop.jpg) | ![Product](docs/screenshots/product-desktop.jpg) | ![Mobile](docs/screenshots/mobile.jpg) |
 
 ---
 
@@ -28,9 +70,10 @@ admin tooling and performance tuning. It changes no Magento core files.
 | PHP | 8.4 (NTS x64) | 2.4.9 supports 8.3 – 8.5 |
 | Composer | 2.11 | |
 | MySQL | 8.4 LTS | |
-| OpenSearch | 3.9 | Catalog search engine required by 2.4.9 |
+| OpenSearch | 3.9 | Catalog search and layered navigation |
 | Nginx | 1.30 | Uses Magento's own `nginx.conf.sample` rules |
 | Frontend | LESS, Knockout.js, RequireJS, jQuery UI widgets | Magento Luma stack |
+| Animation | Motion 14.7 (MIT) | Vendored in `web/js/vendor/motion.js` |
 
 **Cache/session store:** local development uses Magento's file cache and its built-in
 full-page cache, because Redis/Valkey publish no native Windows builds. On Linux,
@@ -51,9 +94,10 @@ this).
 ├── src/                        Magento project root (only project-owned files are committed)
 │   ├── composer.json / .lock
 │   ├── app/code/QuickCart/     Custom modules
-│   ├── app/design/frontend/    QuickCart theme (Phase 2)
+│   ├── app/design/frontend/QuickCart/default/   Theme
 │   └── app/etc/config.php      Module list / shared deployment config
-└── docs/                       Phase notes, API docs, screenshots
+├── tools/design-assets/        Node build: product illustrations, logo, fixtures, vendored Motion + fonts
+└── docs/                       Screenshots and phase notes
 ```
 
 `src/vendor`, `generated`, `var`, `pub/static`, `pub/media`, `app/etc/env.php` and every
@@ -77,15 +121,19 @@ stack doesn't touch other PHP/MySQL installs on the machine, such as XAMPP.
 
 ## Custom modules
 
-| Module | Phase | Purpose |
-| ------ | ----- | ------- |
-| `QuickCart_WindowsCompat` | 1 ✅ | Native-Windows adapters with no core edits: separator-safe template validation (DI preference), GD2 image adapter that accepts drive-letter paths (DI preference), Copy instead of Symlink static-asset materialization (plugin). No-op on Linux. Unit-tested. |
-| `QuickCart_CatalogEnhancement` | 5 | Custom product attributes, product labels, featured products |
-| `QuickCart_ProductRecommendation` | 5 | Frequently bought together, recently viewed, related recommendations |
-| `QuickCart_OrderTracking` | 5 | Shipment tracking, custom status display, customer tracking page |
-| `QuickCart_CheckoutEnhancement` | 4/5 | Checkout UI improvements, custom fields, extra validation |
-| `QuickCart_SalesDashboard` | 7 | Sales analytics, revenue and best-seller reports |
-| `QuickCart_CustomApi` | 6 | REST endpoints for products, categories, orders, customers |
+| Module | Purpose |
+| ------ | ------- |
+| `QuickCart_CatalogEnhancement` | EAV attributes `qc_brand`, `qc_color` (visual swatch), `qc_ram`, `qc_storage`, `qc_display`, `qc_battery`, `qc_connectivity`, `qc_warranty` and `qc_is_trending`; the *QuickCart Electronics* attribute set; the **QuickCart Product Carousel** CMS widget, whose merchandising sources (trending, new, deals, best sellers) are a strategy pool in `di.xml`; the **QuickCart Category Tiles** widget; and the `ProductBadges` view model. Both widgets are block- and FPC-cache aware. |
+| `QuickCart_DemoData` | Data patches that install attribute options and swatch colors, the category tree with images, 48 products (simple and configurable, through `ProductRepositoryInterface`), homepage CMS blocks and page, shipping and payment settings, and the theme assignment. Content lives in `fixtures/`, generated by `tools/design-assets`. |
+| `QuickCart_WindowsCompat` | Native-Windows adapters with no core edits, each a no-op on Linux: template path validation, the GD2 adapter with drive paths, static-file theme lookup (`pub/static.php`), product image URLs, gallery file names, Copy instead of Symlink materialization, and a data patch that repairs stored paths. Unit-tested. |
+| `QuickCart_ProductRecommendation` | Phase 5: frequently bought together, recently viewed, related recommendations |
+| `QuickCart_OrderTracking` | Phase 5: shipment tracking, custom status display, customer tracking page |
+| `QuickCart_CheckoutEnhancement` | Phase 4/5: checkout UI improvements, custom fields, extra validation |
+| `QuickCart_SalesDashboard` | Phase 7: sales analytics, revenue and best-seller reports |
+| `QuickCart_CustomApi` | Phase 6: REST endpoints for products, categories, orders, customers |
+
+The **Best sellers** rail reads Magento's sales report aggregation, so it stays hidden
+until there are orders. Run *Reports › Refresh Statistics* after placing orders.
 
 ---
 
@@ -101,7 +149,8 @@ cd quickcart
 :: 1. Download + configure PHP, Composer, MySQL, OpenSearch, Nginx into STACK_DIR
 devstack\qc install-stack
 
-:: 2. composer install + bin/magento setup:install + developer configuration
+:: 2. composer install, then bin/magento setup:install (runs every data patch: catalog,
+::    CMS, theme), reindex, and pre-generates all product image sizes
 devstack\qc install-magento
 ```
 
@@ -123,10 +172,23 @@ devstack\qc start                  :: MySQL, OpenSearch, PHP-CGI workers, Nginx
 devstack\qc status                 :: service health + storefront/admin HTTP codes
 devstack\qc stop
 
+devstack\qc clean-static           :: after editing the theme (LESS/JS/templates)
 devstack\qc magento cache:flush    :: any bin/magento command
 devstack\qc magento setup:upgrade
 devstack\qc composer show magento/framework
 devstack\qc mysql                  :: MySQL client on the quickcart database
+```
+
+### Regenerating design assets
+
+The illustrations, logo, catalog fixtures and vendored Motion/fonts are committed, so
+installs need no Node. To change them, edit `tools/design-assets/catalog.mjs` or
+`lib/devices.mjs` and run:
+
+```bat
+cd tools\design-assets
+npm install
+npm run build
 ```
 
 ### Database setup
@@ -161,12 +223,10 @@ production environment:
 * Email sending is off (`system/smtp/disable = 1`), because there is no local mail server.
 * OpenSearch runs on loopback with its security plugin disabled.
 * Deploy mode is `developer`.
+* `system/media_storage_configuration/configuration_update_time = 0`: on Windows,
+  `pub/get.php`'s cached fast path mis-compares paths, so the full media app is always used.
 
 ---
-
-## Screenshots
-
-Screenshots will be added with the QuickCart theme in Phase 2.
 
 ## API documentation
 
@@ -175,3 +235,5 @@ REST endpoints and a Postman collection will be documented here in Phase 6.
 ## License
 
 Proprietary. Portfolio project. Magento Open Source is licensed under OSL-3.0 / AFL-3.0.
+Motion is MIT licensed; Inter and Plus Jakarta Sans are SIL OFL 1.1 (license files ship
+next to the vendored assets).
