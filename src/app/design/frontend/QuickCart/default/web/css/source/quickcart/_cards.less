@@ -1,0 +1,470 @@
+// /**
+//  * QuickCart product cards: carousel widget cards (.qc-card) and the native
+//  * category/search grid (.products-grid .product-item-info) share one look.
+//  */
+
+& when (@media-common = true) {
+    .qc-card,
+    .products-grid .product-item-info {
+        .qc-card-surface();
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 12px;
+        box-sizing: border-box;
+
+        &:hover {
+            .qc-card-raised();
+        }
+    }
+
+    .qc-card__media,
+    .products-grid .product-item-photo {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        border-radius: 14px;
+        background: linear-gradient(160deg, #F8FAFC, #EDF1F7);
+    }
+
+    .qc-card,
+    .products-grid {
+        .product-image-container {
+            display: block;
+            width: 100% !important;
+        }
+
+        //  2.4.9 sizes the wrapper with aspect-ratio (padding-bottom is only the fallback).
+        .product-image-wrapper {
+            height: auto;
+            padding-bottom: 0 !important;
+            aspect-ratio: ~'1 / 1';
+            background: transparent;
+        }
+
+        .product-image-photo {
+            transition: transform .7s @qc-ease;
+        }
+    }
+
+    .qc-card:hover .product-image-photo,
+    .products-grid .product-item-info:hover .product-image-photo {
+        transform: scale(1.07);
+    }
+
+    //  Badges
+    .qc-badges {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        pointer-events: none;
+
+        li {
+            margin: 0;
+        }
+    }
+
+    .qc-card .qc-badges {
+        top: 10px;
+        left: 10px;
+    }
+
+    .qc-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 27px;
+        padding: 0 12px;
+        border-radius: @qc-radius-pill;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .04em;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    .qc-badge--sale {
+        background: @qc-accent;
+        color: @qc-secondary;
+    }
+
+    .qc-badge--new {
+        background: @qc-primary;
+        color: @qc-white;
+    }
+
+    .qc-badge--trending {
+        background: @qc-secondary;
+        color: @qc-white;
+
+        &:before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: @qc-accent;
+            animation: qc-blink 1.6s ease-in-out infinite;
+        }
+    }
+
+    //  Wish list heart (carousel cards)
+    .qc-card .qc-card__wish {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 2;
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, .94);
+        box-shadow: @qc-shadow-sm;
+        color: @qc-ink-2;
+        opacity: 0;
+        transform: translateY(-6px) scale(.9);
+        transition: opacity .25s ease, transform .35s @qc-ease-back, color .2s ease;
+
+        svg {
+            .qc-icon-stroke(18px);
+        }
+
+        &:hover {
+            color: #E11D48;
+
+            svg {
+                fill: currentColor;
+            }
+        }
+    }
+
+    //  The SVG heart replaces Luma's icon-font heart.
+    .qc-rail .qc-card a.qc-card__wish.action.towishlist:before {
+        content: none;
+        display: none;
+    }
+
+    .qc-card:hover .qc-card__wish,
+    .qc-card .qc-card__wish:focus {
+        opacity: 1;
+        transform: none;
+    }
+
+    @media (hover: none) {
+        .qc-card .qc-card__wish {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    //  Text
+    .qc-card__body,
+    .products-grid .product-item-details {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 4px;
+        padding: 16px 8px 8px;
+    }
+
+    .qc-card__brand {
+        margin: 0;
+        color: @qc-muted;
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+    }
+
+    .qc-card__name,
+    .products-grid .product-item-name {
+        min-height: 2.7em;
+        margin: 0;
+        font-family: @qc-font-body;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.35;
+        letter-spacing: -.01em;
+
+        a,
+        a:visited {
+            display: -webkit-box;
+            overflow: hidden;
+            color: @qc-ink;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        a:hover {
+            color: @qc-primary;
+            text-decoration: none;
+        }
+    }
+
+    //  Prices
+    .qc-card__price,
+    .products-grid {
+        .price-box {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 2px 8px;
+            margin: 4px 0 0;
+        }
+
+        .price {
+            color: @qc-ink;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .old-price {
+            margin: 0;
+
+            .price {
+                color: @qc-muted;
+                font-size: 14px;
+                font-weight: 500;
+                text-decoration: line-through;
+            }
+        }
+
+        .special-price .price-label,
+        .old-price .price-label {
+            display: none;
+        }
+
+        .minimal-price .price-label,
+        .price-from .price-label {
+            color: @qc-muted;
+            font-size: 12px;
+        }
+    }
+
+    //  Actions
+    .qc-card__actions {
+        margin-top: auto;
+        padding-top: 12px;
+
+        form {
+            margin: 0;
+        }
+    }
+
+    .qc-card .qc-btn--ghost {
+        width: 100%;
+        min-height: 44px;
+        font-size: 14px;
+    }
+
+    .qc-card .action.tocart,
+    .products-grid .action.tocart {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        min-height: 50px;
+        padding: 0 18px;
+        border: 1px solid @qc-secondary;
+        border-radius: @qc-radius-pill;
+        background: @qc-secondary;
+        box-shadow: none;
+        color: @qc-white;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1;
+        white-space: nowrap;
+        transition: background .25s ease, border-color .25s ease, box-shadow .3s @qc-ease;
+
+        svg {
+            .qc-icon-stroke(18px);
+        }
+
+        &:hover,
+        &:focus {
+            border-color: @qc-primary;
+            background: @qc-primary;
+            box-shadow: @qc-shadow-brand;
+            color: @qc-white;
+        }
+    }
+
+    .qc-card__stock {
+        margin: 0;
+        color: @qc-muted;
+        font-weight: 600;
+    }
+
+    //  Luma gives .product-item-info fixed widths (152px / 240px); cards fill their cell.
+    body .qc-card.product-item-info,
+    body .products-grid .product-item .product-item-info {
+        width: 100%;
+        max-width: none;
+    }
+
+    //  Native grid layout
+    .products-grid .product-items {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin: 0;
+    }
+
+    .products-grid .product-item {
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0;
+    }
+
+    .products-grid .product-item-inner {
+        margin-top: auto;
+    }
+
+    .products-grid .product-item-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 10px 0 0;
+
+        .actions-primary {
+            flex: 1;
+            display: block;
+
+            form {
+                margin: 0;
+            }
+        }
+
+        //  Wish list / compare float over the image (top-right), like the carousel cards.
+        .actions-secondary {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(-6px);
+            transition: opacity .25s ease, transform .35s @qc-ease-back;
+
+            > .action {
+                display: grid;
+                place-items: center;
+                width: 38px;
+                height: 38px;
+                border: 0;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, .94);
+                box-shadow: @qc-shadow-sm;
+
+                &:before {
+                    color: @qc-ink-2;
+                    font-size: 20px;
+                    line-height: 1;
+                }
+
+                &:hover {
+                    border-color: @qc-primary;
+
+                    &:before {
+                        color: @qc-primary;
+                    }
+                }
+            }
+        }
+    }
+
+    .products-grid .product-item-info:hover .actions-secondary,
+    .products-grid .actions-secondary:focus-within {
+        opacity: 1;
+        transform: none;
+    }
+
+    @media (hover: none) {
+        .products-grid .product-item-actions .actions-secondary {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    //  Colour swatches on cards
+    .products-grid .swatch-attribute,
+    .qc-card .swatch-attribute {
+        margin: 6px 0 0;
+    }
+
+    .swatch-option.color {
+        min-width: 22px;
+        width: 22px;
+        height: 22px;
+        border: 2px solid @qc-white;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px @qc-line;
+        transition: transform .25s @qc-ease-back, box-shadow .2s ease;
+
+        &:not(.disabled):hover {
+            border: 2px solid @qc-white;
+            outline: 0;
+            transform: scale(1.15);
+        }
+
+        &.selected {
+            border: 2px solid @qc-white;
+            outline: 0;
+            box-shadow: 0 0 0 2px @qc-primary;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    //  Luma floats the hover state outside the card; keep it inside our card.
+    .products-grid .product-item-info:hover,
+    .products-grid .product-item-info.active {
+        position: relative;
+        z-index: 2;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid rgba(37, 99, 235, .28);
+        background: @qc-white;
+        .qc-card-raised();
+    }
+
+    //  Luma visually hides the actions until hover; QuickCart keeps "Add to Cart" visible.
+    .products-grid .product-item-info:not(:hover):not(.active) .product-item-inner,
+    .products-grid .product-item-info .product-item-inner,
+    .products-grid .product-item-info:hover .product-item-inner,
+    .products-grid .product-item-info.active .product-item-inner {
+        clip: auto;
+        width: auto;
+        height: auto;
+        overflow: visible;
+        position: static;
+        display: block;
+        margin: auto 0 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .products-grid .product-items {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .page-layout-1column .products-grid .product-items {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}

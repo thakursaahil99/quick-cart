@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * QuickCart_WindowsCompat
+ *
+ * Makes Magento's filesystem assumptions hold on native Windows development
+ * machines. Every adapter is a no-op on Linux/macOS, so the module is safe to
+ * leave enabled in every environment.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="QuickCart_WindowsCompat"/>
+</config>

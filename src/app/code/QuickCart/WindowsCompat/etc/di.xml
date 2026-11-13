@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--
+        realpath() returns "E:\path\file.phtml" on Windows while Magento registers
+        module/theme directories as "E:/path". The core validator then rejects every
+        template ("Invalid template file"). The preference normalises separators on
+        Windows only and defers to core everywhere else.
+    -->
+    <preference for="Magento\Framework\View\Element\Template\File\Validator"
+                type="QuickCart\WindowsCompat\View\Element\Template\File\Validator"/>
+    <type name="QuickCart\WindowsCompat\View\Element\Template\File\Validator">
+        <arguments>
+            <argument name="fileDriver" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="platform" xsi:type="object">QuickCart\WindowsCompat\Model\Platform</argument>
+        </arguments>
+    </type>
+
+    <!--
+        Core Gd2::open() runs parse_url() on the file name, so the drive letter in
+        "E:/..." is read as a URL scheme and every local image is rejected ("Wrong file").
+    -->
+    <preference for="Magento\Framework\Image\Adapter\Gd2"
+                type="QuickCart\WindowsCompat\Image\Adapter\Gd2"/>
+    <type name="QuickCart\WindowsCompat\Image\Adapter\Gd2">
+        <arguments>
+            <argument name="platform" xsi:type="object">QuickCart\WindowsCompat\Model\Platform</argument>
+        </arguments>
+    </type>
+
+    <!--
+        pub/static.php validates the theme as "area" . DIRECTORY_SEPARATOR . "Vendor/theme"
+        ("frontend\Magento/luma" on Windows) and 404s every static file. Scoped argument:
+        only StaticResource receives the separator-tolerant theme list.
+    -->
+    <type name="Magento\Framework\App\StaticResource">
+        <arguments>
+            <argument name="themePackageList" xsi:type="object">QuickCart\WindowsCompat\View\Design\Theme\StaticResourceThemePackageList</argument>
+        </arguments>
+    </type>
+    <type name="QuickCart\WindowsCompat\View\Design\Theme\StaticResourceThemePackageList">
+        <arguments>
+            <argument name="platform" xsi:type="object">QuickCart\WindowsCompat\Model\Platform</argument>
+        </arguments>
+    </type>
+
+    <!--
+        Gallery handlers store "//q/c/x.jpg" on Windows (DIRECTORY_SEPARATOR prefix).
+    -->
+    <preference for="Magento\Catalog\Model\Product\Gallery\CreateHandler"
+                type="QuickCart\WindowsCompat\Model\Product\Gallery\CreateHandler"/>
+    <preference for="Magento\Catalog\Model\Product\Gallery\UpdateHandler"
+                type="QuickCart\WindowsCompat\Model\Product\Gallery\UpdateHandler"/>
+
+    <!--
+        Catalog image URLs are joined with DIRECTORY_SEPARATOR ("product\cache\<hash>\...").
+    -->
+    <type name="Magento\Catalog\Model\View\Asset\Image">
+        <plugin name="quickcart_windows_compat_image_url"
+                type="QuickCart\WindowsCompat\Plugin\Catalog\NormalizeProductImageUrl"/>
+    </type>
+
+    <!--
+        Developer/default mode materialises static assets with symlink(), which needs
+        SeCreateSymbolicLinkPrivilege on Windows. Declining the Symlink strategy makes
+        Magento fall back to its Copy strategy (the one production deploys use).
+    -->
+    <type name="Magento\Framework\App\View\Asset\MaterializationStrategy\Symlink">
+        <plugin name="quickcart_windows_compat_symlink"
+                type="QuickCart\WindowsCompat\Plugin\View\Asset\DisableSymlinkStrategyOnWindows"/>
+    </type>
+</config>

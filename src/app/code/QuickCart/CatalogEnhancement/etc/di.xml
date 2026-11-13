@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Merchandising sources for the product carousel widget. Other modules can add items. -->
+    <type name="QuickCart\CatalogEnhancement\Model\ProductSource\SourcePool">
+        <arguments>
+            <argument name="sources" xsi:type="array">
+                <item name="trending" xsi:type="object">QuickCart\CatalogEnhancement\Model\ProductSource\TrendingSource</item>
+                <item name="new" xsi:type="object">QuickCart\CatalogEnhancement\Model\ProductSource\NewArrivalsSource</item>
+                <item name="deals" xsi:type="object">QuickCart\CatalogEnhancement\Model\ProductSource\DealsSource</item>
+                <item name="bestsellers" xsi:type="object">QuickCart\CatalogEnhancement\Model\ProductSource\BestsellersSource</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

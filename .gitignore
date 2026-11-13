@@ -1,0 +1,47 @@
+# =============================================================================
+# QuickCart - Git ignore rules
+#
+# src/ is the Magento project root. Composer recreates everything Magento ships
+# (vendor/ plus the magento2-base files deployed into the root), so the repo is
+# a whitelist: only project-owned code and configuration is committed.
+# =============================================================================
+
+# --- Magento project root: ignore everything ... --------------------------------
+/src/*
+# ... except the Composer manifest/lock
+!/src/composer.json
+!/src/composer.lock
+# ... and project-owned application code
+!/src/app/
+/src/app/*
+!/src/app/code/
+!/src/app/design/
+!/src/app/i18n/
+!/src/app/etc/
+/src/app/etc/*
+# Shared module/deployment config (no secrets). env.php stays ignored.
+!/src/app/etc/config.php
+
+# Never commit (defence in depth, even inside whitelisted paths)
+env.php
+auth.json
+*.sql
+*.sql.gz
+*.pem
+*.key
+
+# --- Local dev stack -------------------------------------------------------------
+/devstack/.env
+/devstack/*.local.*
+
+# --- Tooling / OS / editors ------------------------------------------------------
+node_modules/
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.log
+.php-cs-fixer.cache
+.phpunit.result.cache
+.DS_Store
+Thumbs.db
+desktop.ini

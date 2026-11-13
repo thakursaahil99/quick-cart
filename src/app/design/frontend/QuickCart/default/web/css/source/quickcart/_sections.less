@@ -1,0 +1,443 @@
+// /**
+//  * QuickCart homepage sections: headings, trust bar, category tiles, promos,
+//  * product rails and the brand marquee.
+//  */
+
+& when (@media-common = true) {
+    .qc-section {
+        margin: 56px 0;
+    }
+
+    .qc-section__head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 28px;
+    }
+
+    .qc-section__title {
+        margin: 0;
+        font-family: @qc-font-display;
+        font-size: ~'clamp(28px, 3vw, 42px)';
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -.03em;
+    }
+
+    //  Trust bar
+    .qc-trust {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin: 20px 0 0;
+        padding: 18px;
+        border: 1px solid @qc-line;
+        border-radius: @qc-radius-lg;
+        background: @qc-white;
+        box-shadow: @qc-shadow-sm;
+        list-style: none;
+    }
+
+    .qc-trust__item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0;
+
+        strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        small {
+            display: block;
+            color: @qc-muted;
+            font-size: 14px;
+        }
+    }
+
+    .qc-trust__icon {
+        flex: 0 0 52px;
+        display: grid;
+        place-items: center;
+        height: 52px;
+        border-radius: 14px;
+        background: @qc-primary-soft;
+        color: @qc-primary;
+
+        svg {
+            .qc-icon-stroke(22px, 1.8);
+        }
+    }
+
+    //  Category tiles
+    .qc-cats__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .qc-cats__item {
+        margin: 0;
+    }
+
+    .qc-cat {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        padding: 20px 14px 22px;
+        overflow: hidden;
+        border: 1px solid @qc-line;
+        border-radius: @qc-radius-lg;
+        background: @qc-white;
+        color: @qc-ink;
+        text-align: center;
+        transition: box-shadow .35s @qc-ease, border-color .3s ease;
+        will-change: transform;
+
+        &:before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--qc-glare-x, 50%) var(--qc-glare-y, 0%), rgba(255, 255, 255, .95), transparent 50%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s ease;
+            z-index: 1;
+        }
+
+        &:visited {
+            color: @qc-ink;
+        }
+
+        &:hover {
+            border-color: rgba(37, 99, 235, .3);
+            box-shadow: @qc-shadow-md;
+            color: @qc-ink;
+            text-decoration: none;
+
+            &:before {
+                opacity: .55;
+            }
+
+            .qc-cat__art img {
+                transform: scale(1.08) translateY(-4px);
+            }
+        }
+    }
+
+    .qc-cat__art {
+        display: grid;
+        place-items: center;
+        width: 100%;
+        margin-bottom: 10px;
+        aspect-ratio: ~'1 / 1';
+        border-radius: @qc-radius;
+        background: radial-gradient(circle at 50% 62%, #E0EAFF 0%, rgba(239, 246, 255, 0) 70%);
+
+        img {
+            width: 88%;
+            height: auto;
+            transition: transform .55s @qc-ease;
+        }
+    }
+
+    .qc-cat__name {
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .qc-cat__count {
+        color: @qc-muted;
+        font-size: 14px;
+    }
+
+    //  Promo banners
+    .qc-promos {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .qc-promo {
+        position: relative;
+        display: flex;
+        align-items: center;
+        min-height: 280px;
+        padding: 40px;
+        overflow: hidden;
+        border-radius: @qc-radius-xl;
+        color: @qc-white;
+        will-change: transform;
+
+        &:hover,
+        &:visited,
+        &:focus {
+            color: @qc-white;
+            text-decoration: none;
+        }
+
+        &:hover .qc-promo__art {
+            transform: scale(1.07) rotate(-5deg);
+        }
+    }
+
+    .qc-promo--midnight {
+        background:
+            radial-gradient(420px 300px at 85% 30%, rgba(59, 130, 246, .55), transparent 70%),
+            linear-gradient(135deg, #0B1120, #1E293B);
+
+        .qc-eyebrow {
+            color: #93C5FD;
+        }
+
+        .qc-link-arrow {
+            color: @qc-white;
+        }
+    }
+
+    .qc-promo--amber {
+        background:
+            radial-gradient(420px 300px at 85% 30%, rgba(255, 255, 255, .45), transparent 70%),
+            linear-gradient(135deg, #FBBF24, #EA580C);
+
+        &,
+        &:hover,
+        &:visited,
+        &:focus,
+        .qc-link-arrow {
+            color: @qc-secondary;
+        }
+
+        .qc-eyebrow {
+            color: rgba(17, 24, 39, .7);
+        }
+    }
+
+    .qc-promo__copy {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 58%;
+
+        .qc-eyebrow {
+            margin: 0;
+        }
+    }
+
+    .qc-promo__title {
+        font-family: @qc-font-display;
+        font-size: 34px;
+        font-weight: 800;
+        line-height: 1.12;
+        letter-spacing: -.025em;
+    }
+
+    .qc-promo__art {
+        position: absolute;
+        right: -24px;
+        bottom: -36px;
+        width: 54%;
+        max-width: 320px;
+        height: auto;
+        filter: drop-shadow(0 26px 30px rgba(0, 0, 0, .35));
+        transition: transform .7s @qc-ease;
+    }
+
+    //  Product rails
+    .qc-rail__controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .qc-rail .qc-rail__nav {
+        display: none;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        padding: 0;
+        border: 1px solid @qc-line;
+        border-radius: 50%;
+        background: @qc-white;
+        box-shadow: @qc-shadow-xs;
+        color: @qc-ink;
+        cursor: pointer;
+        transition: border-color .2s ease, color .2s ease, opacity .2s ease;
+
+        svg {
+            .qc-icon-stroke(18px, 2.2);
+        }
+
+        &:hover {
+            border-color: @qc-primary;
+            color: @qc-primary;
+        }
+
+        &:disabled {
+            opacity: .35;
+            cursor: default;
+        }
+    }
+
+    //  Bleeds to the screen edge: Luma's page gutter is 15px on mobile, 20px on desktop.
+    .qc-rail__viewport {
+        margin: 0 -15px;
+        padding: 6px 15px 26px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding: 0 15px;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .qc-rail__track {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 74%;
+        gap: 14px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .qc-rail__item {
+        margin: 0;
+        scroll-snap-align: start;
+    }
+
+    //  Brand marquee
+    .qc-section.qc-brands {
+        margin-bottom: 8px;
+        text-align: center;
+    }
+
+    .qc-brands__label {
+        margin-bottom: 18px;
+        color: @qc-muted;
+    }
+
+    .qc-brands__viewport {
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+
+        &:hover .qc-brands__track {
+            animation-play-state: paused;
+        }
+    }
+
+    .qc-brands__track {
+        display: flex;
+        justify-content: center;
+        gap: 56px;
+        width: max-content;
+        min-width: 100%;
+        margin: 0;
+        padding: 8px 0;
+        list-style: none;
+
+        &.is-looping {
+            justify-content: flex-start;
+            animation: qc-marquee 32s linear infinite;
+        }
+
+        li {
+            margin: 0;
+        }
+
+        a {
+            color: #94A3B8;
+            font-family: @qc-font-display;
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -.03em;
+            transition: color .2s ease;
+
+            &:hover {
+                color: @qc-ink;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .qc-section {
+        margin: 88px 0;
+    }
+
+    .qc-trust {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        padding: 26px 30px;
+    }
+
+    .qc-cats__grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .qc-promos {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .qc-rail.is-scrollable .qc-rail__nav {
+        display: grid;
+    }
+
+    .qc-rail__viewport {
+        margin: 0 -20px;
+        padding: 6px 20px 26px;
+        scroll-padding: 0 20px;
+    }
+
+    .qc-rail__track {
+        grid-auto-columns: ~'calc((100% - 2 * 22px) / 3)';
+        gap: 22px;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .qc-trust {
+        gap: 14px 10px;
+        padding: 14px;
+    }
+
+    .qc-trust__item {
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    .qc-trust__icon {
+        flex-basis: 36px;
+        height: 36px;
+        border-radius: 12px;
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .qc-cats__grid {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+
+    .qc-rail__track {
+        grid-auto-columns: ~'calc((100% - 3 * 22px) / 4)';
+    }
+}

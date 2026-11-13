@@ -1,0 +1,29 @@
+<?php
+/**
+ * QuickCart_CatalogEnhancement - brand + badges above the product title.
+ *
+ * @var \Magento\Catalog\Block\Product\View $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \QuickCart\CatalogEnhancement\ViewModel\ProductBadges $viewModel */
+$viewModel = $block->getData('qc_badges');
+$product = $block->getProduct();
+if (!$viewModel || !$product) {
+    return;
+}
+$brand = $viewModel->getBrand($product);
+$badges = $viewModel->getBadges($product);
+if (!$brand && !$badges) {
+    return;
+}
+?>
+<div class="qc-pdp-meta">
+    <?php if ($brand): ?>
+        <span class="qc-pdp-meta__brand"><?= $escaper->escapeHtml($brand) ?></span>
+    <?php endif; ?>
+    <?php foreach ($badges as $badge): ?>
+        <span class="qc-badge qc-badge--<?= $escaper->escapeHtmlAttr($badge['code']) ?>">
+            <?= $escaper->escapeHtml($badge['label']) ?>
+        </span>
+    <?php endforeach; ?>
+</div>

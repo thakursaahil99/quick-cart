@@ -1,0 +1,16 @@
+{
+    "name": "quickcart/theme-frontend-default",
+    "description": "QuickCart storefront theme (Luma child) with Motion animations.",
+    "type": "magento2-theme",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "103.0.*",
+        "magento/theme-frontend-luma": "100.4.*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+}

@@ -1,0 +1,219 @@
+// /**
+//  * QuickCart category & search pages: banner, toolbar, layered navigation, pager.
+//  */
+
+& when (@media-common = true) {
+    .page-products .page-title-wrapper .page-title {
+        margin: 6px 0 14px;
+        font-size: ~'clamp(28px, 3.4vw, 42px)';
+    }
+
+    //  Category banner (description + category image)
+    .catalog-category-view .category-view {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        min-height: 150px;
+        margin: 0 0 26px;
+        padding: 26px 30px;
+        overflow: hidden;
+        border-radius: @qc-radius-xl;
+        background:
+            radial-gradient(500px 260px at 90% 50%, rgba(59, 130, 246, .45), transparent 70%),
+            linear-gradient(135deg, #0B1120, #172554);
+        color: #CBD5E1;
+    }
+
+    .catalog-category-view .category-description {
+        flex: 1;
+        margin: 0;
+        font-size: 17px;
+        line-height: 1.6;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .catalog-category-view .category-image {
+        order: 2;
+        flex: 0 0 auto;
+        margin: -20px -10px -40px 0;
+
+        .image {
+            display: block;
+            width: 190px;
+            max-width: none;
+            filter: drop-shadow(0 20px 26px rgba(0, 0, 0, .4));
+            animation: qc-float 7s ease-in-out infinite;
+        }
+    }
+
+    //  Toolbar
+    .toolbar-products {
+        padding: 10px 14px;
+        border: 1px solid @qc-line;
+        border-radius: @qc-radius;
+        background: @qc-white;
+        margin-bottom: 20px;
+    }
+
+    .toolbar {
+        .modes-mode {
+            border-radius: 10px;
+            box-shadow: none;
+        }
+
+        .sorter-options,
+        .limiter-options {
+            height: 38px;
+            border-radius: 10px;
+        }
+    }
+
+    .products.wrapper ~ .toolbar-products {
+        border: 0;
+        background: transparent;
+    }
+
+    //  Pager
+    .pages {
+        .item {
+            margin: 0 4px 0 0;
+
+            a.page,
+            strong.page {
+                display: grid;
+                place-items: center;
+                min-width: 38px;
+                height: 38px;
+                padding: 0;
+                border-radius: 12px;
+            }
+
+            &.current strong.page {
+                background: @qc-primary;
+                color: @qc-white;
+            }
+        }
+
+        .action {
+            border-radius: 12px;
+        }
+    }
+
+    //  Layered navigation
+    .sidebar-main .block.filter {
+        padding: 6px 20px 12px;
+        border: 1px solid @qc-line;
+        border-radius: @qc-radius-lg;
+        background: @qc-white;
+    }
+
+    .block.filter {
+        .filter-title strong,
+        .block-subtitle {
+            font-family: @qc-font-display;
+            font-weight: 800;
+        }
+
+        .filter-options-item {
+            border-bottom: 1px solid @qc-line;
+
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+
+        .filter-options-title {
+            padding: 14px 32px 14px 0;
+            border: 0;
+            color: @qc-ink;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: 0;
+
+            &:after {
+                color: @qc-muted;
+            }
+        }
+
+        .filter-options-content {
+            margin: 0 0 12px;
+            padding: 0;
+
+            .item {
+                margin: 0 0 2px;
+
+                a {
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 0;
+                    padding: 7px 10px;
+                    border-radius: 10px;
+                    color: @qc-ink-2;
+
+                    &:hover {
+                        background: @qc-primary-soft;
+                        color: @qc-primary;
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            .count {
+                color: @qc-muted;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .filter-current .item {
+        display: inline-flex;
+        align-items: center;
+        margin: 0 6px 6px 0;
+        padding: 4px 10px 4px 12px;
+        border-radius: @qc-radius-pill;
+        background: @qc-primary-soft;
+        color: @qc-primary;
+        font-size: 13px;
+        font-weight: 600;
+
+        .filter-label {
+            margin-right: 4px;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .catalog-category-view .category-view {
+        padding: 30px 48px;
+    }
+
+    .catalog-category-view .category-image .image {
+        width: 240px;
+    }
+
+    .sidebar-main {
+        padding-right: 2%;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    //  Luma floats the mobile toolbar items, so the card frame would collapse empty.
+    .toolbar-products {
+        padding: 0;
+        border: 0;
+        background: transparent;
+    }
+
+    .catalog-category-view .category-image .image {
+        width: 120px;
+    }
+
+    .catalog-category-view .category-description {
+        font-size: 15px;
+    }
+}

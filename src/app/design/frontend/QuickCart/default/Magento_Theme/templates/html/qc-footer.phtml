@@ -1,0 +1,59 @@
+<?php
+/**
+ * QuickCart footer.
+ *
+ * Children: newsletter (Magento_Newsletter), shop_links (CMS block qc-footer-shop),
+ * help_links (native footer links), copyright.
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$accountLinks = [
+    'customer/account' => __('My Account'),
+    'sales/order/history' => __('My Orders'),
+    'wishlist' => __('My Wish List'),
+    'sales/guest/form' => __('Track a Guest Order'),
+];
+?>
+<div class="qc-footer">
+    <section class="qc-footer__newsletter" data-qc-reveal>
+        <div class="qc-footer__newsletter-copy">
+            <p class="qc-eyebrow"><?= $escaper->escapeHtml(__('Newsletter')) ?></p>
+            <h2><?= $escaper->escapeHtml(__('Get the best deals first')) ?></h2>
+            <p><?= $escaper->escapeHtml(__('Launches, price drops and exclusive coupons, straight to your inbox.')) ?></p>
+        </div>
+        <?= $block->getChildHtml('newsletter') ?>
+    </section>
+
+    <div class="qc-footer__grid">
+        <div class="qc-footer__brand">
+            <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/logo-light.svg')) ?>"
+                 alt="QuickCart" width="172" height="40" loading="lazy">
+            <p><?= $escaper->escapeHtml(__('Shop Smarter. Shop Faster.')) ?></p>
+            <p class="qc-footer__note">
+                <?= $escaper->escapeHtml(__('Smartphones, laptops, audio, wearables, cameras and gaming gear, with free delivery on orders above ₹999.')) ?>
+            </p>
+        </div>
+        <nav class="qc-footer__col" aria-labelledby="qc-footer-shop">
+            <h3 id="qc-footer-shop"><?= $escaper->escapeHtml(__('Shop')) ?></h3>
+            <?= $block->getChildHtml('shop_links') ?>
+        </nav>
+        <nav class="qc-footer__col" aria-labelledby="qc-footer-help">
+            <h3 id="qc-footer-help"><?= $escaper->escapeHtml(__('Help')) ?></h3>
+            <?= $block->getChildHtml('help_links') ?>
+        </nav>
+        <nav class="qc-footer__col" aria-labelledby="qc-footer-account">
+            <h3 id="qc-footer-account"><?= $escaper->escapeHtml(__('Account')) ?></h3>
+            <ul class="footer links">
+                <?php foreach ($accountLinks as $path => $label): ?>
+                    <li><a href="<?= $escaper->escapeUrl($block->getUrl($path)) ?>"><?= $escaper->escapeHtml($label) ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="qc-footer__bottom">
+        <?= $block->getChildHtml('copyright') ?>
+        <p class="qc-footer__made"><?= $escaper->escapeHtml(__('Built on Magento Open Source')) ?></p>
+    </div>
+</div>

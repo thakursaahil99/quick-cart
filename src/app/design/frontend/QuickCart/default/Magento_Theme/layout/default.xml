@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Header -->
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/logo.svg</argument>
+                <argument name="logo_alt" xsi:type="string">QuickCart</argument>
+                <argument name="logo_width" xsi:type="number">172</argument>
+                <argument name="logo_height" xsi:type="number">40</argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="qc.header.actions"
+                   template="Magento_Theme::html/qc-header-actions.phtml" before="minicart"/>
+        </referenceContainer>
+
+        <!-- Footer -->
+        <referenceContainer name="footer">
+            <block class="Magento\Framework\View\Element\Template" name="qc.footer"
+                   template="Magento_Theme::html/qc-footer.phtml" before="-">
+                <block class="Magento\Cms\Block\Block" name="qc.footer.shop" as="shop_links">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">qc-footer-shop</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+        <move element="form.subscribe" destination="qc.footer" as="newsletter"/>
+        <move element="footer_links" destination="qc.footer" as="help_links"/>
+        <move element="copyright" destination="qc.footer" as="copyright"/>
+        <referenceBlock name="store_switcher" remove="true"/>
+        <referenceBlock name="report.bugs" remove="true"/>
+    </body>
+</page>

@@ -1,0 +1,48 @@
+<?php
+/**
+ * QuickCart_CatalogEnhancement - category tiles widget.
+ *
+ * @var \QuickCart\CatalogEnhancement\Block\Widget\CategoryTiles $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$categories = $block->getCategories();
+if (!$categories->count()) {
+    return;
+}
+$title = (string)$block->getData('title');
+$subtitle = (string)$block->getData('subtitle');
+?>
+<section class="qc-section qc-cats" aria-labelledby="qc-cats-title" data-qc-reveal>
+    <header class="qc-section__head">
+        <div class="qc-section__titles">
+            <?php if ($subtitle): ?>
+                <p class="qc-eyebrow"><?= $escaper->escapeHtml($subtitle) ?></p>
+            <?php endif; ?>
+            <h2 class="qc-section__title" id="qc-cats-title">
+                <?= $escaper->escapeHtml($title ?: __('Shop by category')) ?>
+            </h2>
+        </div>
+    </header>
+    <ul class="qc-cats__grid" data-qc-stagger>
+        <?php foreach ($categories as $category): ?>
+            <?php
+            $imageUrl = $block->getImageUrl($category);
+            $count = (int)$category->getProductCount();
+            ?>
+            <li class="qc-cats__item">
+                <a class="qc-cat" href="<?= $escaper->escapeUrl($category->getUrl()) ?>" data-qc-tilt>
+                    <span class="qc-cat__art">
+                        <?php if ($imageUrl): ?>
+                            <img src="<?= $escaper->escapeUrl($imageUrl) ?>" alt="" width="320" height="320"
+                                 loading="lazy" decoding="async">
+                        <?php endif; ?>
+                    </span>
+                    <span class="qc-cat__name"><?= $escaper->escapeHtml($category->getName()) ?></span>
+                    <span class="qc-cat__count">
+                        <?= $escaper->escapeHtml($count === 1 ? __('1 product') : __('%1 products', $count)) ?>
+                    </span>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</section>

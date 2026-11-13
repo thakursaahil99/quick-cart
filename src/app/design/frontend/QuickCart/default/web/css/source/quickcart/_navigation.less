@@ -1,0 +1,127 @@
+// /**
+//  * QuickCart navigation: underline-sweep top menu and floating dropdown panels.
+//  */
+
+& when (@media-common = true) {
+    .navigation .level0 > .level-top {
+        font-weight: 600;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .nav-sections {
+        margin-bottom: 0;
+        border-bottom: 1px solid @qc-line;
+        background: @qc-white;
+    }
+
+    .navigation {
+        background: transparent;
+        font-weight: 600;
+
+        > ul {
+            padding: 0 12px;
+        }
+
+        .level0 {
+            margin: 0;
+
+            > .level-top {
+                position: relative;
+                padding: 0 14px;
+                border: 0;
+                color: @qc-ink;
+                font-size: 16px;
+                line-height: 58px;
+                transition: color .2s ease;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    left: 14px;
+                    right: 14px;
+                    bottom: 12px;
+                    height: 2px;
+                    border-radius: 2px;
+                    background: @qc-primary;
+                    transform: scaleX(0);
+                    transform-origin: 0 50%;
+                    transition: transform .35s @qc-ease;
+                }
+            }
+
+            &:hover > .level-top,
+            &.active > .level-top,
+            &.has-active > .level-top {
+                border: 0;
+                color: @qc-primary;
+
+                &:after {
+                    transform: scaleX(1);
+                }
+            }
+
+            &.last > .level-top {
+                color: #B45309;
+
+                &:after {
+                    background: @qc-accent;
+                }
+            }
+
+            .submenu {
+                min-width: 250px;
+                margin-top: -6px !important;
+                padding: 10px;
+                border: 1px solid @qc-line;
+                border-radius: @qc-radius;
+                background: @qc-white;
+                box-shadow: @qc-shadow-lg;
+                font-weight: 500;
+                animation: qc-drop .25s @qc-ease;
+
+                a {
+                    padding: 10px 14px;
+                    border-radius: 10px;
+                    color: @qc-ink-2;
+
+                    &:hover,
+                    &.ui-state-focus {
+                        background: @qc-primary-soft;
+                        color: @qc-primary;
+                        text-decoration: none;
+                    }
+                }
+
+                .all-category a {
+                    color: @qc-ink;
+                    font-weight: 700;
+                }
+
+                .active > a {
+                    border: 0;
+                    color: @qc-primary;
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .nav-sections {
+        background: @qc-white;
+    }
+
+    .navigation {
+        .level0 > .level-top {
+            color: @qc-ink;
+            font-size: 16px;
+        }
+
+        .level0.active > .level-top,
+        .level0.has-active > .level-top {
+            border-color: @qc-primary;
+            color: @qc-primary;
+        }
+    }
+}

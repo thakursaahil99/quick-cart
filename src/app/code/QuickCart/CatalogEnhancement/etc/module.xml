@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * QuickCart_CatalogEnhancement
+ *
+ * Electronics product attributes (brand, colour swatch, specifications), the
+ * "QuickCart Electronics" attribute set, merchandising widgets (product carousel,
+ * category tiles) and product badges.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="QuickCart_CatalogEnhancement">
+        <sequence>
+            <module name="Magento_Catalog"/>
+            <module name="Magento_Eav"/>
+            <module name="Magento_Swatches"/>
+            <module name="Magento_Widget"/>
+            <module name="Magento_Sales"/>
+        </sequence>
+    </module>
+</config>

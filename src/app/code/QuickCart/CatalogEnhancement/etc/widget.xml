@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="quickcart_product_carousel" class="QuickCart\CatalogEnhancement\Block\Widget\ProductCarousel"
+            is_email_compatible="false" placeholder_image="Magento_CatalogWidget::images/products_list.png">
+        <label translate="true">QuickCart Product Carousel</label>
+        <description translate="true">Animated product rail fed by a merchandising source: trending, new arrivals, deals or best sellers</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="subtitle" xsi:type="text" required="false" visible="true">
+                <label translate="true">Eyebrow Text</label>
+            </parameter>
+            <parameter name="source" xsi:type="select" required="true" visible="true"
+                       source_model="QuickCart\CatalogEnhancement\Model\Config\Source\ProductSourceOptions">
+                <label translate="true">Product Source</label>
+            </parameter>
+            <parameter name="products_count" xsi:type="text" required="true" visible="true">
+                <label translate="true">Number of Products</label>
+                <value>8</value>
+            </parameter>
+            <parameter name="view_all_url" xsi:type="text" required="false" visible="true">
+                <label translate="true">"View all" Path</label>
+                <description translate="true">Relative to the store URL, e.g. deals.html</description>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget id="quickcart_category_tiles" class="QuickCart\CatalogEnhancement\Block\Widget\CategoryTiles"
+            is_email_compatible="false" placeholder_image="Magento_Catalog::images/category_widget_link.png">
+        <label translate="true">QuickCart Category Tiles</label>
+        <description translate="true">Top-level menu categories with image and product count</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="subtitle" xsi:type="text" required="false" visible="true">
+                <label translate="true">Eyebrow Text</label>
+            </parameter>
+            <parameter name="limit" xsi:type="text" required="false" visible="true">
+                <label translate="true">Maximum Tiles</label>
+                <value>8</value>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

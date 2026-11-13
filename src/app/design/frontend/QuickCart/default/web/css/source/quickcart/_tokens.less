@@ -1,0 +1,65 @@
+// /**
+//  * QuickCart design tokens and mixins (no CSS output).
+//  */
+
+//  Brand
+@qc-primary: #2563EB;
+@qc-primary-dark: #1D4ED8;
+@qc-primary-light: #3B82F6;
+@qc-primary-soft: #EFF6FF;
+@qc-secondary: #111827;
+@qc-accent: #F59E0B;
+@qc-accent-soft: #FEF3C7;
+@qc-bg: #F8FAFC;
+@qc-white: #FFFFFF;
+
+//  Neutrals & states
+@qc-ink: #0F172A;
+@qc-ink-2: #334155;
+@qc-muted: #64748B;
+@qc-line: #E2E8F0;
+@qc-surface: #F1F5F9;
+@qc-success: #15803D;
+@qc-success-soft: #DCFCE7;
+
+//  Shape & depth
+@qc-radius-xl: 28px;
+@qc-radius-lg: 20px;
+@qc-radius: 16px;
+@qc-radius-sm: 12px;
+@qc-radius-pill: 999px;
+@qc-shadow-xs: 0 1px 2px rgba(15, 23, 42, .06);
+@qc-shadow-sm: 0 1px 3px rgba(15, 23, 42, .08), 0 1px 2px rgba(15, 23, 42, .04);
+@qc-shadow-md: 0 14px 34px -14px rgba(15, 23, 42, .25);
+@qc-shadow-lg: 0 30px 60px -24px rgba(15, 23, 42, .38);
+@qc-shadow-brand: 0 16px 34px -14px rgba(37, 99, 235, .65);
+
+//  Type & motion
+@qc-font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+@qc-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+@qc-ease: cubic-bezier(.22, 1, .36, 1);
+@qc-ease-back: cubic-bezier(.34, 1.56, .64, 1);
+
+//  Mixins
+.qc-icon-stroke(@size: 20px, @width: 2) {
+    width: @size;
+    height: @size;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: @width;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.qc-card-surface() {
+    background: @qc-white;
+    border: 1px solid @qc-line;
+    border-radius: @qc-radius-lg;
+    transition: transform .4s @qc-ease, box-shadow .4s @qc-ease, border-color .3s ease;
+}
+
+.qc-card-raised() {
+    transform: translateY(-6px);
+    border-color: rgba(37, 99, 235, .28);
+    box-shadow: 0 26px 50px -26px rgba(15, 23, 42, .4);
+}

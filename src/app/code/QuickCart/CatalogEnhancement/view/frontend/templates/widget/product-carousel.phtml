@@ -1,0 +1,133 @@
+<?php
+/**
+ * QuickCart_CatalogEnhancement - product carousel widget.
+ *
+ * @var \QuickCart\CatalogEnhancement\Block\Widget\ProductCarousel $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$collection = $block->getProductCollection();
+if (!$collection || !$collection->count()) {
+    return;
+}
+$sectionId = 'qc-rail-' . $escaper->escapeHtmlAttr($block->getSourceCode());
+$title = (string)$block->getData('title');
+$subtitle = (string)$block->getData('subtitle');
+$viewAllUrl = $block->getViewAllUrl();
+?>
+<section class="qc-section qc-rail" id="<?= /* @noEscape */ $sectionId ?>"
+         aria-labelledby="<?= /* @noEscape */ $sectionId ?>-title" data-qc-reveal>
+    <header class="qc-section__head">
+        <div class="qc-section__titles">
+            <?php if ($subtitle): ?>
+                <p class="qc-eyebrow"><?= $escaper->escapeHtml($subtitle) ?></p>
+            <?php endif; ?>
+            <h2 class="qc-section__title" id="<?= /* @noEscape */ $sectionId ?>-title">
+                <?= $escaper->escapeHtml($title ?: __('Featured products')) ?>
+            </h2>
+        </div>
+        <div class="qc-rail__controls">
+            <?php if ($viewAllUrl): ?>
+                <a class="qc-link-arrow" href="<?= $escaper->escapeUrl($viewAllUrl) ?>">
+                    <?= $escaper->escapeHtml(__('View all')) ?>
+                </a>
+            <?php endif; ?>
+            <button type="button" class="qc-rail__nav" data-role="prev"
+                    aria-controls="<?= /* @noEscape */ $sectionId ?>-track"
+                    aria-label="<?= $escaper->escapeHtmlAttr(__('Previous products')) ?>">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="qc-rail__nav" data-role="next"
+                    aria-controls="<?= /* @noEscape */ $sectionId ?>-track"
+                    aria-label="<?= $escaper->escapeHtmlAttr(__('Next products')) ?>">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="qc-rail__viewport" data-role="viewport">
+        <ol class="qc-rail__track product-items" id="<?= /* @noEscape */ $sectionId ?>-track" data-qc-stagger>
+            <?php foreach ($collection as $product): ?>
+                <?php
+                $productUrl = $block->getProductUrl($product);
+                $productName = (string)$product->getName();
+                $brand = $block->getBrand($product);
+                ?>
+                <li class="qc-rail__item product-item">
+                    <article class="qc-card product-item-info" data-container="product-grid">
+                        <div class="qc-card__media">
+                            <a href="<?= $escaper->escapeUrl($productUrl) ?>" class="qc-card__image product-item-photo"
+                               tabindex="-1" aria-hidden="true">
+                                <?= $block->getImage($product, 'category_page_grid')->toHtml() ?>
+                            </a>
+                            <?php $badges = $block->getBadges($product); ?>
+                            <?php if ($badges): ?>
+                                <ul class="qc-badges">
+                                    <?php foreach ($badges as $badge): ?>
+                                        <li class="qc-badge qc-badge--<?= $escaper->escapeHtmlAttr($badge['code']) ?>">
+                                            <?= $escaper->escapeHtml($badge['label']) ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                            <a href="#" class="qc-card__wish action towishlist" data-action="add-to-wishlist"
+                               data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($product) ?>'
+                               role="button"
+                               title="<?= $escaper->escapeHtmlAttr(__('Add to Wish List')) ?>"
+                               aria-label="<?= $escaper->escapeHtmlAttr(__('Add %1 to Wish List', $productName)) ?>">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 5.2 3 1.6-1.9 3.1-3 5.2-3 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>
+                            </a>
+                        </div>
+                        <div class="qc-card__body product-item-details">
+                            <?php if ($brand): ?>
+                                <p class="qc-card__brand"><?= $escaper->escapeHtml($brand) ?></p>
+                            <?php endif; ?>
+                            <h3 class="qc-card__name product-item-name">
+                                <a class="product-item-link" href="<?= $escaper->escapeUrl($productUrl) ?>">
+                                    <?= $escaper->escapeHtml($productName) ?>
+                                </a>
+                            </h3>
+                            <div class="qc-card__price">
+                                <?= /* @noEscape */ $block->getProductPriceHtml($product) ?>
+                            </div>
+                            <div class="qc-card__actions product-item-actions">
+                                <?php if ($block->canAddToCartFromList($product)): ?>
+                                    <?php $postParams = $block->getAddToCartPostParams($product); ?>
+                                    <form data-role="tocart-form" method="post"
+                                          data-product-sku="<?= $escaper->escapeHtmlAttr($product->getSku()) ?>"
+                                          action="<?= $escaper->escapeUrl($postParams['action']) ?>">
+                                        <input type="hidden" name="product"
+                                               value="<?= (int)$postParams['data']['product'] ?>">
+                                        <input type="hidden" name="uenc"
+                                               value="<?= $escaper->escapeHtmlAttr($postParams['data']['uenc']) ?>">
+                                        <?= $block->getBlockHtml('formkey') ?>
+                                        <button type="submit" class="action tocart primary qc-btn qc-btn--cart"
+                                                title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.3"/><circle cx="17" cy="20.5" r="1.3"/></svg>
+                                            <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                                        </button>
+                                    </form>
+                                <?php elseif ($product->isSaleable()): ?>
+                                    <a class="qc-btn qc-btn--ghost" href="<?= $escaper->escapeUrl($productUrl) ?>">
+                                        <span><?= $escaper->escapeHtml(__('Choose options')) ?></span>
+                                    </a>
+                                <?php else: ?>
+                                    <p class="qc-card__stock"><?= $escaper->escapeHtml(__('Out of stock')) ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+</section>
+<script type="text/x-magento-init">
+{
+    "#<?= /* @noEscape */ $sectionId ?>": {
+        "QuickCart_CatalogEnhancement/js/carousel": {}
+    },
+    "#<?= /* @noEscape */ $sectionId ?> [data-role=tocart-form]": {
+        "catalogAddToCart": {}
+    }
+}
+</script>

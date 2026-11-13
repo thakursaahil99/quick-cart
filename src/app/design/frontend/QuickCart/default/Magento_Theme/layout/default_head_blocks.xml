@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!-- Self-hosted fonts (SIL OFL): preload the two faces used above the fold. -->
+        <font src="fonts/inter-var-latin.woff2"/>
+        <font src="fonts/plus-jakarta-sans-800-latin.woff2"/>
+        <link src="images/favicon.svg" rel="icon" type="image/svg+xml"/>
+        <meta name="theme-color" content="#2563EB"/>
+    </head>
+</page>
