@@ -12,4 +12,27 @@
             </argument>
         </arguments>
     </type>
+
+    <!-- Product label rules -->
+    <preference for="QuickCart\CatalogEnhancement\Api\Data\LabelInterface"
+                type="QuickCart\CatalogEnhancement\Model\Label"/>
+    <preference for="QuickCart\CatalogEnhancement\Api\Data\LabelSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <preference for="QuickCart\CatalogEnhancement\Api\LabelRepositoryInterface"
+                type="QuickCart\CatalogEnhancement\Model\LabelRepository"/>
+
+    <!-- Admin grid data source -->
+    <type name="QuickCart\CatalogEnhancement\Model\ResourceModel\Label\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">quickcart_product_label</argument>
+            <argument name="resourceModel" xsi:type="string">QuickCart\CatalogEnhancement\Model\ResourceModel\Label</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="quickcart_product_label_listing_data_source" xsi:type="string">QuickCart\CatalogEnhancement\Model\ResourceModel\Label\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

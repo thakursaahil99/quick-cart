@@ -1,0 +1,51 @@
+<?php
+/**
+ * QuickCart_SalesDashboard - best-selling products report.
+ *
+ * @var \Magento\Backend\Block\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \QuickCart\SalesDashboard\ViewModel\Analytics $analytics */
+$analytics = $block->getData('analytics');
+$report = $analytics->getProductReport();
+$currency = $report['currency'];
+$max = $report['rows'] ? max(array_column($report['rows'], 'revenue')) : 0.0;
+?>
+<div class="qc-report">
+    <?= $block->getChildHtml('qc.sales.filters') ?>
+    <div class="qc-card">
+        <?php if (!$report['rows']): ?>
+            <p class="qc-muted"><?= $escaper->escapeHtml(__('No sales in this period.')) ?></p>
+        <?php else: ?>
+            <table class="qc-table">
+                <thead>
+                <tr>
+                    <th class="qc-num">#</th>
+                    <th><?= $escaper->escapeHtml(__('Product')) ?></th>
+                    <th class="qc-num"><?= $escaper->escapeHtml(__('Units')) ?></th>
+                    <th class="qc-num"><?= $escaper->escapeHtml(__('Orders')) ?></th>
+                    <th class="qc-num"><?= $escaper->escapeHtml(__('Net revenue')) ?></th>
+                    <th style="width: 30%"><?= $escaper->escapeHtml(__('Share of product revenue')) ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($report['rows'] as $row): ?>
+                    <tr>
+                        <td class="qc-num"><?= (int)$row['rank'] ?></td>
+                        <td><?= $escaper->escapeHtml($row['name']) ?><span class="qc-muted"><?= $escaper->escapeHtml($row['sku']) ?></span></td>
+                        <td class="qc-num"><?= (float)$row['qty'] ?></td>
+                        <td class="qc-num"><?= (int)$row['orders'] ?></td>
+                        <td class="qc-num"><?= $escaper->escapeHtml($analytics->formatMoney($row['revenue'], $currency)) ?></td>
+                        <td>
+                            <span class="qc-bars__track" style="display: flex; align-items: center; gap: .8rem;">
+                                <span class="qc-bars__bar" style="width: <?= (float)($max > 0 ? $row['revenue'] / $max * 80 : 0) ?>%; height: 12px"></span>
+                                <span class="qc-muted"><?= $escaper->escapeHtml($row['share'] . '%') ?></span>
+                            </span>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+</div>

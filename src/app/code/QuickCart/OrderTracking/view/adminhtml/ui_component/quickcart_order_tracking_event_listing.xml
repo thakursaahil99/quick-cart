@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">quickcart_order_tracking_event_listing.quickcart_order_tracking_event_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>quickcart_order_tracking_event_columns</spinner>
+        <deps>
+            <dep>quickcart_order_tracking_event_listing.quickcart_order_tracking_event_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="quickcart_order_tracking_event_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">event_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>QuickCart_OrderTracking::tracking</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"
+                      name="quickcart_order_tracking_event_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>event_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete the selected tracking updates? Customers will no longer see them.</message>
+                        <title translate="true">Delete tracking updates</title>
+                    </confirm>
+                    <url path="*/*/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="quickcart_order_tracking_event_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>event_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="event_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">When</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="increment_id" class="QuickCart\OrderTracking\Ui\Component\Listing\Column\OrderLink">
+            <settings>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <label translate="true">Order</label>
+            </settings>
+        </column>
+        <column name="customer_name">
+            <settings>
+                <label translate="true">Customer</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="milestone" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="QuickCart\OrderTracking\Model\Milestone"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Milestone</label>
+            </settings>
+        </column>
+        <column name="title">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Update</label>
+            </settings>
+        </column>
+        <column name="comment">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Message</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="location">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Location</label>
+            </settings>
+        </column>
+        <column name="is_visible_on_front" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Customer Sees It</label>
+            </settings>
+        </column>
+        <column name="source">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Source</label>
+            </settings>
+        </column>
+        <column name="created_by">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Admin</label>
+            </settings>
+        </column>
+        <column name="order_status">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Order Status</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="QuickCart\Core\Ui\Component\Listing\Column\RowActions">
+            <argument name="data" xsi:type="array">
+                <item name="qcActions" xsi:type="array">
+                    <item name="idField" xsi:type="string">event_id</item>
+                    <item name="titleField" xsi:type="string">title</item>
+                    <item name="deletePath" xsi:type="string">quickcart_tracking/event/delete</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>event_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

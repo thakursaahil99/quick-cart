@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="QuickCart_OrderTracking::orders" title="Orders" translate="title" module="QuickCart_OrderTracking"
+             sortOrder="20" parent="QuickCart_Core::quickcart" resource="QuickCart_OrderTracking::tracking"/>
+        <add id="QuickCart_OrderTracking::tracking" title="Order Tracking Updates" translate="title"
+             module="QuickCart_OrderTracking" sortOrder="10" parent="QuickCart_OrderTracking::orders"
+             action="quickcart_tracking/event/index" resource="QuickCart_OrderTracking::tracking"/>
+    </menu>
+</config>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * QuickCart_OrderTracking
+ *
+ * Order tracking timeline: custom order statuses (Packed, Shipped, Out for Delivery),
+ * tracking events recorded automatically from status changes, shipments and carrier
+ * tracking numbers plus manual updates from the admin order view, an estimated
+ * delivery window, and a storefront tracking page for customers and guests.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="QuickCart_OrderTracking">
+        <sequence>
+            <module name="Magento_Customer"/>
+            <module name="Magento_Sales"/>
+            <module name="Magento_Shipping"/>
+            <module name="Magento_Ui"/>
+            <module name="QuickCart_Core"/>
+        </sequence>
+    </module>
+</config>

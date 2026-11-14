@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">quickcart_product_label_form.quickcart_product_label_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Label</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="QuickCart\Core\Block\Adminhtml\Edit\BackButton"/>
+            <button name="delete" class="QuickCart\Core\Block\Adminhtml\Edit\DeleteButton"/>
+            <button name="save_and_continue" class="QuickCart\Core\Block\Adminhtml\Edit\SaveAndContinueButton"/>
+            <button name="save" class="QuickCart\Core\Block\Adminhtml\Edit\SaveButton"/>
+        </buttons>
+        <namespace>quickcart_product_label_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>quickcart_product_label_form.quickcart_product_label_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="quickcart_product_label_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="quickcart_catalog/label/save"/>
+        </settings>
+        <dataProvider class="QuickCart\CatalogEnhancement\Model\Label\DataProvider"
+                      name="quickcart_product_label_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>label_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label translate="true">Label</label>
+        </settings>
+        <field name="label_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>label_id</dataScope>
+            </settings>
+        </field>
+        <field name="is_active" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable Label</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="name" sortOrder="20" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <notice translate="true">Admin-only name, e.g. "Diwali sale - audio".</notice>
+                <dataScope>name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="max_text_length" xsi:type="number">120</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="text" sortOrder="30" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Label Text</label>
+                <notice translate="true">Shown on the product card (max 40 characters). Use {discount} for the discount percent, e.g. "-{discount}%".</notice>
+                <dataScope>text</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="max_text_length" xsi:type="number">40</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="background_color" sortOrder="40" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">#2563EB</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Background Colour</label>
+                <dataType>text</dataType>
+                <dataScope>background_color</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorPickerMode>full</colorPickerMode>
+                        <colorFormat>hex</colorFormat>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="text_color" sortOrder="50" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">#FFFFFF</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Text Colour</label>
+                <dataType>text</dataType>
+                <dataScope>text_color</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorPickerMode>full</colorPickerMode>
+                        <colorFormat>hex</colorFormat>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="sort_order" sortOrder="60" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Priority</label>
+                <notice translate="true">Lower numbers win when a product matches more labels than the per-card limit.</notice>
+                <dataScope>sort_order</dataScope>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+
+    <fieldset name="conditions" sortOrder="20">
+        <settings>
+            <label translate="true">Which Products</label>
+            <collapsible>false</collapsible>
+        </settings>
+        <field name="condition_type" sortOrder="10" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">sku</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Applies To</label>
+                <dataScope>condition_type</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="QuickCart\CatalogEnhancement\Model\Label\ConditionType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="condition_value" sortOrder="20" formElement="textarea">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Condition Value</label>
+                <notice translate="true">Specific SKUs: SKUs separated by commas or new lines. Categories: category IDs separated by commas. On sale: minimum discount percent (1-99). Not used for New / Trending.</notice>
+                <dataScope>condition_value</dataScope>
+            </settings>
+            <formElements>
+                <textarea>
+                    <settings>
+                        <rows>3</rows>
+                    </settings>
+                </textarea>
+            </formElements>
+        </field>
+        <field name="from_date" sortOrder="30" formElement="date">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Active From</label>
+                <dataScope>from_date</dataScope>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="to_date" sortOrder="40" formElement="date">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Active To</label>
+                <dataScope>to_date</dataScope>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="store_ids" sortOrder="50" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>int</dataType>
+                <label translate="true">Store Views</label>
+                <dataScope>store_ids</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="QuickCart\Core\Ui\Component\Listing\Column\StoreOptions"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

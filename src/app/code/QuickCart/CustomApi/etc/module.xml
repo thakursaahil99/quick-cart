@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * QuickCart_CustomApi
+ *
+ * REST endpoints under /V1/quickcart shaped for storefront / mobile clients:
+ *  - products: filtered listing with prices, labels, ratings and stock; detail with
+ *    specifications, gallery and options; recommendations
+ *  - categories: tree with storefront product counts; products in a category
+ *  - orders: a customer's own orders and tracking, guest tracking (rate limited),
+ *    admin sales stats and tracking updates
+ *  - customers: own profile and admin customer insights
+ * Every endpoint is a service contract (Api/*Interface) with typed data interfaces.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="QuickCart_CustomApi">
+        <sequence>
+            <module name="Magento_Catalog"/>
+            <module name="Magento_Customer"/>
+            <module name="Magento_Review"/>
+            <module name="Magento_Sales"/>
+            <module name="Magento_Webapi"/>
+            <module name="Magento_Wishlist"/>
+            <module name="QuickCart_Core"/>
+            <module name="QuickCart_CatalogEnhancement"/>
+            <module name="QuickCart_ProductRecommendation"/>
+            <module name="QuickCart_OrderTracking"/>
+        </sequence>
+    </module>
+</config>

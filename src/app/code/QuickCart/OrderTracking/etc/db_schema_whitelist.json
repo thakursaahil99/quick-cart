@@ -1,0 +1,26 @@
+{
+    "quickcart_order_tracking_event": {
+        "column": {
+            "event_id": true,
+            "order_id": true,
+            "milestone": true,
+            "title": true,
+            "comment": true,
+            "location": true,
+            "is_visible_on_front": true,
+            "source": true,
+            "reference": true,
+            "created_by": true,
+            "created_at": true
+        },
+        "index": {
+            "QUICKCART_ORDER_TRACKING_EVENT_ORDER_ID_CREATED_AT": true,
+            "QUICKCART_ORDER_TRACKING_EVENT_MILESTONE": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "QUICKCART_ORDER_TRACKING_EVENT_ORDER_ID_SALES_ORDER_ENTITY_ID": true,
+            "QUICKCART_ORDER_TRACKING_EVENT_ORDER_ID_REFERENCE": true
+        }
+    }
+}

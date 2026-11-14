@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- My Account > My Orders > order: tracking timeline above the order details. -->
+        <referenceContainer name="content">
+            <block class="QuickCart\OrderTracking\Block\TrackedOrder" name="qc.account.order.timeline" before="-"
+                   template="QuickCart_OrderTracking::track/timeline.phtml">
+                <arguments>
+                    <argument name="timeline" xsi:type="object">QuickCart\OrderTracking\ViewModel\Timeline</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

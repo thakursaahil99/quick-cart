@@ -22,7 +22,8 @@ if (!$brand && !$badges) {
         <span class="qc-pdp-meta__brand"><?= $escaper->escapeHtml($brand) ?></span>
     <?php endif; ?>
     <?php foreach ($badges as $badge): ?>
-        <span class="qc-badge qc-badge--<?= $escaper->escapeHtmlAttr($badge['code']) ?>">
+        <span class="qc-badge qc-badge--<?= $escaper->escapeHtmlAttr($badge['code']) ?>"
+              style="<?= $escaper->escapeHtmlAttr($badge['style'] ?? '') ?>">
             <?= $escaper->escapeHtml($badge['label']) ?>
         </span>
     <?php endforeach; ?>

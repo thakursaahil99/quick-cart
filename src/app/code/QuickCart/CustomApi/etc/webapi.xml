@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * QuickCart REST API - /rest/{store_code}/V1/quickcart/...
+ *
+ * anonymous : public catalog data (only enabled, visible products of the store's website)
+ * self      : the customer behind the bearer token; the customer ID is forced from the token
+ * ACL       : admin / integration tokens with the named permission
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- Products -->
+    <route url="/V1/quickcart/products" method="GET">
+        <service class="QuickCart\CustomApi\Api\ProductCatalogInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/quickcart/products/:sku" method="GET">
+        <service class="QuickCart\CustomApi\Api\ProductCatalogInterface" method="get"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/quickcart/products/:sku/recommendations" method="GET">
+        <service class="QuickCart\CustomApi\Api\ProductCatalogInterface" method="getRecommendations"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Categories -->
+    <route url="/V1/quickcart/categories" method="GET">
+        <service class="QuickCart\CustomApi\Api\CategoryCatalogInterface" method="getTree"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/quickcart/categories/:categoryId/products" method="GET">
+        <service class="QuickCart\CustomApi\Api\CategoryCatalogInterface" method="getProducts"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Orders: customer (self) -->
+    <route url="/V1/quickcart/customers/me/orders" method="GET">
+        <service class="QuickCart\CustomApi\Api\OrderServiceInterface" method="getCustomerOrders"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/quickcart/customers/me/orders/:orderNumber/tracking" method="GET">
+        <service class="QuickCart\CustomApi\Api\OrderServiceInterface" method="getCustomerOrderTracking"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <!-- Orders: guest tracking (order number + email or mobile, rate limited per IP) -->
+    <route url="/V1/quickcart/orders/track" method="POST">
+        <service class="QuickCart\CustomApi\Api\OrderServiceInterface" method="trackGuestOrder"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Orders: admin -->
+    <route url="/V1/quickcart/orders/stats" method="GET">
+        <service class="QuickCart\CustomApi\Api\OrderServiceInterface" method="getStats"/>
+        <resources>
+            <resource ref="QuickCart_CustomApi::order_stats"/>
+        </resources>
+    </route>
+    <route url="/V1/quickcart/orders/:orderId/tracking" method="POST">
+        <service class="QuickCart\CustomApi\Api\OrderServiceInterface" method="addTrackingUpdate"/>
+        <resources>
+            <resource ref="QuickCart_OrderTracking::tracking_save"/>
+        </resources>
+    </route>
+
+    <!-- Customers -->
+    <route url="/V1/quickcart/customers/me" method="GET">
+        <service class="QuickCart\CustomApi\Api\CustomerServiceInterface" method="getProfile"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/quickcart/customers/:customerId/profile" method="GET">
+        <service class="QuickCart\CustomApi\Api\CustomerServiceInterface" method="getProfile"/>
+        <resources>
+            <resource ref="QuickCart_CustomApi::customer_profiles"/>
+        </resources>
+    </route>
+</routes>

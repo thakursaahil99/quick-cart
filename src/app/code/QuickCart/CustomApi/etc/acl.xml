@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="QuickCart_Core::quickcart">
+                    <resource id="QuickCart_CustomApi::api" title="REST API" translate="title" sortOrder="80">
+                        <resource id="QuickCart_CustomApi::order_stats" title="Sales Statistics"
+                                  translate="title" sortOrder="10"/>
+                        <resource id="QuickCart_CustomApi::customer_profiles" title="Customer Insights"
+                                  translate="title" sortOrder="20"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">quickcart_product_recommendation_form.quickcart_product_recommendation_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Recommendation</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="QuickCart\Core\Block\Adminhtml\Edit\BackButton"/>
+            <button name="delete" class="QuickCart\Core\Block\Adminhtml\Edit\DeleteButton"/>
+            <button name="save_and_continue" class="QuickCart\Core\Block\Adminhtml\Edit\SaveAndContinueButton"/>
+            <button name="save" class="QuickCart\Core\Block\Adminhtml\Edit\SaveButton"/>
+        </buttons>
+        <namespace>quickcart_product_recommendation_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>quickcart_product_recommendation_form.quickcart_product_recommendation_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="quickcart_product_recommendation_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="quickcart_reco/recommendation/save"/>
+        </settings>
+        <dataProvider class="QuickCart\ProductRecommendation\Model\Recommendation\DataProvider"
+                      name="quickcart_product_recommendation_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>recommendation_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Recommendation</label>
+        </settings>
+        <field name="recommendation_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>recommendation_id</dataScope>
+            </settings>
+        </field>
+        <field name="is_active" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Show on Storefront</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="type" sortOrder="20" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">bought_together</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Type</label>
+                <dataScope>type</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="QuickCart\ProductRecommendation\Model\Source\Type"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="product_sku" sortOrder="30" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">When Shoppers View (SKU)</label>
+                <dataScope>product_sku</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="recommended_sku" sortOrder="40" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Recommend (SKU)</label>
+                <notice translate="true">"Frequently bought together" only offers simple products without required options, because they are added to the cart in one click.</notice>
+                <dataScope>recommended_sku</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="position" sortOrder="50" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Position</label>
+                <notice translate="true">Manual recommendations are shown before automatic ones, lowest position first. Saving here makes the row manual, so rebuilds never overwrite it.</notice>
+                <dataScope>position</dataScope>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+</form>

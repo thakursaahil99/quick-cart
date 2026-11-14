@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">quickcart_product_recommendation_listing.quickcart_product_recommendation_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="rebuild" class="QuickCart\ProductRecommendation\Block\Adminhtml\RebuildButton"/>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add Recommendation</label>
+            </button>
+        </buttons>
+        <spinner>quickcart_product_recommendation_columns</spinner>
+        <deps>
+            <dep>quickcart_product_recommendation_listing.quickcart_product_recommendation_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="quickcart_product_recommendation_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">recommendation_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>QuickCart_ProductRecommendation::recommendations</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"
+                      name="quickcart_product_recommendation_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>recommendation_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <massaction name="listing_massaction">
+            <action name="enable">
+                <settings>
+                    <url path="*/*/massStatus">
+                        <param name="status">1</param>
+                    </url>
+                    <type>enable</type>
+                    <label translate="true">Show</label>
+                </settings>
+            </action>
+            <action name="disable">
+                <settings>
+                    <url path="*/*/massStatus">
+                        <param name="status">0</param>
+                    </url>
+                    <type>disable</type>
+                    <label translate="true">Hide</label>
+                </settings>
+            </action>
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete the selected recommendations? Automatic ones come back on the next rebuild; hide them instead to keep them off.</message>
+                        <title translate="true">Delete recommendations</title>
+                    </confirm>
+                    <url path="*/*/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="quickcart_product_recommendation_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>recommendation_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="recommendation_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="product_sku">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Viewed SKU</label>
+            </settings>
+        </column>
+        <column name="product_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Viewed Product</label>
+            </settings>
+        </column>
+        <column name="recommended_sku">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Recommended SKU</label>
+            </settings>
+        </column>
+        <column name="recommended_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Recommended Product</label>
+            </settings>
+        </column>
+        <column name="type" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="QuickCart\ProductRecommendation\Model\Source\Type"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Type</label>
+            </settings>
+        </column>
+        <column name="source" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="QuickCart\ProductRecommendation\Model\Source\Origin"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Source</label>
+            </settings>
+        </column>
+        <column name="score">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Score</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="position">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Position</label>
+            </settings>
+        </column>
+        <column name="is_active" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magento\Config\Model\Config\Source\Enabledisable"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Updated</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="QuickCart\Core\Ui\Component\Listing\Column\RowActions">
+            <argument name="data" xsi:type="array">
+                <item name="qcActions" xsi:type="array">
+                    <item name="idField" xsi:type="string">recommendation_id</item>
+                    <item name="titleField" xsi:type="string">recommended_sku</item>
+                    <item name="editPath" xsi:type="string">quickcart_reco/recommendation/edit</item>
+                    <item name="deletePath" xsi:type="string">quickcart_reco/recommendation/delete</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>recommendation_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

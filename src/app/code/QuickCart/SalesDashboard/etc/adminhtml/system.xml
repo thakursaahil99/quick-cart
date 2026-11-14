@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="quickcart_dashboard" translate="label" sortOrder="50" showInDefault="1">
+            <label>Sales Dashboard</label>
+            <tab>quickcart</tab>
+            <resource>QuickCart_SalesDashboard::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1">
+                <label>Dashboard</label>
+                <field id="default_range" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       canRestore="1">
+                    <label>Default Date Range</label>
+                    <source_model>QuickCart\SalesDashboard\Model\Source\RangePreset</source_model>
+                </field>
+                <field id="top_products" translate="label comment" type="text" sortOrder="20" showInDefault="1"
+                       canRestore="1">
+                    <label>Top Products Shown</label>
+                    <comment>3 to 15.</comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-3-15</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

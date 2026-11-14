@@ -1,0 +1,65 @@
+<?php
+/**
+ * QuickCart_SalesDashboard - date-wise sales report.
+ *
+ * @var \Magento\Backend\Block\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \QuickCart\SalesDashboard\ViewModel\Analytics $analytics */
+$analytics = $block->getData('analytics');
+$report = $analytics->getDailyReport();
+$currency = $report['currency'];
+$money = static fn (float $amount) => $analytics->formatMoney($amount, $currency);
+$totals = $report['totals'];
+?>
+<div class="qc-report">
+    <?= $block->getChildHtml('qc.sales.filters') ?>
+    <div class="qc-report__summary">
+        <div class="qc-card"><span class="qc-muted"><?= $escaper->escapeHtml(__('Orders')) ?></span><strong><?= (int)$totals['orders'] ?></strong></div>
+        <div class="qc-card"><span class="qc-muted"><?= $escaper->escapeHtml(__('Net revenue')) ?></span><strong><?= $escaper->escapeHtml($money($totals['revenue'])) ?></strong></div>
+        <div class="qc-card"><span class="qc-muted"><?= $escaper->escapeHtml(__('Average order value')) ?></span><strong><?= $escaper->escapeHtml($money($totals['aov'])) ?></strong></div>
+        <div class="qc-card"><span class="qc-muted"><?= $escaper->escapeHtml(__('Cancelled')) ?></span><strong><?= (int)$totals['canceled'] ?></strong></div>
+    </div>
+    <div class="qc-card">
+        <table class="qc-table">
+            <thead>
+            <tr>
+                <th><?= $escaper->escapeHtml(__('Date')) ?></th>
+                <th class="qc-num"><?= $escaper->escapeHtml(__('Orders')) ?></th>
+                <th class="qc-num"><?= $escaper->escapeHtml(__('Cancelled')) ?></th>
+                <th class="qc-num"><?= $escaper->escapeHtml(__('Items')) ?></th>
+                <th class="qc-num"><?= $escaper->escapeHtml(__('Net revenue')) ?></th>
+                <th class="qc-num"><?= $escaper->escapeHtml(__('Discounts')) ?></th>
+                <th class="qc-num"><?= $escaper->escapeHtml(__('Shipping')) ?></th>
+                <th class="qc-num"><?= $escaper->escapeHtml(__('Avg. order')) ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($report['rows'] as $row): ?>
+                <tr<?= $row['orders'] ? '' : ' class="qc-muted"' ?>>
+                    <td><?= $escaper->escapeHtml((new \DateTimeImmutable($row['day']))->format('D, j M Y')) ?></td>
+                    <td class="qc-num"><?= (int)$row['orders'] ?></td>
+                    <td class="qc-num"><?= (int)$row['canceled'] ?></td>
+                    <td class="qc-num"><?= (float)$row['items'] ?></td>
+                    <td class="qc-num"><?= $escaper->escapeHtml($money($row['revenue'])) ?></td>
+                    <td class="qc-num"><?= $escaper->escapeHtml($money($row['discount'])) ?></td>
+                    <td class="qc-num"><?= $escaper->escapeHtml($money($row['shipping'])) ?></td>
+                    <td class="qc-num"><?= $escaper->escapeHtml($money($row['aov'])) ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td><?= $escaper->escapeHtml(__('Total')) ?></td>
+                <td class="qc-num"><?= (int)$totals['orders'] ?></td>
+                <td class="qc-num"><?= (int)$totals['canceled'] ?></td>
+                <td class="qc-num"><?= (float)$totals['items'] ?></td>
+                <td class="qc-num"><?= $escaper->escapeHtml($money($totals['revenue'])) ?></td>
+                <td class="qc-num"><?= $escaper->escapeHtml($money($totals['discount'])) ?></td>
+                <td class="qc-num"><?= $escaper->escapeHtml($money($totals['shipping'])) ?></td>
+                <td class="qc-num"><?= $escaper->escapeHtml($money($totals['aov'])) ?></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

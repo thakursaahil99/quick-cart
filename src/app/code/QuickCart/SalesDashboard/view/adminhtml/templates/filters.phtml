@@ -1,0 +1,35 @@
+<?php
+/**
+ * QuickCart_SalesDashboard - date range filter shared by the dashboard and reports.
+ *
+ * @var \Magento\Backend\Block\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \QuickCart\SalesDashboard\ViewModel\Analytics $analytics */
+$analytics = $block->getData('analytics');
+$period = $analytics->getPeriod();
+$exportRoute = (string)$block->getData('export_route');
+?>
+<form class="qc-dash__filters" method="get" action="<?= $escaper->escapeUrl($analytics->getUrl('*/*/*')) ?>"
+      aria-label="<?= $escaper->escapeHtmlAttr(__('Date range')) ?>">
+    <div class="qc-dash__presets" role="group">
+        <?php foreach ($analytics->getPresets() as $preset => $label): ?>
+            <a class="qc-chip<?= $period['preset'] === $preset ? ' is-active' : '' ?>"
+               <?= $period['preset'] === $preset ? 'aria-current="true"' : '' ?>
+               href="<?= $escaper->escapeUrl($analytics->getPresetUrl($preset)) ?>"><?= $escaper->escapeHtml($label) ?></a>
+        <?php endforeach; ?>
+    </div>
+    <div class="qc-dash__custom">
+        <input type="hidden" name="range" value="custom">
+        <label><span><?= $escaper->escapeHtml(__('From')) ?></span>
+            <input type="date" name="from" value="<?= $escaper->escapeHtmlAttr($period['from']) ?>" required></label>
+        <label><span><?= $escaper->escapeHtml(__('To')) ?></span>
+            <input type="date" name="to" value="<?= $escaper->escapeHtmlAttr($period['to']) ?>" required></label>
+        <button type="submit" class="action-secondary"><span><?= $escaper->escapeHtml(__('Apply')) ?></span></button>
+        <?php if ($exportRoute): ?>
+            <a class="action-secondary" href="<?= $escaper->escapeUrl($analytics->getPeriodUrl($exportRoute, ['export' => 'csv'])) ?>">
+                <?= $escaper->escapeHtml(__('Export CSV')) ?></a>
+        <?php endif; ?>
+    </div>
+    <p class="qc-dash__period"><?= $escaper->escapeHtml(__('%1 · %2 to %3', $period['label'], $period['from'], $period['to'])) ?></p>
+</form>

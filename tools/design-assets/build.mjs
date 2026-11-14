@@ -16,6 +16,7 @@ import { fileURLToPath } from 'node:url';
 import * as opentypeModule from 'opentype.js';
 import { BRANDS, CATEGORIES, CLOSINGS, CONNECTIVITY, PRODUCTS, RAM, STORAGE, WARRANTY } from './catalog.mjs';
 import { renderDeviceSvg } from './lib/devices.mjs';
+import { buildMerchandising } from './lib/merchandising.mjs';
 import { BRAND, COLORS } from './lib/palette.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -97,6 +98,13 @@ const fixtureProducts = PRODUCTS.map((p) => {
     }
     return base;
 });
+
+const merchandising = buildMerchandising(PRODUCTS, CATEGORIES);
+for (const product of fixtureProducts) {
+    const extra = merchandising.get(product.sku);
+    product.reviews = extra.reviews;
+    product.links = extra.links;
+}
 
 const CATEGORY_ART_COLOR = { smartphone: 'blue', laptop: 'silver', headphones: 'midnight', smartwatch: 'rose', camera: 'silver', controller: 'midnight', keyboard: 'silver', tag: 'gold' };
 const fixtureCategories = CATEGORIES.map((c) => {

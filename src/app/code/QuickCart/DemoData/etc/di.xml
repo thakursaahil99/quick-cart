@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- bin/magento quickcart:demo:orders (proxies: nothing heavy is built for other CLI commands) -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="quickcart_demo_orders" xsi:type="object">QuickCart\DemoData\Console\Command\GenerateOrdersCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="QuickCart\DemoData\Console\Command\GenerateOrdersCommand">
+        <arguments>
+            <argument name="appState" xsi:type="object">Magento\Framework\App\State\Proxy</argument>
+            <argument name="generator" xsi:type="object">QuickCart\DemoData\Model\OrderHistory\Generator\Proxy</argument>
+            <argument name="backdater" xsi:type="object">QuickCart\DemoData\Model\OrderHistory\Backdater\Proxy</argument>
+            <argument name="bestsellers" xsi:type="object">Magento\Sales\Model\ResourceModel\Report\Bestsellers\Proxy</argument>
+            <argument name="orderReport" xsi:type="object">Magento\Sales\Model\ResourceModel\Report\Order\Proxy</argument>
+            <argument name="rebuilder" xsi:type="object">QuickCart\ProductRecommendation\Model\Rebuilder\Proxy</argument>
+        </arguments>
+    </type>
+</config>

@@ -20,8 +20,11 @@ use Magento\Framework\App\Action\Action;
 <?php
 $_productCollection = $block->getLoadedProductCollection();
 /** QuickCart: badges + brand view model injected by QuickCart_CatalogEnhancement layout. */
-/** @var QuickCartCatalogEnhancementViewModelProductBadges|null $qcBadges */
+/** @var \QuickCart\CatalogEnhancement\ViewModel\ProductBadges|null $qcBadges */
 $qcBadges = $block->getData('qc_badges');
+if ($qcBadges && $_productCollection->count()) {
+    $qcBadges->preload($_productCollection);
+}
 /** @var \Magento\Catalog\Helper\Output $_helper */
 $_helper = $block->getData('outputHelper');
 ?>
@@ -73,7 +76,8 @@ $_helper = $block->getData('outputHelper');
                     <?php if ($qcBadges && ($qcBadgeList = $qcBadges->getBadges($_product))): ?>
                         <ul class="qc-badges">
                             <?php foreach ($qcBadgeList as $qcBadge): ?>
-                                <li class="qc-badge qc-badge--<?= $escaper->escapeHtmlAttr($qcBadge['code']) ?>">
+                                <li class="qc-badge qc-badge--<?= $escaper->escapeHtmlAttr($qcBadge['code']) ?>"
+                                    style="<?= $escaper->escapeHtmlAttr($qcBadge['style'] ?? '') ?>">
                                     <?= $escaper->escapeHtml($qcBadge['label']) ?>
                                 </li>
                             <?php endforeach; ?>

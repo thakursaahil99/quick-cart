@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <quickcart_tracking>
+            <general>
+                <enabled>1</enabled>
+                <eta_min_days>2</eta_min_days>
+                <eta_max_days>5</eta_max_days>
+                <max_attempts>10</max_attempts>
+            </general>
+        </quickcart_tracking>
+    </default>
+</config>

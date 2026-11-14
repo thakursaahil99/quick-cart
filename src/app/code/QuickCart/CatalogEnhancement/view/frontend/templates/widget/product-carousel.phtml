@@ -63,7 +63,8 @@ $viewAllUrl = $block->getViewAllUrl();
                             <?php if ($badges): ?>
                                 <ul class="qc-badges">
                                     <?php foreach ($badges as $badge): ?>
-                                        <li class="qc-badge qc-badge--<?= $escaper->escapeHtmlAttr($badge['code']) ?>">
+                                        <li class="qc-badge qc-badge--<?= $escaper->escapeHtmlAttr($badge['code']) ?>"
+                                            style="<?= $escaper->escapeHtmlAttr($badge['style'] ?? '') ?>">
                                             <?= $escaper->escapeHtml($badge['label']) ?>
                                         </li>
                                     <?php endforeach; ?>
@@ -86,6 +87,7 @@ $viewAllUrl = $block->getViewAllUrl();
                                     <?= $escaper->escapeHtml($productName) ?>
                                 </a>
                             </h3>
+                            <?= $block->getReviewsSummaryHtml($product, 'short') ?>
                             <div class="qc-card__price">
                                 <?= /* @noEscape */ $block->getProductPriceHtml($product) ?>
                             </div>

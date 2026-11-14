@@ -1,0 +1,37 @@
+<?php
+/**
+ * QuickCart_CheckoutEnhancement - "Delivery Details" section on the admin order view.
+ *
+ * @var \Magento\Backend\Block\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \QuickCart\CheckoutEnhancement\ViewModel\OrderCheckoutMeta $viewModel */
+$viewModel = $block->getData('view_model');
+$meta = $viewModel->getForCurrentOrder();
+if (!$viewModel->hasContent($meta)) {
+    return;
+}
+?>
+<section class="admin__page-section qc-admin-order-meta">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $escaper->escapeHtml(__('Delivery Details (QuickCart)')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <table class="admin__table-secondary">
+            <tbody>
+            <?php if ($meta->getDeliveryNote()): ?>
+                <tr>
+                    <th><?= $escaper->escapeHtml(__('Delivery Instructions')) ?></th>
+                    <td><?= /* @noEscape */ nl2br($escaper->escapeHtml($meta->getDeliveryNote())) ?></td>
+                </tr>
+            <?php endif; ?>
+            <?php if ($meta->getGstin()): ?>
+                <tr>
+                    <th><?= $escaper->escapeHtml(__('Customer GSTIN')) ?></th>
+                    <td><?= $escaper->escapeHtml($meta->getGstin()) ?></td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</section>

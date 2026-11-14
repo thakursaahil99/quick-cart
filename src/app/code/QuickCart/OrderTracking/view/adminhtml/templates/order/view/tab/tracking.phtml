@@ -1,0 +1,116 @@
+<?php
+/**
+ * QuickCart_OrderTracking - admin order view "Tracking" tab.
+ *
+ * @var \QuickCart\OrderTracking\Block\Adminhtml\Order\View\Tab\Tracking $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$order = $block->getOrder();
+if (!$order) {
+    return;
+}
+$labels = $block->getMilestoneLabels();
+$statusMilestones = $block->getStatusMilestones();
+?>
+<section class="admin__page-section qc-admin-tracking">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $escaper->escapeHtml(__('Tracking Timeline')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <?php if ($block->canAddUpdates()): ?>
+            <form class="qc-admin-tracking__form" method="post" action="<?= $escaper->escapeUrl($block->getSaveUrl()) ?>"
+                  data-mage-init='{"validation": {}}'>
+                <input type="hidden" name="form_key" value="<?= $escaper->escapeHtmlAttr($block->getFormKey()) ?>">
+                <input type="hidden" name="order_id" value="<?= (int)$order->getEntityId() ?>">
+                <fieldset class="admin__fieldset">
+                    <legend class="admin__legend"><span><?= $escaper->escapeHtml(__('Add tracking update')) ?></span></legend>
+                    <div class="admin__field _required">
+                        <label class="admin__field-label" for="qc-tracking-milestone"><span><?= $escaper->escapeHtml(__('Milestone')) ?></span></label>
+                        <div class="admin__field-control">
+                            <select class="admin__control-select" id="qc-tracking-milestone" name="milestone" data-validate='{"required": true}'>
+                                <?php foreach ($labels as $code => $label): ?>
+                                    <option value="<?= $escaper->escapeHtmlAttr($code) ?>"><?= $escaper->escapeHtml($label) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="admin__field">
+                        <label class="admin__field-label" for="qc-tracking-title"><span><?= $escaper->escapeHtml(__('Title')) ?></span></label>
+                        <div class="admin__field-control">
+                            <input class="admin__control-text" type="text" id="qc-tracking-title" name="title" maxlength="255"
+                                   placeholder="<?= $escaper->escapeHtmlAttr(__('Defaults to the milestone name')) ?>">
+                        </div>
+                    </div>
+                    <div class="admin__field">
+                        <label class="admin__field-label" for="qc-tracking-location"><span><?= $escaper->escapeHtml(__('Location')) ?></span></label>
+                        <div class="admin__field-control">
+                            <input class="admin__control-text" type="text" id="qc-tracking-location" name="location" maxlength="120"
+                                   placeholder="<?= $escaper->escapeHtmlAttr(__('e.g. Mumbai hub')) ?>">
+                        </div>
+                    </div>
+                    <div class="admin__field">
+                        <label class="admin__field-label" for="qc-tracking-comment"><span><?= $escaper->escapeHtml(__('Message to customer')) ?></span></label>
+                        <div class="admin__field-control">
+                            <textarea class="admin__control-textarea" id="qc-tracking-comment" name="comment" rows="3" maxlength="1000"></textarea>
+                        </div>
+                    </div>
+                    <div class="admin__field admin__field-option">
+                        <input class="admin__control-checkbox" type="checkbox" id="qc-tracking-visible" name="is_visible_on_front" value="1" checked>
+                        <label class="admin__field-label" for="qc-tracking-visible"><?= $escaper->escapeHtml(__('Visible to the customer')) ?></label>
+                    </div>
+                    <?php if ($statusMilestones): ?>
+                        <div class="admin__field admin__field-option">
+                            <input class="admin__control-checkbox" type="checkbox" id="qc-tracking-status" name="update_status" value="1">
+                            <label class="admin__field-label" for="qc-tracking-status">
+                                <?= $escaper->escapeHtml(__('Also set the order status (%1)', implode(', ', array_map(
+                                    static fn (string $code) => $labels[$code] ?? $code,
+                                    $statusMilestones
+                                )))) ?>
+                            </label>
+                        </div>
+                    <?php endif; ?>
+                    <div class="admin__field">
+                        <div class="admin__field-control">
+                            <button type="submit" class="action-primary"><span><?= $escaper->escapeHtml(__('Add Update')) ?></span></button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        <?php endif; ?>
+
+        <?php $events = $block->getEvents(); ?>
+        <?php if (!$events): ?>
+            <p><?= $escaper->escapeHtml(__('No tracking updates yet.')) ?></p>
+        <?php else: ?>
+            <table class="data-table admin__table-primary qc-admin-tracking__table">
+                <thead>
+                    <tr>
+                        <th><?= $escaper->escapeHtml(__('When')) ?></th>
+                        <th><?= $escaper->escapeHtml(__('Milestone')) ?></th>
+                        <th><?= $escaper->escapeHtml(__('Update')) ?></th>
+                        <th><?= $escaper->escapeHtml(__('Location')) ?></th>
+                        <th><?= $escaper->escapeHtml(__('Customer')) ?></th>
+                        <th><?= $escaper->escapeHtml(__('By')) ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($events as $event): ?>
+                        <tr>
+                            <td><?= $escaper->escapeHtml($block->formatEventTime($event)) ?></td>
+                            <td><span class="qc-admin-pill qc-admin-pill--<?= $escaper->escapeHtmlAttr($event->getMilestone()) ?>"><?= $escaper->escapeHtml($labels[$event->getMilestone()] ?? $event->getMilestone()) ?></span></td>
+                            <td>
+                                <strong><?= $escaper->escapeHtml($event->getTitle()) ?></strong>
+                                <?php if ($event->getComment()): ?>
+                                    <br><?= $escaper->escapeHtml($event->getComment()) ?>
+                                <?php endif; ?>
+                            </td>
+                            <td><?= $escaper->escapeHtml((string)$event->getLocation()) ?></td>
+                            <td><?= $escaper->escapeHtml($event->getIsVisibleOnFront() ? __('Visible') : __('Hidden')) ?></td>
+                            <td><?= $escaper->escapeHtml($event->getCreatedBy() ?: __('System')) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+</section>

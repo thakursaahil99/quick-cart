@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Services -->
+    <preference for="QuickCart\CustomApi\Api\ProductCatalogInterface" type="QuickCart\CustomApi\Model\ProductCatalog"/>
+    <preference for="QuickCart\CustomApi\Api\CategoryCatalogInterface" type="QuickCart\CustomApi\Model\CategoryCatalog"/>
+    <preference for="QuickCart\CustomApi\Api\OrderServiceInterface" type="QuickCart\CustomApi\Model\OrderService"/>
+    <preference for="QuickCart\CustomApi\Api\CustomerServiceInterface" type="QuickCart\CustomApi\Model\CustomerService"/>
+
+    <!-- Data objects -->
+    <preference for="QuickCart\CustomApi\Api\Data\AttributeValueInterface" type="QuickCart\CustomApi\Model\Data\AttributeValue"/>
+    <preference for="QuickCart\CustomApi\Api\Data\CategoryNodeInterface" type="QuickCart\CustomApi\Model\Data\CategoryNode"/>
+    <preference for="QuickCart\CustomApi\Api\Data\CustomerProfileInterface" type="QuickCart\CustomApi\Model\Data\CustomerProfile"/>
+    <preference for="QuickCart\CustomApi\Api\Data\OrderListInterface" type="QuickCart\CustomApi\Model\Data\OrderList"/>
+    <preference for="QuickCart\CustomApi\Api\Data\OrderStatsInterface" type="QuickCart\CustomApi\Model\Data\OrderStats"/>
+    <preference for="QuickCart\CustomApi\Api\Data\OrderSummaryInterface" type="QuickCart\CustomApi\Model\Data\OrderSummary"/>
+    <preference for="QuickCart\CustomApi\Api\Data\ProductCardInterface" type="QuickCart\CustomApi\Model\Data\ProductCard"/>
+    <preference for="QuickCart\CustomApi\Api\Data\ProductDetailInterface" type="QuickCart\CustomApi\Model\Data\ProductDetail"/>
+    <preference for="QuickCart\CustomApi\Api\Data\ProductLabelInterface" type="QuickCart\CustomApi\Model\Data\ProductLabel"/>
+    <preference for="QuickCart\CustomApi\Api\Data\ProductListInterface" type="QuickCart\CustomApi\Model\Data\ProductList"/>
+    <preference for="QuickCart\CustomApi\Api\Data\ProductOptionInterface" type="QuickCart\CustomApi\Model\Data\ProductOption"/>
+    <preference for="QuickCart\CustomApi\Api\Data\RecommendationsInterface" type="QuickCart\CustomApi\Model\Data\Recommendations"/>
+    <preference for="QuickCart\CustomApi\Api\Data\StatusCountInterface" type="QuickCart\CustomApi\Model\Data\StatusCount"/>
+    <preference for="QuickCart\CustomApi\Api\Data\TrackingInterface" type="QuickCart\CustomApi\Model\Data\Tracking"/>
+    <preference for="QuickCart\CustomApi\Api\Data\TrackingNumberInterface" type="QuickCart\CustomApi\Model\Data\TrackingNumber"/>
+    <preference for="QuickCart\CustomApi\Api\Data\TrackingStepInterface" type="QuickCart\CustomApi\Model\Data\TrackingStep"/>
+    <preference for="QuickCart\CustomApi\Api\Data\TrackingUpdateInterface" type="QuickCart\CustomApi\Model\Data\TrackingUpdate"/>
+</config>

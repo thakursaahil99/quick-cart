@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- One revenue / order target per calendar month (period = YYYY-MM, store timezone). -->
+    <table name="quickcart_sales_target" resource="default" engine="innodb" comment="QuickCart monthly sales targets">
+        <column xsi:type="int" name="target_id" unsigned="true" nullable="false" identity="true" comment="Target ID"/>
+        <column xsi:type="varchar" name="period" nullable="false" length="7" comment="Month (YYYY-MM)"/>
+        <column xsi:type="decimal" name="revenue_target" scale="4" precision="20" unsigned="false" nullable="false"
+                default="0" comment="Revenue Target (base currency)"/>
+        <column xsi:type="int" name="orders_target" unsigned="true" nullable="false" default="0"
+                comment="Orders Target"/>
+        <column xsi:type="varchar" name="note" nullable="true" length="255" comment="Note"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="target_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="QUICKCART_SALES_TARGET_PERIOD">
+            <column name="period"/>
+        </constraint>
+    </table>
+</schema>

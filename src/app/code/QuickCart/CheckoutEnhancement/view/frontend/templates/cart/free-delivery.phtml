@@ -1,0 +1,23 @@
+<?php
+/**
+ * QuickCart_CheckoutEnhancement - free-delivery meter on the cart page.
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ */
+?>
+<div class="qc-cart-free-delivery" data-bind="scope: 'qcCartFreeDelivery'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "qcCartFreeDelivery": {
+                    "component": "QuickCart_CheckoutEnhancement/js/view/free-delivery"
+                }
+            }
+        }
+    }
+}
+</script>

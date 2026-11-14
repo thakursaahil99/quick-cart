@@ -1,0 +1,318 @@
+// /**
+//  * QuickCart product recommendations: "Frequently bought together" bundle and the
+//  * AJAX-loaded "Recently viewed" rail (QuickCart_ProductRecommendation).
+//  */
+
+& when (@media-common = true) {
+    .qc-fbt {
+        clear: both;
+        margin: 40px 0 0;
+        padding: 26px 22px;
+        border: 1px solid @qc-line;
+        border-radius: @qc-radius-xl;
+        background: linear-gradient(135deg, @qc-white 0%, @qc-surface 100%);
+        box-shadow: @qc-shadow-sm;
+    }
+
+    .qc-fbt__head {
+        margin-bottom: 18px;
+
+        .qc-eyebrow {
+            margin: 0 0 6px;
+        }
+    }
+
+    .qc-fbt__title {
+        margin: 0;
+        font-family: @qc-font-display;
+        font-size: ~'clamp(22px, 2.2vw, 30px)';
+        font-weight: 800;
+        letter-spacing: -.02em;
+    }
+
+    .qc-fbt__body {
+        display: grid;
+        gap: 22px;
+    }
+
+    .qc-fbt__items {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .qc-fbt__item {
+        position: relative;
+        display: flex;
+        flex: 1 1 200px;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+        margin: 0;
+        padding: 14px;
+        border: 1px solid @qc-line;
+        border-radius: @qc-radius-lg;
+        background: @qc-white;
+        transition: opacity .25s @qc-ease, border-color .25s @qc-ease, transform .25s @qc-ease;
+
+        &:hover {
+            border-color: @qc-primary-light;
+            transform: translateY(-2px);
+        }
+
+        &.is-off {
+            opacity: .45;
+        }
+    }
+
+    .qc-fbt__item--main {
+        border-color: @qc-primary;
+        box-shadow: 0 0 0 3px @qc-primary-soft;
+    }
+
+    .qc-fbt__media {
+        display: block;
+        aspect-ratio: ~'1 / 1';
+        overflow: hidden;
+        border-radius: @qc-radius;
+        background: linear-gradient(160deg, #FFFFFF, #EEF2F7);
+
+        .product-image-container,
+        .product-image-wrapper {
+            display: block;
+            width: 100% !important;
+            height: 100%;
+            padding: 0 !important;
+        }
+
+        img {
+            position: static;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .qc-fbt__info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .qc-fbt__tag {
+        align-self: flex-start;
+        padding: 3px 10px;
+        border-radius: @qc-radius-pill;
+        background: @qc-primary-soft;
+        color: @qc-primary;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+    }
+
+    .qc-fbt__name {
+        color: @qc-ink;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.35;
+
+        &:hover {
+            color: @qc-primary;
+            text-decoration: none;
+        }
+    }
+
+    .qc-fbt__price {
+        color: @qc-ink-2;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .qc-fbt__plus {
+        display: flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        width: 34px;
+        height: 34px;
+        margin: 0;
+        border-radius: 50%;
+        background: @qc-secondary;
+        color: @qc-white;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    //  Custom checkbox in the card corner
+    .qc-fbt__select {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    .qc-fbt__check {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .qc-fbt__tick {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 26px;
+        height: 26px;
+        border: 2px solid @qc-line;
+        border-radius: 8px;
+        background: @qc-white;
+        transition: background .2s @qc-ease, border-color .2s @qc-ease;
+
+        &:after {
+            content: '';
+            width: 6px;
+            height: 11px;
+            margin-top: -3px;
+            border: solid @qc-white;
+            border-width: 0 2.5px 2.5px 0;
+            opacity: 0;
+            transform: rotate(45deg) scale(.6);
+            transition: opacity .2s @qc-ease, transform .2s @qc-ease-back;
+        }
+    }
+
+    .qc-fbt__check:checked + .qc-fbt__tick {
+        border-color: @qc-primary;
+        background: @qc-primary;
+
+        &:after {
+            opacity: 1;
+            transform: rotate(45deg) scale(1);
+        }
+    }
+
+    .qc-fbt__check:focus-visible + .qc-fbt__tick {
+        outline: 3px solid @qc-primary-light;
+        outline-offset: 2px;
+    }
+
+    .qc-fbt__summary {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px 16px;
+        padding: 18px 20px;
+        border-radius: @qc-radius-lg;
+        background: @qc-secondary;
+        color: @qc-white;
+    }
+
+    .qc-fbt__summary-label {
+        color: fade(@qc-white, 70%);
+        font-size: 14px;
+    }
+
+    .qc-fbt__total {
+        font-family: @qc-font-display;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -.02em;
+    }
+
+    .qc-fbt__add.action.primary {
+        min-height: 50px;
+        margin-left: auto;
+        padding: 0 26px;
+        border-color: @qc-accent;
+        background: @qc-accent;
+        color: @qc-secondary;
+        font-size: 15px;
+        font-weight: 800;
+
+        &:hover,
+        &:focus {
+            border-color: @qc-white;
+            background: @qc-white;
+            color: @qc-secondary;
+        }
+    }
+
+    .qc-fbt__hint {
+        flex-basis: 100%;
+        margin: 0;
+        color: fade(@qc-white, 70%);
+        font-size: 13px;
+    }
+
+    //  Recently viewed: empty placeholder takes no space until filled
+    .qc-recent {
+        clear: both;
+
+        &:empty {
+            display: none;
+        }
+
+        &.is-loaded {
+            margin-top: 10px;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .qc-fbt__plus {
+        display: none;
+    }
+
+    .qc-fbt__item {
+        flex: 1 1 100%;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 46px 10px 10px;
+    }
+
+    .qc-fbt__media {
+        flex: 0 0 76px;
+        width: 76px;
+    }
+
+    .qc-fbt__add.action.primary {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .qc-fbt {
+        padding: 32px;
+    }
+
+    .qc-fbt__body {
+        grid-template-columns: minmax(0, 1fr) 300px;
+        align-items: stretch;
+    }
+
+    .qc-fbt__items {
+        flex-wrap: nowrap;
+    }
+
+    .qc-fbt__summary {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 8px;
+        padding: 26px;
+    }
+
+    .qc-fbt__add.action.primary {
+        width: 100%;
+        margin: 10px 0 0;
+    }
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!--
+        Tracking timeline entries per order. "reference" de-duplicates events recorded
+        from the same source object (e.g. shipment:12, track:5); NULL references (status
+        changes, admin updates) are not constrained. Deleting an order removes its events.
+    -->
+    <table name="quickcart_order_tracking_event" resource="sales" engine="innodb"
+           comment="QuickCart order tracking events">
+        <column xsi:type="int" name="event_id" unsigned="true" nullable="false" identity="true" comment="Event ID"/>
+        <column xsi:type="int" name="order_id" unsigned="true" nullable="false" comment="Order ID"/>
+        <column xsi:type="varchar" name="milestone" nullable="false" length="32"
+                comment="Milestone (placed, confirmed, packed, shipped, out_for_delivery, delivered, ...)"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="text" name="comment" nullable="true" comment="Comment"/>
+        <column xsi:type="varchar" name="location" nullable="true" length="120" comment="Location"/>
+        <column xsi:type="smallint" name="is_visible_on_front" unsigned="true" nullable="false" default="1"
+                comment="Visible to the Customer"/>
+        <column xsi:type="varchar" name="source" nullable="false" length="16" default="system"
+                comment="Source (system, admin)"/>
+        <column xsi:type="varchar" name="reference" nullable="true" length="64"
+                comment="Source Reference (shipment:ID, track:ID)"/>
+        <column xsi:type="varchar" name="created_by" nullable="true" length="64" comment="Admin Username"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="event_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="QUICKCART_ORDER_TRACKING_EVENT_ORDER_ID_SALES_ORDER_ENTITY_ID"
+                    table="quickcart_order_tracking_event" column="order_id" referenceTable="sales_order"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="QUICKCART_ORDER_TRACKING_EVENT_ORDER_ID_REFERENCE">
+            <column name="order_id"/>
+            <column name="reference"/>
+        </constraint>
+        <index referenceId="QUICKCART_ORDER_TRACKING_EVENT_ORDER_ID_CREATED_AT" indexType="btree">
+            <column name="order_id"/>
+            <column name="created_at"/>
+        </index>
+        <index referenceId="QUICKCART_ORDER_TRACKING_EVENT_MILESTONE" indexType="btree">
+            <column name="milestone"/>
+        </index>
+    </table>
+</schema>

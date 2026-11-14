@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">quickcart_sales_target_listing.quickcart_sales_target_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add Monthly Target</label>
+            </button>
+        </buttons>
+        <spinner>quickcart_sales_target_columns</spinner>
+        <deps>
+            <dep>quickcart_sales_target_listing.quickcart_sales_target_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="quickcart_sales_target_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">target_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>QuickCart_SalesDashboard::targets</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"
+                      name="quickcart_sales_target_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>target_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete the selected targets?</message>
+                        <title translate="true">Delete targets</title>
+                    </confirm>
+                    <url path="*/*/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="quickcart_sales_target_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>target_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="period">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Month</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="revenue_target" class="Magento\Sales\Ui\Component\Listing\Column\Price">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Revenue Target</label>
+            </settings>
+        </column>
+        <column name="orders_target">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Orders Target</label>
+            </settings>
+        </column>
+        <column name="note">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Note</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Updated</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="QuickCart\Core\Ui\Component\Listing\Column\RowActions">
+            <argument name="data" xsi:type="array">
+                <item name="qcActions" xsi:type="array">
+                    <item name="idField" xsi:type="string">target_id</item>
+                    <item name="titleField" xsi:type="string">period</item>
+                    <item name="editPath" xsi:type="string">quickcart_sales/target/edit</item>
+                    <item name="deletePath" xsi:type="string">quickcart_sales/target/delete</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>target_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

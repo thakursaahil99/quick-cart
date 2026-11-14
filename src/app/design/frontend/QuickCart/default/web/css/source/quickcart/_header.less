@@ -243,6 +243,22 @@
     }
 }
 
+//  Tablets (768-1023px): icon-only shortcuts give the search box room ("Wish List"
+//  wrapped and the search field shrank to ~100px). Labels stay for screen readers.
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .header.content {
+        gap: 14px;
+    }
+
+    .qc-header-actions__link {
+        padding: 10px;
+
+        span {
+            .lib-visually-hidden();
+        }
+    }
+}
+
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .header.content {
         padding-top: 12px;

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="QuickCart_CatalogEnhancement::catalog" title="Catalog" translate="title"
+             module="QuickCart_CatalogEnhancement" sortOrder="10" parent="QuickCart_Core::quickcart"
+             resource="QuickCart_CatalogEnhancement::product_labels"/>
+        <add id="QuickCart_CatalogEnhancement::product_labels" title="Product Labels" translate="title"
+             module="QuickCart_CatalogEnhancement" sortOrder="10" parent="QuickCart_CatalogEnhancement::catalog"
+             action="quickcart_catalog/label/index" resource="QuickCart_CatalogEnhancement::product_labels"/>
+    </menu>
+</config>

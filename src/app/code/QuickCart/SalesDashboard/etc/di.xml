@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="QuickCart\SalesDashboard\Api\Data\SalesTargetInterface"
+                type="QuickCart\SalesDashboard\Model\SalesTarget"/>
+    <preference for="QuickCart\SalesDashboard\Api\SalesTargetRepositoryInterface"
+                type="QuickCart\SalesDashboard\Model\SalesTargetRepository"/>
+
+    <!-- Sales targets admin grid -->
+    <virtualType name="QuickCartSalesTargetGridCollection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">quickcart_sales_target</argument>
+            <argument name="resourceModel" xsi:type="string">QuickCart\SalesDashboard\Model\ResourceModel\SalesTarget</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="quickcart_sales_target_listing_data_source" xsi:type="string">QuickCartSalesTargetGridCollection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

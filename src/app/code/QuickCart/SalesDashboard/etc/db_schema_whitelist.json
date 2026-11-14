@@ -1,0 +1,17 @@
+{
+    "quickcart_sales_target": {
+        "column": {
+            "target_id": true,
+            "period": true,
+            "revenue_target": true,
+            "orders_target": true,
+            "note": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "QUICKCART_SALES_TARGET_PERIOD": true
+        }
+    }
+}

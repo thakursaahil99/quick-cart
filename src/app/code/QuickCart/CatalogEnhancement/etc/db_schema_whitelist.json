@@ -1,0 +1,40 @@
+{
+    "quickcart_product_label": {
+        "column": {
+            "label_id": true,
+            "name": true,
+            "text": true,
+            "condition_type": true,
+            "condition_value": true,
+            "background_color": true,
+            "text_color": true,
+            "sort_order": true,
+            "is_active": true,
+            "from_date": true,
+            "to_date": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "QUICKCART_PRODUCT_LABEL_IS_ACTIVE_SORT_ORDER": true,
+            "QUICKCART_PRODUCT_LABEL_NAME_TEXT": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "quickcart_product_label_store": {
+        "column": {
+            "label_id": true,
+            "store_id": true
+        },
+        "index": {
+            "QUICKCART_PRODUCT_LABEL_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "QUICKCART_PRD_LBL_STORE_LBL_ID_QUICKCART_PRD_LBL_LBL_ID": true,
+            "QUICKCART_PRODUCT_LABEL_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}

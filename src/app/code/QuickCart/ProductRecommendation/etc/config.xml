@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <quickcart_recommendation>
+            <bought_together>
+                <enabled>1</enabled>
+                <max_items>2</max_items>
+                <lookback_days>180</lookback_days>
+                <min_orders>1</min_orders>
+                <crosssell_fallback>1</crosssell_fallback>
+            </bought_together>
+            <similar>
+                <enabled>1</enabled>
+                <max_items>8</max_items>
+            </similar>
+            <recently_viewed>
+                <enabled>1</enabled>
+                <max_items>8</max_items>
+            </recently_viewed>
+        </quickcart_recommendation>
+    </default>
+</config>

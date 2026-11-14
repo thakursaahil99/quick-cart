@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">quickcart_sales_target_form.quickcart_sales_target_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Target</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="QuickCart\Core\Block\Adminhtml\Edit\BackButton"/>
+            <button name="delete" class="QuickCart\Core\Block\Adminhtml\Edit\DeleteButton"/>
+            <button name="save_and_continue" class="QuickCart\Core\Block\Adminhtml\Edit\SaveAndContinueButton"/>
+            <button name="save" class="QuickCart\Core\Block\Adminhtml\Edit\SaveButton"/>
+        </buttons>
+        <namespace>quickcart_sales_target_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>quickcart_sales_target_form.quickcart_sales_target_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="quickcart_sales_target_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="quickcart_sales/target/save"/>
+        </settings>
+        <dataProvider class="QuickCart\SalesDashboard\Model\SalesTarget\DataProvider"
+                      name="quickcart_sales_target_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>target_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Monthly Target</label>
+        </settings>
+        <field name="target_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>target_id</dataScope>
+            </settings>
+        </field>
+        <field name="period" sortOrder="10" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Month</label>
+                <notice translate="true">YYYY-MM, e.g. 2026-11. One target per month; the dashboard compares it with the current month.</notice>
+                <dataScope>period</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="max_text_length" xsi:type="number">7</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="revenue_target" sortOrder="20" formElement="input">
+            <settings>
+                <dataType>price</dataType>
+                <label translate="true">Revenue Target</label>
+                <notice translate="true">Net revenue in the base currency (after refunds, cancelled orders excluded).</notice>
+                <dataScope>revenue_target</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="orders_target" sortOrder="30" formElement="input">
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Orders Target</label>
+                <dataScope>orders_target</dataScope>
+                <validation>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="note" sortOrder="40" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Note</label>
+                <notice translate="true">Optional, e.g. "Diwali sale month".</notice>
+                <dataScope>note</dataScope>
+                <validation>
+                    <rule name="max_text_length" xsi:type="number">255</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+</form>

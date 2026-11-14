@@ -121,6 +121,13 @@ function Start-QcShare {
         'web/secure/use_in_frontend'   = '1'
         'web/secure/use_in_adminhtml'  = '0'
     })
+    # Admin links are generated from the admin store's (store_id 0) base URLs. The admin
+    # "Use Custom Admin URL" save handler writes these; config:set does not, so set them
+    # here - otherwise every admin redirect points at the public URL (refused by nginx).
+    foreach ($path in @('web/unsecure/base_url', 'web/secure/base_url')) {
+        Invoke-QcMagento $cfg @('config:set', '--no-interaction', '--scope=stores', '--scope-code=admin', $path, $cfg.BASE_URL) | Out-Null
+        Assert-QcExit "config:set (admin store) $path"
+    }
     Invoke-QcMagento $cfg @('cache:flush') | Out-Null
 
     Write-QcStep 'Waiting for the public URL to answer'

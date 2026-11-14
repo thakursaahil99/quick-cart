@@ -32,22 +32,6 @@ define([
     reveal(Motion);
     tilt(Motion);
 
-    // Brand marquee: duplicate the (focusable) list once, hidden from assistive tech,
-    // so the CSS translateX(-50%) loop is seamless.
-    document.querySelectorAll('.qc-brands__track').forEach(function (track) {
-        Array.prototype.slice.call(track.children).forEach(function (item) {
-            var copy = item.cloneNode(true),
-                link = copy.querySelector('a');
-
-            copy.setAttribute('aria-hidden', 'true');
-            if (link) {
-                link.setAttribute('tabindex', '-1');
-            }
-            track.appendChild(copy);
-        });
-        track.classList.add('is-looping');
-    });
-
     // Tactile press feedback on primary buttons.
     Motion.press('.qc-btn, .action.primary, .action.tocart', function (element) {
         Motion.animate(element, {transform: 'scale(0.96)'}, {duration: 0.12});

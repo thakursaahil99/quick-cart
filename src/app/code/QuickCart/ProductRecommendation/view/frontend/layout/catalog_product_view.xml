@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="QuickCart\ProductRecommendation\Block\Product\BoughtTogether" name="qc.product.bought.together"
+                   template="QuickCart_ProductRecommendation::product/bought-together.phtml"
+                   after="product.info.main"/>
+        </referenceContainer>
+        <referenceContainer name="content.aside">
+            <block class="QuickCart\ProductRecommendation\Block\Product\SimilarRail" name="qc.product.similar"
+                   after="product.info.upsell">
+                <arguments>
+                    <argument name="title" xsi:type="string" translate="true">More like this</argument>
+                    <argument name="subtitle" xsi:type="string" translate="true">Similar picks</argument>
+                </arguments>
+            </block>
+            <block class="QuickCart\ProductRecommendation\Block\RecentlyViewedContainer" name="qc.recently.viewed"
+                   after="qc.product.similar">
+                <arguments>
+                    <argument name="track" xsi:type="boolean">true</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

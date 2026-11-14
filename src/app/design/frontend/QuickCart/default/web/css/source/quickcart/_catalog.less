@@ -134,6 +134,9 @@
             font-weight: 700;
             text-transform: none;
             letter-spacing: 0;
+            //  Luma uses break-all, which split "Connectivity" mid-word in narrow sidebars.
+            word-break: normal;
+            overflow-wrap: anywhere;
 
             &:after {
                 color: @qc-muted;
@@ -201,11 +204,41 @@
     }
 }
 
+//  Tablets (768-1023px): the sidebar column is only ~150px wide, which left ~80px for a
+//  filter title next to its arrow ("Connectivity" needs ~88px).
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .sidebar-main {
+        padding-right: 10px;
+    }
+
+    .sidebar-main .block.filter {
+        padding: 4px 14px 10px;
+    }
+
+    .block.filter .filter-options-title {
+        padding-right: 18px;
+        font-size: 13.5px;
+
+        &:after {
+            right: 0;
+        }
+    }
+}
+
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     //  Luma floats the mobile toolbar items, so the card frame would collapse empty.
     .toolbar-products {
         padding: 0;
         border: 0;
+        background: transparent;
+    }
+
+    //  Same for the filter block: Luma hides its content behind the "Shop By" button
+    //  (positioned above the toolbar), so the frame would show as an empty strip.
+    .sidebar-main .block.filter {
+        padding: 0;
+        border: 0;
+        border-radius: 0;
         background: transparent;
     }
 
@@ -215,5 +248,13 @@
 
     .catalog-category-view .category-description {
         font-size: 15px;
+    }
+}
+
+//  Small phones: "Shop By" (top-left) and the sorter (top-right) share one row and
+//  overlapped below ~350px. The "Sort By" label stays for screen readers only.
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .toolbar-products .sorter-label {
+        .lib-visually-hidden();
     }
 }

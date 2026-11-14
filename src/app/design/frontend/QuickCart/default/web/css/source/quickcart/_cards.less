@@ -338,62 +338,75 @@
 
         .actions-primary {
             flex: 1;
+            min-width: 0;
             display: block;
 
             form {
                 margin: 0;
             }
         }
+    }
 
-        //  Wish list / compare float over the image (top-right), like the carousel cards.
-        .actions-secondary {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 3;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            padding: 0;
-            opacity: 0;
-            transform: translateY(-6px);
-            transition: opacity .25s ease, transform .35s @qc-ease-back;
+    //  Wish list / compare sit in a row at the bottom-right of the image, so they never
+    //  collide with the badges (top-left) on narrow cards. The box covers exactly the square
+    //  image: inset by the card padding, height from aspect-ratio. ".product-item-info" in the
+    //  selector outranks Luma's ".product-item-actions .actions-primary + .actions-secondary".
+    .products-grid .product-item-info .product-item-actions .actions-secondary {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        left: 12px;
+        z-index: 3;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap: 6px;
+        aspect-ratio: ~'1 / 1';
+        box-sizing: border-box;
+        padding: 10px;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity .25s ease, transform .35s @qc-ease-back;
 
-            > .action {
-                display: grid;
-                place-items: center;
-                width: 38px;
-                height: 38px;
-                border: 0;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, .94);
-                box-shadow: @qc-shadow-sm;
+        > .action {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            margin: 0;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .94);
+            box-shadow: @qc-shadow-sm;
+            pointer-events: auto;
+
+            &:before {
+                margin: 0;
+                color: @qc-ink-2;
+                font-size: 20px;
+                line-height: 1;
+            }
+
+            &:hover {
+                border-color: @qc-primary;
 
                 &:before {
-                    color: @qc-ink-2;
-                    font-size: 20px;
-                    line-height: 1;
-                }
-
-                &:hover {
-                    border-color: @qc-primary;
-
-                    &:before {
-                        color: @qc-primary;
-                    }
+                    color: @qc-primary;
                 }
             }
         }
     }
 
-    .products-grid .product-item-info:hover .actions-secondary,
-    .products-grid .actions-secondary:focus-within {
+    .products-grid .product-item-info:hover .product-item-actions .actions-secondary,
+    .products-grid .product-item-info .product-item-actions .actions-secondary:focus-within {
         opacity: 1;
         transform: none;
     }
 
     @media (hover: none) {
-        .products-grid .product-item-actions .actions-secondary {
+        .products-grid .product-item-info .product-item-actions .actions-secondary {
             opacity: 1;
             transform: none;
         }
@@ -428,14 +441,68 @@
     }
 }
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+//  Phones: two cards per row leave ~110px of content width on a 320px screen.
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .products-grid .product-item-details {
+        padding: 12px 2px 4px;
+    }
+
+    .products-grid .price {
+        font-size: ~'clamp(15px, 4.4vw, 19px)';
+    }
+
+    .products-grid .old-price .price {
+        font-size: 12px;
+    }
+
+    .products-grid .action.tocart {
+        min-height: 44px;
+        padding: 0 10px;
+        font-size: 14px;
+    }
+
+    .products-grid .qc-badges {
+        gap: 4px;
+    }
+
+    .products-grid .qc-badge {
+        height: 22px;
+        padding: 0 8px;
+        font-size: 10.5px;
+        letter-spacing: .03em;
+    }
+
+    .products-grid .product-item-info .product-item-actions .actions-secondary {
+        gap: 5px;
+        padding: 8px;
+
+        > .action {
+            width: 32px;
+            height: 32px;
+
+            &:before {
+                font-size: 17px;
+            }
+        }
+    }
+}
+
+//  Luma's grid listing rules start at @screen__s (640px), not @screen__m: they pull the
+//  actions up (margin: -10px 0 10px, which put "Add to Cart" over the price), turn the
+//  actions into a hover-only absolute overlay and shift the hovered card by -10px.
+//  QuickCart cards keep their own layout from that same breakpoint.
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .products-grid .product-item-actions {
+        margin: 10px 0 0;
+    }
+
     //  Luma floats the hover state outside the card; keep it inside our card.
     .products-grid .product-item-info:hover,
     .products-grid .product-item-info.active {
         position: relative;
         z-index: 2;
         margin: 0;
-        padding: 10px;
+        padding: 12px; // same as the resting card, so the image does not shift on hover
         border: 1px solid rgba(37, 99, 235, .28);
         background: @qc-white;
         .qc-card-raised();
@@ -458,7 +525,9 @@
         background: transparent;
         box-shadow: none;
     }
+}
 
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .products-grid .product-items {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 22px;

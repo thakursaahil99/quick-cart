@@ -279,7 +279,44 @@
         }
       ],
       "color": null,
-      "image": "product/qc-ph-edge5pro-midnight.jpg"
+      "image": "product/qc-ph-edge5pro-midnight.jpg",
+      "reviews": [
+        {
+          "nickname": "Karan J.",
+          "title": "Exceeded my expectations",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the 200 MP main camera with 5x periscope zoom. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Sneha D.",
+          "title": "Happy with it",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the LTPO AMOLED display that peaks at 3,000 nits. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Diya B.",
+          "title": "Best purchase this year",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the 80 W wired charging. Would definitely buy again.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-PH-EDGE5",
+          "QC-PH-NOVAX",
+          "QC-PH-ONELITE",
+          "QC-PH-P9PRO"
+        ],
+        "upsell": [
+          "QC-PH-P9PRO"
+        ],
+        "crosssell": [
+          "QC-EB-BUDSPRO2",
+          "QC-AC-POWER20K",
+          "QC-AC-MAG10K",
+          "QC-SW-PULSE3"
+        ]
+      }
     },
     {
       "sku": "QC-PH-EDGE5",
@@ -309,7 +346,39 @@
       "description": "<p>All the essentials of the Edge 5 Pro in a lighter, more pocketable design.</p>\n<h3>Highlights</h3>\n<ul><li>50 MP camera with optical image stabilisation</li><li>IP68 dust and water resistance</li><li>Four years of OS updates</li></ul>\n<p>Ships with a USB-C cable and SIM tool, and is backed by QuickCart's 7-day replacement promise.</p>",
       "meta_description": "All the essentials of the Edge 5 Pro in a lighter, more pocketable design.",
       "color": "violet",
-      "image": "product/qc-ph-edge5.jpg"
+      "image": "product/qc-ph-edge5.jpg",
+      "reviews": [
+        {
+          "nickname": "Neha C.",
+          "title": "Does the job really well",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the 50 MP camera with optical image stabilisation. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Diya B.",
+          "title": "Great value for money",
+          "detail": "Really happy with this purchase overall. Loved the IP68 dust and water resistance. Minor nitpicks aside, recommended.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-PH-EDGE5PRO",
+          "QC-PH-NOVAX",
+          "QC-PH-ONELITE",
+          "QC-PH-P9PRO"
+        ],
+        "upsell": [
+          "QC-PH-EDGE5PRO",
+          "QC-PH-P9PRO"
+        ],
+        "crosssell": [
+          "QC-EB-BUDSPRO2",
+          "QC-AC-POWER20K",
+          "QC-AC-MAG10K",
+          "QC-SW-PULSE3"
+        ]
+      }
     },
     {
       "sku": "QC-PH-NOVAX",
@@ -338,7 +407,39 @@
       "description": "<p>Mid-range price, flagship feel: a huge battery and a buttery 120 Hz screen.</p>\n<h3>Highlights</h3>\n<ul><li>Two-day battery life with 67 W turbo charging</li><li>108 MP triple camera</li><li>Stereo speakers tuned for gaming</li></ul>\n<p>Ships with a USB-C cable and SIM tool, and is backed by QuickCart's 7-day replacement promise.</p>",
       "meta_description": "Mid-range price, flagship feel: a huge battery and a buttery 120 Hz screen.",
       "color": "teal",
-      "image": "product/qc-ph-novax.jpg"
+      "image": "product/qc-ph-novax.jpg",
+      "reviews": [
+        {
+          "nickname": "Ananya R.",
+          "title": "Decent for the price",
+          "detail": "Works fine for everyday use. Loved the two-day battery life with 67 W turbo charging. Better suited to casual users.",
+          "rating": 3
+        },
+        {
+          "nickname": "Aarav S.",
+          "title": "Best purchase this year",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the 108 MP triple camera. Totally recommend it.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-PH-EDGE5PRO",
+          "QC-PH-EDGE5",
+          "QC-PH-ONELITE",
+          "QC-PH-P9PRO"
+        ],
+        "upsell": [
+          "QC-PH-EDGE5",
+          "QC-PH-EDGE5PRO"
+        ],
+        "crosssell": [
+          "QC-EB-BUDSPRO2",
+          "QC-AC-POWER20K",
+          "QC-AC-MAG10K",
+          "QC-SW-PULSE3"
+        ]
+      }
     },
     {
       "sku": "QC-PH-ONELITE",
@@ -366,7 +467,51 @@
       "description": "<p>An affordable 5G phone with a battery that easily lasts two days.</p>\n<h3>Highlights</h3>\n<ul><li>6,000 mAh battery</li><li>50 MP AI dual camera</li><li>Side-mounted fingerprint sensor</li></ul>\n<p>Ships with a USB-C cable and SIM tool, and is backed by QuickCart's 7-day replacement promise.</p>",
       "meta_description": "An affordable 5G phone with a battery that easily lasts two days.",
       "color": "gold",
-      "image": "product/qc-ph-onelite.jpg"
+      "image": "product/qc-ph-onelite.jpg",
+      "reviews": [
+        {
+          "nickname": "Vikram P.",
+          "title": "Premium in every way",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the 6,000 mAh battery. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Meera N.",
+          "title": "Decent for the price",
+          "detail": "Works fine for everyday use. Loved the 50 MP AI dual camera. Better suited to casual users.",
+          "rating": 3
+        },
+        {
+          "nickname": "Ananya R.",
+          "title": "Absolutely worth it",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the side-mounted fingerprint sensor. Totally recommend it.",
+          "rating": 5
+        },
+        {
+          "nickname": "Pooja S.",
+          "title": "Does the job really well",
+          "detail": "Really happy with this purchase overall. Loved the 6,000 mAh battery. Minor nitpicks aside, recommended.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-PH-EDGE5PRO",
+          "QC-PH-EDGE5",
+          "QC-PH-NOVAX",
+          "QC-PH-P9PRO"
+        ],
+        "upsell": [
+          "QC-PH-NOVAX",
+          "QC-PH-EDGE5"
+        ],
+        "crosssell": [
+          "QC-EB-BUDSPRO2",
+          "QC-AC-POWER20K",
+          "QC-AC-MAG10K",
+          "QC-SW-PULSE3"
+        ]
+      }
     },
     {
       "sku": "QC-PH-P9PRO",
@@ -396,7 +541,48 @@
       "description": "<p>A camera-first flagship co-engineered with Pixelon's imaging lab.</p>\n<h3>Highlights</h3>\n<ul><li>1-inch type main sensor with variable aperture</li><li>8K video and pro RAW capture</li><li>Night mode that sees in near darkness</li></ul>\n<p>Ships with a USB-C cable and SIM tool, and is backed by QuickCart's 7-day replacement promise.</p>",
       "meta_description": "A camera-first flagship co-engineered with Pixelon's imaging lab.",
       "color": "midnight",
-      "image": "product/qc-ph-p9pro.jpg"
+      "image": "product/qc-ph-p9pro.jpg",
+      "reviews": [
+        {
+          "nickname": "Neha C.",
+          "title": "Exceeded my expectations",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the 1-inch type main sensor with variable aperture. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Ananya R.",
+          "title": "Great value for money",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the 8K video and pro RAW capture. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Rohan K.",
+          "title": "Best purchase this year",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the night mode that sees in near darkness. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Diya B.",
+          "title": "Great value for money",
+          "detail": "Does everything I need with very few compromises. Loved the 1-inch type main sensor with variable aperture. Would recommend it to friends.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-PH-EDGE5PRO",
+          "QC-PH-EDGE5",
+          "QC-PH-NOVAX",
+          "QC-PH-ONELITE"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-EB-BUDSPRO2",
+          "QC-AC-POWER20K",
+          "QC-AC-MAG10K",
+          "QC-SW-PULSE3"
+        ]
+      }
     },
     {
       "sku": "QC-TB-TABS10",
@@ -424,7 +610,43 @@
       "description": "<p>A sleek 11-inch tablet for streaming, sketching and split-screen productivity.</p>\n<h3>Highlights</h3>\n<ul><li>Quad speakers with spatial audio</li><li>Stylus support with 4,096 pressure levels</li><li>Desktop mode for multi-window work</li></ul>\n<p>Pairs with the matching stylus and keyboard cover (sold separately) to turn into a portable studio.</p>",
       "meta_description": "A sleek 11-inch tablet for streaming, sketching and split-screen productivity.",
       "color": "silver",
-      "image": "product/qc-tb-tabs10.jpg"
+      "image": "product/qc-tb-tabs10.jpg",
+      "reviews": [
+        {
+          "nickname": "Rohan K.",
+          "title": "Decent for the price",
+          "detail": "It does the job, though I expected a little more. Loved the quad speakers with spatial audio. Okay for the price.",
+          "rating": 3
+        },
+        {
+          "nickname": "Ananya R.",
+          "title": "Premium in every way",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the stylus support with 4,096 pressure levels. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Diya B.",
+          "title": "Does the job really well",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the desktop mode for multi-window work. Good buy at this price.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-TB-PADAIR",
+          "QC-TB-SLATEPRO",
+          "QC-PH-EDGE5PRO",
+          "QC-PH-EDGE5"
+        ],
+        "upsell": [
+          "QC-TB-SLATEPRO"
+        ],
+        "crosssell": [
+          "QC-AC-MECH75",
+          "QC-EB-AIRDOTS",
+          "QC-AC-POWER20K"
+        ]
+      }
     },
     {
       "sku": "QC-TB-PADAIR",
@@ -452,7 +674,50 @@
       "description": "<p>A light, colourful tablet that is perfect for classes, comics and video calls.</p>\n<h3>Highlights</h3>\n<ul><li>Kids mode with parental controls</li><li>Landscape front camera for calls</li><li>Up to 14 hours of video playback</li></ul>\n<p>Pairs with the matching stylus and keyboard cover (sold separately) to turn into a portable studio.</p>",
       "meta_description": "A light, colourful tablet that is perfect for classes, comics and video calls.",
       "color": "blue",
-      "image": "product/qc-tb-padair.jpg"
+      "image": "product/qc-tb-padair.jpg",
+      "reviews": [
+        {
+          "nickname": "Priya M.",
+          "title": "Decent for the price",
+          "detail": "It does the job, though I expected a little more. Loved the kids mode with parental controls. Okay for the price.",
+          "rating": 3
+        },
+        {
+          "nickname": "Vikram P.",
+          "title": "Does the job really well",
+          "detail": "Really happy with this purchase overall. Loved the landscape front camera for calls. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Aditya H.",
+          "title": "Very good overall",
+          "detail": "Does everything I need with very few compromises. Loved the up to 14 hours of video playback. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Arjun T.",
+          "title": "Best purchase this year",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the kids mode with parental controls. Totally recommend it.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-TB-TABS10",
+          "QC-TB-SLATEPRO",
+          "QC-PH-EDGE5PRO",
+          "QC-PH-EDGE5"
+        ],
+        "upsell": [
+          "QC-TB-TABS10",
+          "QC-TB-SLATEPRO"
+        ],
+        "crosssell": [
+          "QC-AC-MECH75",
+          "QC-EB-AIRDOTS",
+          "QC-AC-POWER20K"
+        ]
+      }
     },
     {
       "sku": "QC-TB-SLATEPRO",
@@ -481,7 +746,35 @@
       "description": "<p>A 13-inch OLED powerhouse that replaces a laptop for creators on the move.</p>\n<h3>Highlights</h3>\n<ul><li>Tandem OLED panel with 1,600 nits HDR</li><li>High-speed USB-C for external displays</li><li>Magnetic keyboard and pen support</li></ul>\n<p>Pairs with the matching stylus and keyboard cover (sold separately) to turn into a portable studio.</p>",
       "meta_description": "A 13-inch OLED powerhouse that replaces a laptop for creators on the move.",
       "color": "midnight",
-      "image": "product/qc-tb-slatepro.jpg"
+      "image": "product/qc-tb-slatepro.jpg",
+      "reviews": [
+        {
+          "nickname": "Vikram P.",
+          "title": "Great value for money",
+          "detail": "Really happy with this purchase overall. Loved the tandem OLED panel with 1,600 nits HDR. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Ananya R.",
+          "title": "Does the job really well",
+          "detail": "Does everything I need with very few compromises. Loved the high-speed USB-C for external displays. Would recommend it to friends.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-TB-TABS10",
+          "QC-TB-PADAIR",
+          "QC-PH-EDGE5PRO",
+          "QC-PH-EDGE5"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-AC-MECH75",
+          "QC-EB-AIRDOTS",
+          "QC-AC-POWER20K"
+        ]
+      }
     },
     {
       "sku": "QC-LT-AIR13",
@@ -529,7 +822,44 @@
         }
       ],
       "color": null,
-      "image": "product/qc-lt-air13-silver.jpg"
+      "image": "product/qc-lt-air13-silver.jpg",
+      "reviews": [
+        {
+          "nickname": "Aarav S.",
+          "title": "Great value for money",
+          "detail": "Really happy with this purchase overall. Loved the 1.18 kg aluminium unibody. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Aditya H.",
+          "title": "Highly recommended",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the fanless design. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Ananya R.",
+          "title": "Does the job really well",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the up to 18 hours of battery life. Good buy at this price.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-LT-PRO16",
+          "QC-LT-BLADE15",
+          "QC-LT-BOOK14",
+          "QC-LT-FLEX14"
+        ],
+        "upsell": [
+          "QC-LT-BLADE15",
+          "QC-LT-PRO16"
+        ],
+        "crosssell": [
+          "QC-AC-GLIDEPRO",
+          "QC-AC-MECH75",
+          "QC-MN-UV27"
+        ]
+      }
     },
     {
       "sku": "QC-LT-PRO16",
@@ -557,7 +887,35 @@
       "description": "<p>A colour-accurate Mini-LED workstation for 8K editing, 3D and AI workloads.</p>\n<h3>Highlights</h3>\n<ul><li>Factory-calibrated Delta E &lt; 1 display</li><li>Dedicated high-performance graphics</li><li>Three USB-C ports, HDMI 2.1 and SD Express</li></ul>\n<p>Comes with a fast USB-C charger and the latest OS pre-installed, so you can get to work in minutes.</p>",
       "meta_description": "A colour-accurate Mini-LED workstation for 8K editing, 3D and AI workloads.",
       "color": "silver",
-      "image": "product/qc-lt-pro16.jpg"
+      "image": "product/qc-lt-pro16.jpg",
+      "reviews": [
+        {
+          "nickname": "Vikram P.",
+          "title": "Does the job really well",
+          "detail": "Really happy with this purchase overall. Loved the factory-calibrated Delta E < 1 display. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Ananya R.",
+          "title": "Absolutely worth it",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the dedicated high-performance graphics. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-LT-AIR13",
+          "QC-LT-BLADE15",
+          "QC-LT-BOOK14",
+          "QC-LT-FLEX14"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-AC-GLIDEPRO",
+          "QC-AC-MECH75",
+          "QC-MN-UV27"
+        ]
+      }
     },
     {
       "sku": "QC-LT-BLADE15",
@@ -585,7 +943,49 @@
       "description": "<p>A 240 Hz esports laptop with vapour-chamber cooling and per-key RGB.</p>\n<h3>Highlights</h3>\n<ul><li>240 Hz QHD panel with 3 ms response</li><li>Vapour-chamber cooling keeps clocks high</li><li>Per-key RGB keyboard</li></ul>\n<p>Comes with a fast USB-C charger and the latest OS pre-installed, so you can get to work in minutes.</p>",
       "meta_description": "A 240 Hz esports laptop with vapour-chamber cooling and per-key RGB.",
       "color": "midnight",
-      "image": "product/qc-lt-blade15.jpg"
+      "image": "product/qc-lt-blade15.jpg",
+      "reviews": [
+        {
+          "nickname": "Aarav S.",
+          "title": "Absolutely worth it",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the 240 Hz QHD panel with 3 ms response. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Arjun T.",
+          "title": "Happy with it",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the vapour-chamber cooling keeps clocks high. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Aditya H.",
+          "title": "Great value for money",
+          "detail": "Really happy with this purchase overall. Loved the per-key RGB keyboard. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Priya M.",
+          "title": "Highly recommended",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the 240 Hz QHD panel with 3 ms response. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-LT-AIR13",
+          "QC-LT-PRO16",
+          "QC-LT-BOOK14",
+          "QC-LT-FLEX14"
+        ],
+        "upsell": [
+          "QC-LT-PRO16"
+        ],
+        "crosssell": [
+          "QC-AC-GLIDEPRO",
+          "QC-AC-MECH75",
+          "QC-MN-UV27"
+        ]
+      }
     },
     {
       "sku": "QC-LT-BOOK14",
@@ -613,7 +1013,44 @@
       "description": "<p>A dependable everyday laptop for study, work-from-home and streaming.</p>\n<h3>Highlights</h3>\n<ul><li>16:10 display for more vertical space</li><li>Backlit keyboard and fingerprint login</li><li>Fast charging: 50% in 30 minutes</li></ul>\n<p>Comes with a fast USB-C charger and the latest OS pre-installed, so you can get to work in minutes.</p>",
       "meta_description": "A dependable everyday laptop for study, work-from-home and streaming.",
       "color": "silver",
-      "image": "product/qc-lt-book14.jpg"
+      "image": "product/qc-lt-book14.jpg",
+      "reviews": [
+        {
+          "nickname": "Rohan K.",
+          "title": "Best purchase this year",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the 16. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Isha G.",
+          "title": "Good, but not perfect",
+          "detail": "It does the job, though I expected a little more. Loved the backlit keyboard and fingerprint login. Okay for the price.",
+          "rating": 3
+        },
+        {
+          "nickname": "Neha C.",
+          "title": "Premium in every way",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the fast charging. Would definitely buy again.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-LT-AIR13",
+          "QC-LT-PRO16",
+          "QC-LT-BLADE15",
+          "QC-LT-FLEX14"
+        ],
+        "upsell": [
+          "QC-LT-FLEX14",
+          "QC-LT-AIR13"
+        ],
+        "crosssell": [
+          "QC-AC-GLIDEPRO",
+          "QC-AC-MECH75",
+          "QC-MN-UV27"
+        ]
+      }
     },
     {
       "sku": "QC-LT-FLEX14",
@@ -641,7 +1078,44 @@
       "description": "<p>A convertible OLED laptop that flips into a tablet for notes and sketches.</p>\n<h3>Highlights</h3>\n<ul><li>360 degree hinge with four modes</li><li>Active pen included</li><li>Vivid OLED touch display</li></ul>\n<p>Comes with a fast USB-C charger and the latest OS pre-installed, so you can get to work in minutes.</p>",
       "meta_description": "A convertible OLED laptop that flips into a tablet for notes and sketches.",
       "color": "violet",
-      "image": "product/qc-lt-flex14.jpg"
+      "image": "product/qc-lt-flex14.jpg",
+      "reviews": [
+        {
+          "nickname": "Rahul V.",
+          "title": "Does the job really well",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the 360 degree hinge with four modes. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Pooja S.",
+          "title": "Premium in every way",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the active pen included. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Aarav S.",
+          "title": "Premium in every way",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the vivid OLED touch display. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-LT-AIR13",
+          "QC-LT-PRO16",
+          "QC-LT-BLADE15",
+          "QC-LT-BOOK14"
+        ],
+        "upsell": [
+          "QC-LT-AIR13",
+          "QC-LT-BLADE15"
+        ],
+        "crosssell": [
+          "QC-AC-GLIDEPRO",
+          "QC-AC-MECH75",
+          "QC-MN-UV27"
+        ]
+      }
     },
     {
       "sku": "QC-MN-UV27",
@@ -667,7 +1141,46 @@
       "description": "<p>A sharp 4K, 144 Hz monitor that is equally good for design work and gaming.</p>\n<h3>Highlights</h3>\n<ul><li>98% DCI-P3 colour coverage</li><li>90 W USB-C power delivery</li><li>Height, tilt and pivot adjustable stand</li></ul>\n<p>Includes HDMI and USB-C cables plus a VESA mount adapter for clean desk setups.</p>",
       "meta_description": "A sharp 4K, 144 Hz monitor that is equally good for design work and gaming.",
       "color": "silver",
-      "image": "product/qc-mn-uv27.jpg"
+      "image": "product/qc-mn-uv27.jpg",
+      "reviews": [
+        {
+          "nickname": "Karan J.",
+          "title": "Solid choice",
+          "detail": "Really happy with this purchase overall. Loved the 98% DCI-P3 colour coverage. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Ananya R.",
+          "title": "Exceeded my expectations",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the 90 W USB-C power delivery. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Rohan K.",
+          "title": "Great value for money",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the height, tilt and pivot adjustable stand. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Vikram P.",
+          "title": "Very good overall",
+          "detail": "Really happy with this purchase overall. Loved the 98% DCI-P3 colour coverage. Minor nitpicks aside, recommended.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-MN-ARENA32",
+          "QC-MN-STUDIO24",
+          "QC-LT-AIR13",
+          "QC-LT-PRO16"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-AC-STRIKE",
+          "QC-AC-GLIDEPRO"
+        ]
+      }
     },
     {
       "sku": "QC-MN-ARENA32",
@@ -693,7 +1206,36 @@
       "description": "<p>An immersive 1500R curved gaming monitor with silky 165 Hz motion.</p>\n<h3>Highlights</h3>\n<ul><li>1500R curvature for immersion</li><li>1 ms MPRT with adaptive sync</li><li>Built-in crosshair and FPS counter</li></ul>\n<p>Includes HDMI and USB-C cables plus a VESA mount adapter for clean desk setups.</p>",
       "meta_description": "An immersive 1500R curved gaming monitor with silky 165 Hz motion.",
       "color": "midnight",
-      "image": "product/qc-mn-arena32.jpg"
+      "image": "product/qc-mn-arena32.jpg",
+      "reviews": [
+        {
+          "nickname": "Meera N.",
+          "title": "Best purchase this year",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the 1500R curvature for immersion. Totally recommend it.",
+          "rating": 5
+        },
+        {
+          "nickname": "Kabir L.",
+          "title": "Does the job really well",
+          "detail": "Really happy with this purchase overall. Loved the 1 ms MPRT with adaptive sync. Minor nitpicks aside, recommended.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-MN-UV27",
+          "QC-MN-STUDIO24",
+          "QC-LT-AIR13",
+          "QC-LT-PRO16"
+        ],
+        "upsell": [
+          "QC-MN-UV27"
+        ],
+        "crosssell": [
+          "QC-AC-STRIKE",
+          "QC-AC-GLIDEPRO"
+        ]
+      }
     },
     {
       "sku": "QC-MN-STUDIO24",
@@ -719,7 +1261,49 @@
       "description": "<p>A slim, bezel-less 24-inch display that looks great on any desk.</p>\n<h3>Highlights</h3>\n<ul><li>Three-side borderless design</li><li>Flicker-free with low blue light</li><li>Wall-mountable</li></ul>\n<p>Includes HDMI and USB-C cables plus a VESA mount adapter for clean desk setups.</p>",
       "meta_description": "A slim, bezel-less 24-inch display that looks great on any desk.",
       "color": "white",
-      "image": "product/qc-mn-studio24.jpg"
+      "image": "product/qc-mn-studio24.jpg",
+      "reviews": [
+        {
+          "nickname": "Aarav S.",
+          "title": "Does the job really well",
+          "detail": "Does everything I need with very few compromises. Loved the three-side borderless design. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Priya M.",
+          "title": "Premium in every way",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the flicker-free with low blue light. Totally recommend it.",
+          "rating": 5
+        },
+        {
+          "nickname": "Aditya H.",
+          "title": "Absolutely worth it",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the wall-mountable. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Kabir L.",
+          "title": "Exceeded my expectations",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the three-side borderless design. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-MN-UV27",
+          "QC-MN-ARENA32",
+          "QC-LT-AIR13",
+          "QC-LT-PRO16"
+        ],
+        "upsell": [
+          "QC-MN-ARENA32",
+          "QC-MN-UV27"
+        ],
+        "crosssell": [
+          "QC-AC-STRIKE",
+          "QC-AC-GLIDEPRO"
+        ]
+      }
     },
     {
       "sku": "QC-HP-AURA",
@@ -766,7 +1350,46 @@
         }
       ],
       "color": null,
-      "image": "product/qc-hp-aura-midnight.jpg"
+      "image": "product/qc-hp-aura-midnight.jpg",
+      "reviews": [
+        {
+          "nickname": "Diya B.",
+          "title": "Exceeded my expectations",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the adaptive ANC with eight microphones. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Pooja S.",
+          "title": "Great value for money",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the hi-Res wireless audio with a high-bitrate codec. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Ananya R.",
+          "title": "Exceeded my expectations",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the 40-hour battery. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Meera N.",
+          "title": "Good, but not perfect",
+          "detail": "It does the job, though I expected a little more. Loved the adaptive ANC with eight microphones. Okay for the price.",
+          "rating": 3
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-HP-STUDIO2",
+          "QC-HP-BEATMAX",
+          "QC-HP-KIDSAFE",
+          "QC-EB-BUDSPRO2"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-AC-POWER20K",
+          "QC-SP-PEBBLE"
+        ]
+      }
     },
     {
       "sku": "QC-HP-STUDIO2",
@@ -792,7 +1415,42 @@
       "description": "<p>Reference-grade wired headphones for mixing, mastering and critical listening.</p>\n<h3>Highlights</h3>\n<ul><li>50 mm neodymium drivers with a flat response</li><li>Detachable coiled cable</li><li>Swivelling cups for one-ear monitoring</li></ul>\n<p>Folds flat into the included hard-shell travel case.</p>",
       "meta_description": "Reference-grade wired headphones for mixing, mastering and critical listening.",
       "color": "silver",
-      "image": "product/qc-hp-studio2.jpg"
+      "image": "product/qc-hp-studio2.jpg",
+      "reviews": [
+        {
+          "nickname": "Meera N.",
+          "title": "Highly recommended",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the 50 mm neodymium drivers with a flat response. Totally recommend it.",
+          "rating": 5
+        },
+        {
+          "nickname": "Aarav S.",
+          "title": "Exceeded my expectations",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the detachable coiled cable. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Kabir L.",
+          "title": "Premium in every way",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the swivelling cups for one-ear monitoring. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-HP-AURA",
+          "QC-HP-BEATMAX",
+          "QC-HP-KIDSAFE",
+          "QC-EB-BUDSPRO2"
+        ],
+        "upsell": [
+          "QC-HP-AURA"
+        ],
+        "crosssell": [
+          "QC-AC-POWER20K",
+          "QC-SP-PEBBLE"
+        ]
+      }
     },
     {
       "sku": "QC-HP-BEATMAX",
@@ -819,7 +1477,37 @@
       "description": "<p>Big bass, bold colours and a battery that lasts more than two days of listening.</p>\n<h3>Highlights</h3>\n<ul><li>60-hour battery life</li><li>Bass boost mode</li><li>Low-latency game mode</li></ul>\n<p>Folds flat into the included hard-shell travel case.</p>",
       "meta_description": "Big bass, bold colours and a battery that lasts more than two days of listening.",
       "color": "red",
-      "image": "product/qc-hp-beatmax.jpg"
+      "image": "product/qc-hp-beatmax.jpg",
+      "reviews": [
+        {
+          "nickname": "Aarav S.",
+          "title": "Great value for money",
+          "detail": "Really happy with this purchase overall. Loved the 60-hour battery life. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Priya M.",
+          "title": "Absolutely worth it",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the bass boost mode. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-HP-AURA",
+          "QC-HP-STUDIO2",
+          "QC-HP-KIDSAFE",
+          "QC-EB-BUDSPRO2"
+        ],
+        "upsell": [
+          "QC-HP-STUDIO2",
+          "QC-HP-AURA"
+        ],
+        "crosssell": [
+          "QC-AC-POWER20K",
+          "QC-SP-PEBBLE"
+        ]
+      }
     },
     {
       "sku": "QC-HP-KIDSAFE",
@@ -845,7 +1533,49 @@
       "description": "<p>Volume-limited, bendable headphones designed for little ears.</p>\n<h3>Highlights</h3>\n<ul><li>85 dB volume limiter</li><li>Bendable, near-unbreakable headband</li><li>Built-in microphone for online classes</li></ul>\n<p>Folds flat into the included hard-shell travel case.</p>",
       "meta_description": "Volume-limited, bendable headphones designed for little ears.",
       "color": "teal",
-      "image": "product/qc-hp-kidsafe.jpg"
+      "image": "product/qc-hp-kidsafe.jpg",
+      "reviews": [
+        {
+          "nickname": "Aarav S.",
+          "title": "Decent for the price",
+          "detail": "It does the job, though I expected a little more. Loved the 85 dB volume limiter. Okay for the price.",
+          "rating": 3
+        },
+        {
+          "nickname": "Priya M.",
+          "title": "Very good overall",
+          "detail": "Does everything I need with very few compromises. Loved the bendable, near-unbreakable headband. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Kabir L.",
+          "title": "Best purchase this year",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the built-in microphone for online classes. Totally recommend it.",
+          "rating": 5
+        },
+        {
+          "nickname": "Arjun T.",
+          "title": "Solid choice",
+          "detail": "Really happy with this purchase overall. Loved the 85 dB volume limiter. Minor nitpicks aside, recommended.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-HP-AURA",
+          "QC-HP-STUDIO2",
+          "QC-HP-BEATMAX",
+          "QC-EB-BUDSPRO2"
+        ],
+        "upsell": [
+          "QC-HP-BEATMAX",
+          "QC-HP-STUDIO2"
+        ],
+        "crosssell": [
+          "QC-AC-POWER20K",
+          "QC-SP-PEBBLE"
+        ]
+      }
     },
     {
       "sku": "QC-EB-BUDSPRO2",
@@ -872,7 +1602,46 @@
       "description": "<p>Premium true wireless earbuds with adaptive ANC and personalised spatial audio.</p>\n<h3>Highlights</h3>\n<ul><li>Adaptive noise cancellation</li><li>Wireless charging case</li><li>IPX4 sweat resistance</li></ul>\n<p>Includes three sizes of silicone ear tips for a secure, comfortable seal.</p>",
       "meta_description": "Premium true wireless earbuds with adaptive ANC and personalised spatial audio.",
       "color": "white",
-      "image": "product/qc-eb-budspro2.jpg"
+      "image": "product/qc-eb-budspro2.jpg",
+      "reviews": [
+        {
+          "nickname": "Neha C.",
+          "title": "Solid choice",
+          "detail": "Does everything I need with very few compromises. Loved the adaptive noise cancellation. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Meera N.",
+          "title": "Great value for money",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the wireless charging case. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Rahul V.",
+          "title": "Highly recommended",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the IPX4 sweat resistance. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Pooja S.",
+          "title": "Best purchase this year",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the adaptive noise cancellation. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-EB-AIRDOTS",
+          "QC-EB-FITBUDS",
+          "QC-HP-AURA",
+          "QC-HP-STUDIO2"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-AC-MAG10K",
+          "QC-FB-BAND8"
+        ]
+      }
     },
     {
       "sku": "QC-EB-AIRDOTS",
@@ -899,7 +1668,49 @@
       "description": "<p>Everyday earbuds with clear calls and quick pairing.</p>\n<h3>Highlights</h3>\n<ul><li>Quad-mic environmental noise cancellation for calls</li><li>10-minute charge gives 2 hours of play</li><li>Touch controls</li></ul>\n<p>Includes three sizes of silicone ear tips for a secure, comfortable seal.</p>",
       "meta_description": "Everyday earbuds with clear calls and quick pairing.",
       "color": "midnight",
-      "image": "product/qc-eb-airdots.jpg"
+      "image": "product/qc-eb-airdots.jpg",
+      "reviews": [
+        {
+          "nickname": "Sneha D.",
+          "title": "Happy with it",
+          "detail": "Really happy with this purchase overall. Loved the quad-mic environmental noise cancellation for calls. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Vikram P.",
+          "title": "Solid choice",
+          "detail": "Does everything I need with very few compromises. Loved the 10-minute charge gives 2 hours of play. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Rohan K.",
+          "title": "Premium in every way",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the touch controls. Totally recommend it.",
+          "rating": 5
+        },
+        {
+          "nickname": "Isha G.",
+          "title": "Mixed feelings",
+          "detail": "Works fine for everyday use. Loved the quad-mic environmental noise cancellation for calls. Better suited to casual users.",
+          "rating": 3
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-EB-BUDSPRO2",
+          "QC-EB-FITBUDS",
+          "QC-HP-AURA",
+          "QC-HP-STUDIO2"
+        ],
+        "upsell": [
+          "QC-EB-FITBUDS",
+          "QC-EB-BUDSPRO2"
+        ],
+        "crosssell": [
+          "QC-AC-MAG10K",
+          "QC-FB-BAND8"
+        ]
+      }
     },
     {
       "sku": "QC-EB-FITBUDS",
@@ -926,7 +1737,36 @@
       "description": "<p>Secure-fit sport earbuds that stay put through every rep and run.</p>\n<h3>Highlights</h3>\n<ul><li>Ear-wing design for a secure fit</li><li>IP55 dust and sweat proof</li><li>Ambient mode for outdoor runs</li></ul>\n<p>Includes three sizes of silicone ear tips for a secure, comfortable seal.</p>",
       "meta_description": "Secure-fit sport earbuds that stay put through every rep and run.",
       "color": "sage",
-      "image": "product/qc-eb-fitbuds.jpg"
+      "image": "product/qc-eb-fitbuds.jpg",
+      "reviews": [
+        {
+          "nickname": "Rohan K.",
+          "title": "Highly recommended",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the ear-wing design for a secure fit. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Priya M.",
+          "title": "Does the job really well",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the IP55 dust and sweat proof. Good buy at this price.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-EB-BUDSPRO2",
+          "QC-EB-AIRDOTS",
+          "QC-HP-AURA",
+          "QC-HP-STUDIO2"
+        ],
+        "upsell": [
+          "QC-EB-BUDSPRO2"
+        ],
+        "crosssell": [
+          "QC-AC-MAG10K",
+          "QC-FB-BAND8"
+        ]
+      }
     },
     {
       "sku": "QC-SP-BOOM360",
@@ -953,7 +1793,48 @@
       "description": "<p>A rugged 360-degree speaker that floats, survives drops and parties all day.</p>\n<h3>Highlights</h3>\n<ul><li>IP67 waterproof and it floats</li><li>360-degree sound with deep bass</li><li>Party mode links up to 100 speakers</li></ul>\n<p>Pair two units for true stereo sound with a single tap in the companion app.</p>",
       "meta_description": "A rugged 360-degree speaker that floats, survives drops and parties all day.",
       "color": "blue",
-      "image": "product/qc-sp-boom360.jpg"
+      "image": "product/qc-sp-boom360.jpg",
+      "reviews": [
+        {
+          "nickname": "Pooja S.",
+          "title": "Solid choice",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the IP67 waterproof and it floats. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Aditya H.",
+          "title": "Premium in every way",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the 360-degree sound with deep bass. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Kabir L.",
+          "title": "Best purchase this year",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the party mode links up to 100 speakers. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Priya M.",
+          "title": "Best purchase this year",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the IP67 waterproof and it floats. Totally recommend it.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-SP-PEBBLE",
+          "QC-SP-HOMEMAX",
+          "QC-HP-AURA",
+          "QC-HP-STUDIO2"
+        ],
+        "upsell": [
+          "QC-SP-HOMEMAX"
+        ],
+        "crosssell": [
+          "QC-AC-POWER20K",
+          "QC-EB-AIRDOTS"
+        ]
+      }
     },
     {
       "sku": "QC-SP-PEBBLE",
@@ -980,7 +1861,37 @@
       "description": "<p>A pocket-sized speaker with surprisingly big sound.</p>\n<h3>Highlights</h3>\n<ul><li>Clip-on strap for bags and bikes</li><li>Built-in speakerphone</li><li>IPX5 splash proof</li></ul>\n<p>Pair two units for true stereo sound with a single tap in the companion app.</p>",
       "meta_description": "A pocket-sized speaker with surprisingly big sound.",
       "color": "rose",
-      "image": "product/qc-sp-pebble.jpg"
+      "image": "product/qc-sp-pebble.jpg",
+      "reviews": [
+        {
+          "nickname": "Diya B.",
+          "title": "Great value for money",
+          "detail": "Really happy with this purchase overall. Loved the clip-on strap for bags and bikes. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Neha C.",
+          "title": "Highly recommended",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the built-in speakerphone. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-SP-BOOM360",
+          "QC-SP-HOMEMAX",
+          "QC-HP-AURA",
+          "QC-HP-STUDIO2"
+        ],
+        "upsell": [
+          "QC-SP-BOOM360",
+          "QC-SP-HOMEMAX"
+        ],
+        "crosssell": [
+          "QC-AC-POWER20K",
+          "QC-EB-AIRDOTS"
+        ]
+      }
     },
     {
       "sku": "QC-SP-HOMEMAX",
@@ -1007,7 +1918,40 @@
       "description": "<p>A room-filling smart home speaker with automatic room calibration.</p>\n<h3>Highlights</h3>\n<ul><li>Seven drivers with automatic room tuning</li><li>Multi-room audio over Wi-Fi</li><li>Voice assistant built in</li></ul>\n<p>Pair two units for true stereo sound with a single tap in the companion app.</p>",
       "meta_description": "A room-filling smart home speaker with automatic room calibration.",
       "color": "midnight",
-      "image": "product/qc-sp-homemax.jpg"
+      "image": "product/qc-sp-homemax.jpg",
+      "reviews": [
+        {
+          "nickname": "Karan J.",
+          "title": "Absolutely worth it",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the seven drivers with automatic room tuning. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Neha C.",
+          "title": "Great value for money",
+          "detail": "Does everything I need with very few compromises. Loved the multi-room audio over Wi-Fi. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Arjun T.",
+          "title": "Solid choice",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the voice assistant built in. Good buy at this price.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-SP-BOOM360",
+          "QC-SP-PEBBLE",
+          "QC-HP-AURA",
+          "QC-HP-STUDIO2"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-AC-POWER20K",
+          "QC-EB-AIRDOTS"
+        ]
+      }
     },
     {
       "sku": "QC-SW-PULSE3",
@@ -1055,7 +1999,36 @@
         }
       ],
       "color": null,
-      "image": "product/qc-sw-pulse3-midnight.jpg"
+      "image": "product/qc-sw-pulse3-midnight.jpg",
+      "reviews": [
+        {
+          "nickname": "Karan J.",
+          "title": "Good, but not perfect",
+          "detail": "It does the job, though I expected a little more. Loved the ECG and blood-oxygen monitoring. Okay for the price.",
+          "rating": 3
+        },
+        {
+          "nickname": "Pooja S.",
+          "title": "Premium in every way",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the dual-band GPS for accurate runs. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-SW-ULTRA",
+          "QC-SW-LITE",
+          "QC-SW-ACTIVEGT",
+          "QC-FB-BAND8"
+        ],
+        "upsell": [
+          "QC-SW-ULTRA"
+        ],
+        "crosssell": [
+          "QC-FB-BAND8",
+          "QC-AC-MAG10K"
+        ]
+      }
     },
     {
       "sku": "QC-SW-ULTRA",
@@ -1084,7 +2057,46 @@
       "description": "<p>A titanium adventure watch with cellular connectivity and a 3,000-nit display.</p>\n<h3>Highlights</h3>\n<ul><li>Grade 5 titanium case</li><li>eSIM: calls without your phone</li><li>Dive-ready to 100 m</li></ul>\n<p>Works with Android and iOS and syncs to the companion app for detailed health insights.</p>",
       "meta_description": "A titanium adventure watch with cellular connectivity and a 3,000-nit display.",
       "color": "gold",
-      "image": "product/qc-sw-ultra.jpg"
+      "image": "product/qc-sw-ultra.jpg",
+      "reviews": [
+        {
+          "nickname": "Isha G.",
+          "title": "Exceeded my expectations",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the grade 5 titanium case. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Rohan K.",
+          "title": "Does the job really well",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the eSIM. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Neha C.",
+          "title": "Decent for the price",
+          "detail": "Works fine for everyday use. Loved the dive-ready to 100 m. Better suited to casual users.",
+          "rating": 3
+        },
+        {
+          "nickname": "Diya B.",
+          "title": "Does the job really well",
+          "detail": "Does everything I need with very few compromises. Loved the grade 5 titanium case. Would recommend it to friends.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-SW-PULSE3",
+          "QC-SW-LITE",
+          "QC-SW-ACTIVEGT",
+          "QC-FB-BAND8"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-FB-BAND8",
+          "QC-AC-MAG10K"
+        ]
+      }
     },
     {
       "sku": "QC-SW-LITE",
@@ -1110,7 +2122,49 @@
       "description": "<p>An affordable smartwatch with Bluetooth calling and 100+ sports modes.</p>\n<h3>Highlights</h3>\n<ul><li>Bluetooth calling from your wrist</li><li>100+ sports modes</li><li>10-day battery life</li></ul>\n<p>Works with Android and iOS and syncs to the companion app for detailed health insights.</p>",
       "meta_description": "An affordable smartwatch with Bluetooth calling and 100+ sports modes.",
       "color": "teal",
-      "image": "product/qc-sw-lite.jpg"
+      "image": "product/qc-sw-lite.jpg",
+      "reviews": [
+        {
+          "nickname": "Aditya H.",
+          "title": "Great value for money",
+          "detail": "Does everything I need with very few compromises. Loved the bluetooth calling from your wrist. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Vikram P.",
+          "title": "Great value for money",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the 100+ sports modes. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Aarav S.",
+          "title": "Highly recommended",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the 10-day battery life. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Diya B.",
+          "title": "Best purchase this year",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the bluetooth calling from your wrist. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-SW-PULSE3",
+          "QC-SW-ULTRA",
+          "QC-SW-ACTIVEGT",
+          "QC-FB-BAND8"
+        ],
+        "upsell": [
+          "QC-SW-ACTIVEGT",
+          "QC-SW-PULSE3"
+        ],
+        "crosssell": [
+          "QC-FB-BAND8",
+          "QC-AC-MAG10K"
+        ]
+      }
     },
     {
       "sku": "QC-SW-ACTIVEGT",
@@ -1137,7 +2191,37 @@
       "description": "<p>A training watch with recovery insights and up to two weeks of battery life.</p>\n<h3>Highlights</h3>\n<ul><li>Training load and recovery advisor</li><li>Built-in GPS with route navigation</li><li>14-day battery life</li></ul>\n<p>Works with Android and iOS and syncs to the companion app for detailed health insights.</p>",
       "meta_description": "A training watch with recovery insights and up to two weeks of battery life.",
       "color": "red",
-      "image": "product/qc-sw-activegt.jpg"
+      "image": "product/qc-sw-activegt.jpg",
+      "reviews": [
+        {
+          "nickname": "Aarav S.",
+          "title": "Absolutely worth it",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the training load and recovery advisor. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Rohan K.",
+          "title": "Solid choice",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the built-in GPS with route navigation. Good buy at this price.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-SW-PULSE3",
+          "QC-SW-ULTRA",
+          "QC-SW-LITE",
+          "QC-FB-BAND8"
+        ],
+        "upsell": [
+          "QC-SW-PULSE3",
+          "QC-SW-ULTRA"
+        ],
+        "crosssell": [
+          "QC-FB-BAND8",
+          "QC-AC-MAG10K"
+        ]
+      }
     },
     {
       "sku": "QC-FB-BAND8",
@@ -1163,7 +2247,42 @@
       "description": "<p>A featherweight band with 24/7 heart-rate and sleep tracking.</p>\n<h3>Highlights</h3>\n<ul><li>16-day battery life</li><li>150+ workout modes</li><li>Sleep score with breathing quality</li></ul>\n<p>Water resistant to 5 ATM, so you can track swims as accurately as runs.</p>",
       "meta_description": "A featherweight band with 24/7 heart-rate and sleep tracking.",
       "color": "midnight",
-      "image": "product/qc-fb-band8.jpg"
+      "image": "product/qc-fb-band8.jpg",
+      "reviews": [
+        {
+          "nickname": "Ananya R.",
+          "title": "Best purchase this year",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the 16-day battery life. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Rohan K.",
+          "title": "Great value for money",
+          "detail": "Does everything I need with very few compromises. Loved the 150+ workout modes. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Neha C.",
+          "title": "Best purchase this year",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the sleep score with breathing quality. Totally recommend it.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-FB-FITPRO",
+          "QC-SW-PULSE3",
+          "QC-SW-ULTRA",
+          "QC-SW-LITE"
+        ],
+        "upsell": [
+          "QC-FB-FITPRO"
+        ],
+        "crosssell": [
+          "QC-EB-FITBUDS",
+          "QC-SW-LITE"
+        ]
+      }
     },
     {
       "sku": "QC-FB-FITPRO",
@@ -1190,7 +2309,40 @@
       "description": "<p>A fitness band with built-in GPS for phone-free runs.</p>\n<h3>Highlights</h3>\n<ul><li>Built-in GPS</li><li>Stress and SpO2 monitoring</li><li>5 ATM water resistance</li></ul>\n<p>Water resistant to 5 ATM, so you can track swims as accurately as runs.</p>",
       "meta_description": "A fitness band with built-in GPS for phone-free runs.",
       "color": "violet",
-      "image": "product/qc-fb-fitpro.jpg"
+      "image": "product/qc-fb-fitpro.jpg",
+      "reviews": [
+        {
+          "nickname": "Aarav S.",
+          "title": "Absolutely worth it",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the built-in GPS. Totally recommend it.",
+          "rating": 5
+        },
+        {
+          "nickname": "Meera N.",
+          "title": "Highly recommended",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the stress and SpO2 monitoring. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Pooja S.",
+          "title": "Absolutely worth it",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the 5 ATM water resistance. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-FB-BAND8",
+          "QC-SW-PULSE3",
+          "QC-SW-ULTRA",
+          "QC-SW-LITE"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-EB-FITBUDS",
+          "QC-SW-LITE"
+        ]
+      }
     },
     {
       "sku": "QC-CM-ALPHAM50",
@@ -1218,7 +2370,40 @@
       "description": "<p>A 33 MP full-frame mirrorless camera with AI subject tracking.</p>\n<h3>Highlights</h3>\n<ul><li>33 MP full-frame sensor</li><li>AI autofocus tracks eyes, animals and vehicles</li><li>4K 60p 10-bit video</li></ul>\n<p>Kit includes a rechargeable battery, shoulder strap and USB-C charging cable.</p>",
       "meta_description": "A 33 MP full-frame mirrorless camera with AI subject tracking.",
       "color": "midnight",
-      "image": "product/qc-cm-alpham50.jpg"
+      "image": "product/qc-cm-alpham50.jpg",
+      "reviews": [
+        {
+          "nickname": "Meera N.",
+          "title": "Very good overall",
+          "detail": "Does everything I need with very few compromises. Loved the 33 MP full-frame sensor. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Ananya R.",
+          "title": "Absolutely worth it",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the AI autofocus tracks eyes, animals and vehicles. Totally recommend it.",
+          "rating": 5
+        },
+        {
+          "nickname": "Sneha D.",
+          "title": "Great value for money",
+          "detail": "Really happy with this purchase overall. Loved the 4K 60p 10-bit video. Minor nitpicks aside, recommended.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-CM-ZVKIT",
+          "QC-CM-ACTION4K",
+          "QC-DR-SKYLITE",
+          "QC-DR-SKYPRO"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-DR-SKYLITE",
+          "QC-AC-POWER20K"
+        ]
+      }
     },
     {
       "sku": "QC-CM-ZVKIT",
@@ -1246,7 +2431,48 @@
       "description": "<p>A creator kit with a flip screen, directional mic and grip tripod.</p>\n<h3>Highlights</h3>\n<ul><li>Vari-angle flip screen</li><li>Directional three-capsule microphone</li><li>Product showcase autofocus mode</li></ul>\n<p>Kit includes a rechargeable battery, shoulder strap and USB-C charging cable.</p>",
       "meta_description": "A creator kit with a flip screen, directional mic and grip tripod.",
       "color": "silver",
-      "image": "product/qc-cm-zvkit.jpg"
+      "image": "product/qc-cm-zvkit.jpg",
+      "reviews": [
+        {
+          "nickname": "Sneha D.",
+          "title": "Best purchase this year",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the vari-angle flip screen. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Aditya H.",
+          "title": "Does the job really well",
+          "detail": "Does everything I need with very few compromises. Loved the directional three-capsule microphone. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Ananya R.",
+          "title": "Great value for money",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the product showcase autofocus mode. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Meera N.",
+          "title": "Does the job really well",
+          "detail": "Really happy with this purchase overall. Loved the vari-angle flip screen. Minor nitpicks aside, recommended.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-CM-ALPHAM50",
+          "QC-CM-ACTION4K",
+          "QC-DR-SKYLITE",
+          "QC-DR-SKYPRO"
+        ],
+        "upsell": [
+          "QC-CM-ALPHAM50"
+        ],
+        "crosssell": [
+          "QC-DR-SKYLITE",
+          "QC-AC-POWER20K"
+        ]
+      }
     },
     {
       "sku": "QC-CM-ACTION4K",
@@ -1274,7 +2500,43 @@
       "description": "<p>A rugged, waterproof action camera with horizon-locked stabilisation.</p>\n<h3>Highlights</h3>\n<ul><li>4K 120 fps slow motion</li><li>Horizon lock stabilisation</li><li>Waterproof to 10 m without a case</li></ul>\n<p>Kit includes a rechargeable battery, shoulder strap and USB-C charging cable.</p>",
       "meta_description": "A rugged, waterproof action camera with horizon-locked stabilisation.",
       "color": "blue",
-      "image": "product/qc-cm-action4k.jpg"
+      "image": "product/qc-cm-action4k.jpg",
+      "reviews": [
+        {
+          "nickname": "Ananya R.",
+          "title": "Best purchase this year",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the 4K 120 fps slow motion. Totally recommend it.",
+          "rating": 5
+        },
+        {
+          "nickname": "Aarav S.",
+          "title": "Highly recommended",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the horizon lock stabilisation. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Meera N.",
+          "title": "Highly recommended",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the waterproof to 10 m without a case. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-CM-ALPHAM50",
+          "QC-CM-ZVKIT",
+          "QC-DR-SKYLITE",
+          "QC-DR-SKYPRO"
+        ],
+        "upsell": [
+          "QC-CM-ZVKIT",
+          "QC-CM-ALPHAM50"
+        ],
+        "crosssell": [
+          "QC-DR-SKYLITE",
+          "QC-AC-POWER20K"
+        ]
+      }
     },
     {
       "sku": "QC-DR-SKYLITE",
@@ -1302,7 +2564,48 @@
       "description": "<p>A sub-250 g drone that folds into your palm and shoots 4K HDR.</p>\n<h3>Highlights</h3>\n<ul><li>Under 250 g for easy travel</li><li>4K HDR video with vertical shooting</li><li>34-minute flight time</li></ul>\n<p>Register your drone and follow local flying regulations before every flight.</p>",
       "meta_description": "A sub-250 g drone that folds into your palm and shoots 4K HDR.",
       "color": "white",
-      "image": "product/qc-dr-skylite.jpg"
+      "image": "product/qc-dr-skylite.jpg",
+      "reviews": [
+        {
+          "nickname": "Arjun T.",
+          "title": "Happy with it",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the under 250 g for easy travel. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Priya M.",
+          "title": "Absolutely worth it",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the 4K HDR video with vertical shooting. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Meera N.",
+          "title": "Happy with it",
+          "detail": "Does everything I need with very few compromises. Loved the 34-minute flight time. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Aditya H.",
+          "title": "Premium in every way",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the under 250 g for easy travel. Totally recommend it.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-DR-SKYPRO",
+          "QC-CM-ALPHAM50",
+          "QC-CM-ZVKIT",
+          "QC-CM-ACTION4K"
+        ],
+        "upsell": [
+          "QC-DR-SKYPRO"
+        ],
+        "crosssell": [
+          "QC-CM-ACTION4K",
+          "QC-AC-POWER20K"
+        ]
+      }
     },
     {
       "sku": "QC-DR-SKYPRO",
@@ -1330,7 +2633,46 @@
       "description": "<p>A pro drone with omnidirectional obstacle sensing and a dual-camera gimbal.</p>\n<h3>Highlights</h3>\n<ul><li>Omnidirectional obstacle sensing</li><li>Dual camera with 7x tele zoom</li><li>20 km 1080p live transmission</li></ul>\n<p>Register your drone and follow local flying regulations before every flight.</p>",
       "meta_description": "A pro drone with omnidirectional obstacle sensing and a dual-camera gimbal.",
       "color": "silver",
-      "image": "product/qc-dr-skypro.jpg"
+      "image": "product/qc-dr-skypro.jpg",
+      "reviews": [
+        {
+          "nickname": "Priya M.",
+          "title": "Very good overall",
+          "detail": "Does everything I need with very few compromises. Loved the omnidirectional obstacle sensing. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Karan J.",
+          "title": "Does the job really well",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the dual camera with 7x tele zoom. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Rahul V.",
+          "title": "Solid choice",
+          "detail": "Really happy with this purchase overall. Loved the 20 km 1080p live transmission. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Diya B.",
+          "title": "Solid choice",
+          "detail": "Does everything I need with very few compromises. Loved the omnidirectional obstacle sensing. Would recommend it to friends.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-DR-SKYLITE",
+          "QC-CM-ALPHAM50",
+          "QC-CM-ZVKIT",
+          "QC-CM-ACTION4K"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-CM-ACTION4K",
+          "QC-AC-POWER20K"
+        ]
+      }
     },
     {
       "sku": "QC-GM-NEXUSX",
@@ -1358,7 +2700,41 @@
       "description": "<p>A next-gen console with 4K 120 fps gaming and lightning-fast loading.</p>\n<h3>Highlights</h3>\n<ul><li>4K at 120 fps with ray tracing</li><li>Custom NVMe SSD for instant loading</li><li>Quick resume across multiple games</li></ul>\n<p>Includes one wireless controller, HDMI 2.1 cable and power cable.</p>",
       "meta_description": "A next-gen console with 4K 120 fps gaming and lightning-fast loading.",
       "color": "midnight",
-      "image": "product/qc-gm-nexusx.jpg"
+      "image": "product/qc-gm-nexusx.jpg",
+      "reviews": [
+        {
+          "nickname": "Diya B.",
+          "title": "Solid choice",
+          "detail": "Really happy with this purchase overall. Loved the 4K at 120 fps with ray tracing. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Aarav S.",
+          "title": "Good, but not perfect",
+          "detail": "Works fine for everyday use. Loved the custom NVMe SSD for instant loading. Better suited to casual users.",
+          "rating": 3
+        },
+        {
+          "nickname": "Priya M.",
+          "title": "Best purchase this year",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the quick resume across multiple games. Totally recommend it.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-GM-NEXUSS",
+          "QC-GM-WIRELESS",
+          "QC-GM-ELITE",
+          "QC-GM-ARCADE"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-GM-WIRELESS",
+          "QC-GM-ELITE",
+          "QC-MN-ARENA32"
+        ]
+      }
     },
     {
       "sku": "QC-GM-NEXUSS",
@@ -1386,7 +2762,49 @@
       "description": "<p>An all-digital, compact console with the full Nexus game library.</p>\n<h3>Highlights</h3>\n<ul><li>1440p at up to 120 fps</li><li>Compact all-digital design</li><li>Cloud saves and game sharing</li></ul>\n<p>Includes one wireless controller, HDMI 2.1 cable and power cable.</p>",
       "meta_description": "An all-digital, compact console with the full Nexus game library.",
       "color": "white",
-      "image": "product/qc-gm-nexuss.jpg"
+      "image": "product/qc-gm-nexuss.jpg",
+      "reviews": [
+        {
+          "nickname": "Aarav S.",
+          "title": "Exceeded my expectations",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the 1440p at up to 120 fps. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Rahul V.",
+          "title": "Exceeded my expectations",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the compact all-digital design. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Pooja S.",
+          "title": "Very good overall",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the cloud saves and game sharing. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Rohan K.",
+          "title": "Premium in every way",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the 1440p at up to 120 fps. Would definitely buy again.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-GM-NEXUSX",
+          "QC-GM-WIRELESS",
+          "QC-GM-ELITE",
+          "QC-GM-ARCADE"
+        ],
+        "upsell": [
+          "QC-GM-NEXUSX"
+        ],
+        "crosssell": [
+          "QC-GM-WIRELESS",
+          "QC-GM-ELITE",
+          "QC-MN-ARENA32"
+        ]
+      }
     },
     {
       "sku": "QC-GM-WIRELESS",
@@ -1413,7 +2831,36 @@
       "description": "<p>The official Nexus controller with textured grips and haptic feedback.</p>\n<h3>Highlights</h3>\n<ul><li>Haptic feedback and adaptive triggers</li><li>Textured grips</li><li>Works with PC and mobile</li></ul>\n<p>Charges over USB-C and remembers up to three paired devices.</p>",
       "meta_description": "The official Nexus controller with textured grips and haptic feedback.",
       "color": "blue",
-      "image": "product/qc-gm-wireless.jpg"
+      "image": "product/qc-gm-wireless.jpg",
+      "reviews": [
+        {
+          "nickname": "Ananya R.",
+          "title": "Highly recommended",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the haptic feedback and adaptive triggers. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Isha G.",
+          "title": "Best purchase this year",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the textured grips. Totally recommend it.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-GM-ELITE",
+          "QC-GM-ARCADE",
+          "QC-GM-NEXUSX",
+          "QC-GM-NEXUSS"
+        ],
+        "upsell": [
+          "QC-GM-ELITE"
+        ],
+        "crosssell": [
+          "QC-GM-NEXUSS",
+          "QC-AC-POWER20K"
+        ]
+      }
     },
     {
       "sku": "QC-GM-ELITE",
@@ -1440,7 +2887,34 @@
       "description": "<p>A pro controller with swappable sticks, back paddles and trigger stops.</p>\n<h3>Highlights</h3>\n<ul><li>Four rear paddles</li><li>Adjustable-tension thumbsticks</li><li>Hair-trigger locks</li></ul>\n<p>Charges over USB-C and remembers up to three paired devices.</p>",
       "meta_description": "A pro controller with swappable sticks, back paddles and trigger stops.",
       "color": "midnight",
-      "image": "product/qc-gm-elite.jpg"
+      "image": "product/qc-gm-elite.jpg",
+      "reviews": [
+        {
+          "nickname": "Karan J.",
+          "title": "Absolutely worth it",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the four rear paddles. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Aditya H.",
+          "title": "Absolutely worth it",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the adjustable-tension thumbsticks. Five stars from me.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-GM-WIRELESS",
+          "QC-GM-ARCADE",
+          "QC-GM-NEXUSX",
+          "QC-GM-NEXUSS"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-GM-NEXUSS",
+          "QC-AC-POWER20K"
+        ]
+      }
     },
     {
       "sku": "QC-GM-ARCADE",
@@ -1467,7 +2941,43 @@
       "description": "<p>A fun, affordable wireless gamepad for phones, tablets and PCs.</p>\n<h3>Highlights</h3>\n<ul><li>Phone clip included</li><li>Turbo button</li><li>Works with Android, iOS and PC</li></ul>\n<p>Charges over USB-C and remembers up to three paired devices.</p>",
       "meta_description": "A fun, affordable wireless gamepad for phones, tablets and PCs.",
       "color": "red",
-      "image": "product/qc-gm-arcade.jpg"
+      "image": "product/qc-gm-arcade.jpg",
+      "reviews": [
+        {
+          "nickname": "Aarav S.",
+          "title": "Highly recommended",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the phone clip included. Would definitely buy again.",
+          "rating": 5
+        },
+        {
+          "nickname": "Rohan K.",
+          "title": "Exceeded my expectations",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the turbo button. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Kabir L.",
+          "title": "Happy with it",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the works with Android, iOS and PC. Good buy at this price.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-GM-WIRELESS",
+          "QC-GM-ELITE",
+          "QC-GM-NEXUSX",
+          "QC-GM-NEXUSS"
+        ],
+        "upsell": [
+          "QC-GM-WIRELESS",
+          "QC-GM-ELITE"
+        ],
+        "crosssell": [
+          "QC-GM-NEXUSS",
+          "QC-AC-POWER20K"
+        ]
+      }
     },
     {
       "sku": "QC-AC-MECH75",
@@ -1494,7 +3004,48 @@
       "description": "<p>A gasket-mounted 75% mechanical keyboard with hot-swappable switches.</p>\n<h3>Highlights</h3>\n<ul><li>Hot-swappable linear switches</li><li>Gasket mount for a soft, quiet feel</li><li>Aluminium volume knob</li></ul>\n<p>Connects over 2.4 GHz receiver or Bluetooth and switches between devices instantly.</p>",
       "meta_description": "A gasket-mounted 75% mechanical keyboard with hot-swappable switches.",
       "color": "silver",
-      "image": "product/qc-ac-mech75.jpg"
+      "image": "product/qc-ac-mech75.jpg",
+      "reviews": [
+        {
+          "nickname": "Meera N.",
+          "title": "Does the job really well",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the hot-swappable linear switches. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Rohan K.",
+          "title": "Great value for money",
+          "detail": "Really happy with this purchase overall. Loved the gasket mount for a soft, quiet feel. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Kabir L.",
+          "title": "Decent for the price",
+          "detail": "It does the job, though I expected a little more. Loved the aluminium volume knob. Okay for the price.",
+          "rating": 3
+        },
+        {
+          "nickname": "Arjun T.",
+          "title": "Decent for the price",
+          "detail": "Works fine for everyday use. Loved the hot-swappable linear switches. Better suited to casual users.",
+          "rating": 3
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-AC-STRIKE",
+          "QC-AC-GLIDEPRO",
+          "QC-AC-SILENT",
+          "QC-AC-POWER20K"
+        ],
+        "upsell": [
+          "QC-AC-STRIKE"
+        ],
+        "crosssell": [
+          "QC-AC-GLIDEPRO",
+          "QC-MN-STUDIO24"
+        ]
+      }
     },
     {
       "sku": "QC-AC-STRIKE",
@@ -1520,7 +3071,35 @@
       "description": "<p>A full RGB gaming keyboard with optical switches and 8,000 Hz polling.</p>\n<h3>Highlights</h3>\n<ul><li>Optical switches with 0.2 ms actuation</li><li>8,000 Hz polling rate</li><li>Per-key RGB with on-board memory</li></ul>\n<p>Connects over 2.4 GHz receiver or Bluetooth and switches between devices instantly.</p>",
       "meta_description": "A full RGB gaming keyboard with optical switches and 8,000 Hz polling.",
       "color": "midnight",
-      "image": "product/qc-ac-strike.jpg"
+      "image": "product/qc-ac-strike.jpg",
+      "reviews": [
+        {
+          "nickname": "Rohan K.",
+          "title": "Solid choice",
+          "detail": "Really happy with this purchase overall. Loved the optical switches with 0.2 ms actuation. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Neha C.",
+          "title": "Does the job really well",
+          "detail": "Does everything I need with very few compromises. Loved the 8,000 Hz polling rate. Would recommend it to friends.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-AC-MECH75",
+          "QC-AC-GLIDEPRO",
+          "QC-AC-SILENT",
+          "QC-AC-POWER20K"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-AC-GLIDEPRO",
+          "QC-AC-MECH75",
+          "QC-MN-STUDIO24"
+        ]
+      }
     },
     {
       "sku": "QC-AC-GLIDEPRO",
@@ -1547,7 +3126,49 @@
       "description": "<p>An ergonomic productivity mouse with an electromagnetic scroll wheel.</p>\n<h3>Highlights</h3>\n<ul><li>Ultra-fast electromagnetic scroll</li><li>Tracks on glass</li><li>Switches between three devices</li></ul>\n<p>Connects over 2.4 GHz receiver or Bluetooth and switches between devices instantly.</p>",
       "meta_description": "An ergonomic productivity mouse with an electromagnetic scroll wheel.",
       "color": "midnight",
-      "image": "product/qc-ac-glidepro.jpg"
+      "image": "product/qc-ac-glidepro.jpg",
+      "reviews": [
+        {
+          "nickname": "Meera N.",
+          "title": "Great value for money",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the ultra-fast electromagnetic scroll. Good buy at this price.",
+          "rating": 4
+        },
+        {
+          "nickname": "Ananya R.",
+          "title": "Great value for money",
+          "detail": "Really happy with this purchase overall. Loved the tracks on glass. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Rohan K.",
+          "title": "Absolutely worth it",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the switches between three devices. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Aditya H.",
+          "title": "Very good overall",
+          "detail": "Arrived well packed and set-up took a couple of minutes. Loved the ultra-fast electromagnetic scroll. Good buy at this price.",
+          "rating": 4
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-AC-MECH75",
+          "QC-AC-STRIKE",
+          "QC-AC-SILENT",
+          "QC-AC-POWER20K"
+        ],
+        "upsell": [
+          "QC-AC-MECH75",
+          "QC-AC-STRIKE"
+        ],
+        "crosssell": [
+          "QC-AC-MECH75",
+          "QC-MN-STUDIO24"
+        ]
+      }
     },
     {
       "sku": "QC-AC-SILENT",
@@ -1573,7 +3194,44 @@
       "description": "<p>A compact wireless mouse with 90% quieter clicks.</p>\n<h3>Highlights</h3>\n<ul><li>Silent click switches</li><li>18-month battery life</li><li>Compact and travel-friendly</li></ul>\n<p>Connects over 2.4 GHz receiver or Bluetooth and switches between devices instantly.</p>",
       "meta_description": "A compact wireless mouse with 90% quieter clicks.",
       "color": "rose",
-      "image": "product/qc-ac-silent.jpg"
+      "image": "product/qc-ac-silent.jpg",
+      "reviews": [
+        {
+          "nickname": "Aditya H.",
+          "title": "Solid choice",
+          "detail": "Does everything I need with very few compromises. Loved the silent click switches. Would recommend it to friends.",
+          "rating": 4
+        },
+        {
+          "nickname": "Karan J.",
+          "title": "Mixed feelings",
+          "detail": "It does the job, though I expected a little more. Loved the 18-month battery life. Okay for the price.",
+          "rating": 3
+        },
+        {
+          "nickname": "Aarav S.",
+          "title": "Absolutely worth it",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the compact and travel-friendly. Would definitely buy again.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-AC-MECH75",
+          "QC-AC-STRIKE",
+          "QC-AC-GLIDEPRO",
+          "QC-AC-POWER20K"
+        ],
+        "upsell": [
+          "QC-AC-GLIDEPRO",
+          "QC-AC-MECH75"
+        ],
+        "crosssell": [
+          "QC-AC-GLIDEPRO",
+          "QC-AC-MECH75",
+          "QC-MN-STUDIO24"
+        ]
+      }
     },
     {
       "sku": "QC-AC-POWER20K",
@@ -1599,7 +3257,46 @@
       "description": "<p>A 20,000 mAh power bank with 65 W output that can charge a laptop.</p>\n<h3>Highlights</h3>\n<ul><li>65 W USB-C: charges laptops</li><li>Charges three devices at once</li><li>Smart LED battery indicator</li></ul>\n<p>Built-in protection against over-charge, short-circuit and overheating keeps your devices safe.</p>",
       "meta_description": "A 20,000 mAh power bank with 65 W output that can charge a laptop.",
       "color": "midnight",
-      "image": "product/qc-ac-power20k.jpg"
+      "image": "product/qc-ac-power20k.jpg",
+      "reviews": [
+        {
+          "nickname": "Neha C.",
+          "title": "Very good overall",
+          "detail": "Really happy with this purchase overall. Loved the 65 W USB-C. Minor nitpicks aside, recommended.",
+          "rating": 4
+        },
+        {
+          "nickname": "Ananya R.",
+          "title": "Best purchase this year",
+          "detail": "Delivery was quick and the build quality feels excellent. Loved the charges three devices at once. Five stars from me.",
+          "rating": 5
+        },
+        {
+          "nickname": "Aditya H.",
+          "title": "Highly recommended",
+          "detail": "Upgraded from an older model and the difference is huge. Loved the smart LED battery indicator. Totally recommend it.",
+          "rating": 5
+        },
+        {
+          "nickname": "Arjun T.",
+          "title": "Decent for the price",
+          "detail": "Works fine for everyday use. Loved the 65 W USB-C. Better suited to casual users.",
+          "rating": 3
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-AC-MAG10K",
+          "QC-AC-MECH75",
+          "QC-AC-STRIKE",
+          "QC-AC-GLIDEPRO"
+        ],
+        "upsell": [],
+        "crosssell": [
+          "QC-EB-AIRDOTS",
+          "QC-AC-SILENT"
+        ]
+      }
     },
     {
       "sku": "QC-AC-MAG10K",
@@ -1625,7 +3322,36 @@
       "description": "<p>A slim magnetic wireless power bank that snaps onto the back of your phone.</p>\n<h3>Highlights</h3>\n<ul><li>Magnetic wireless charging</li><li>20 W USB-C fast charge</li><li>Built-in kickstand</li></ul>\n<p>Built-in protection against over-charge, short-circuit and overheating keeps your devices safe.</p>",
       "meta_description": "A slim magnetic wireless power bank that snaps onto the back of your phone.",
       "color": "white",
-      "image": "product/qc-ac-mag10k.jpg"
+      "image": "product/qc-ac-mag10k.jpg",
+      "reviews": [
+        {
+          "nickname": "Karan J.",
+          "title": "Mixed feelings",
+          "detail": "It does the job, though I expected a little more. Loved the magnetic wireless charging. Okay for the price.",
+          "rating": 3
+        },
+        {
+          "nickname": "Pooja S.",
+          "title": "Absolutely worth it",
+          "detail": "I have been using it every day for a few weeks and it has been flawless. Loved the 20 W USB-C fast charge. Would definitely buy again.",
+          "rating": 5
+        }
+      ],
+      "links": {
+        "related": [
+          "QC-AC-POWER20K",
+          "QC-AC-MECH75",
+          "QC-AC-STRIKE",
+          "QC-AC-GLIDEPRO"
+        ],
+        "upsell": [
+          "QC-AC-POWER20K"
+        ],
+        "crosssell": [
+          "QC-EB-AIRDOTS",
+          "QC-AC-SILENT"
+        ]
+      }
     }
   ]
 }

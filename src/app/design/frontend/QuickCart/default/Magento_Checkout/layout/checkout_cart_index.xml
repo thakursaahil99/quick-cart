@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- "Available offers" (CMS block qc-cart-offers) in the cart sidebar. -->
+        <referenceContainer name="cart.summary">
+            <block class="Magento\Cms\Block\Block" name="qc.cart.offers" before="checkout.cart.methods.bottom">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">qc-cart-offers</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -7,95 +7,78 @@ declare(strict_types=1);
 namespace QuickCart\CatalogEnhancement\ViewModel;
 
 use Magento\Catalog\Model\Product;
-use Magento\Catalog\Pricing\Price\FinalPrice;
-use Magento\Catalog\Pricing\Price\RegularPrice;
 use Magento\Eav\Model\Entity\Attribute\Source\SourceInterface;
-use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use QuickCart\CatalogEnhancement\Model\Attributes;
+use QuickCart\CatalogEnhancement\Model\Config;
+use QuickCart\CatalogEnhancement\Model\Label\ProductFacts;
+use QuickCart\CatalogEnhancement\Model\Label\Resolver;
 
 /**
- * Product badges (sale %, new, trending) and brand label for product cards.
+ * Product labels and brand for product cards and the product page.
  *
- * All values derive from real catalog data: the Magento price model (special price,
- * catalog rules, tier prices), the "Set Product as New" dates and the Trending flag.
+ * Labels come from the rules managed in Admin > QuickCart > Product Labels and are
+ * matched against real catalog data (price model, "new" dates, Trending flag, SKUs,
+ * category assignments).
  */
 class ProductBadges implements ArgumentInterface
 {
-    public const BADGE_SALE = 'sale';
-    public const BADGE_NEW = 'new';
-    public const BADGE_TRENDING = 'trending';
-
     /**
-     * @param TimezoneInterface $timezone
-     * @param int $maxBadges
+     * @param Resolver $resolver
+     * @param ProductFacts $facts
+     * @param Config $config
      */
     public function __construct(
-        private readonly TimezoneInterface $timezone,
-        private readonly int $maxBadges = 2
+        private readonly Resolver $resolver,
+        private readonly ProductFacts $facts,
+        private readonly Config $config
     ) {
     }
 
     /**
-     * Badges for a product, most important first.
+     * Labels for a product, most important first.
+     *
+     * Each item: id, code (CSS modifier), label (text), style (inline colours).
      *
      * @param Product $product
-     * @return array<int, array{code: string, label: string}>
+     * @return array<int, array{id: int, code: string, label: string, style: string}>
      */
     public function getBadges(Product $product): array
     {
-        $badges = [];
-        $discount = $this->getDiscountPercent($product);
-        if ($discount > 0) {
-            $badges[] = ['code' => self::BADGE_SALE, 'label' => (string)__('-%1%', $discount)];
-        }
-        if ($this->isNew($product)) {
-            $badges[] = ['code' => self::BADGE_NEW, 'label' => (string)__('New')];
-        }
-        if ((int)$product->getData(Attributes::IS_TRENDING) === 1) {
-            $badges[] = ['code' => self::BADGE_TRENDING, 'label' => (string)__('Trending')];
+        if (!$this->config->isLabelsEnabled()) {
+            return [];
         }
 
-        return array_slice($badges, 0, max(0, $this->maxBadges));
+        return $this->resolver->resolve($product, $this->config->getMaxLabels());
+    }
+
+    /**
+     * Batch-load data the label rules need for a list of products.
+     *
+     * @param iterable<Product> $products
+     * @return void
+     */
+    public function preload(iterable $products): void
+    {
+        if (!$this->config->isLabelsEnabled() || !$this->resolver->needsCategoryData()) {
+            return;
+        }
+        $ids = [];
+        foreach ($products as $product) {
+            $ids[] = (int)$product->getId();
+        }
+        $this->facts->preloadCategoryIds($ids);
     }
 
     /**
      * Whole-percent discount of the final price versus the regular price.
-     *
-     * For configurable products both prices are the minimum across children.
      *
      * @param Product $product
      * @return int
      */
     public function getDiscountPercent(Product $product): int
     {
-        $priceInfo = $product->getPriceInfo();
-        $regular = (float)$priceInfo->getPrice(RegularPrice::PRICE_CODE)->getAmount()->getValue();
-        $final = (float)$priceInfo->getPrice(FinalPrice::PRICE_CODE)->getAmount()->getValue();
-        if ($regular <= 0.0 || $final >= $regular) {
-            return 0;
-        }
-
-        return (int)floor(($regular - $final) / $regular * 100);
-    }
-
-    /**
-     * Whether today (store timezone) falls inside the product's "new" date range.
-     *
-     * @param Product $product
-     * @return bool
-     */
-    public function isNew(Product $product): bool
-    {
-        $from = (string)$product->getData('news_from_date');
-        $to = (string)$product->getData('news_to_date');
-        if ($from === '' && $to === '') {
-            return false;
-        }
-        $today = $this->timezone->date()->format('Y-m-d');
-
-        return ($from === '' || substr($from, 0, 10) <= $today)
-            && ($to === '' || substr($to, 0, 10) >= $today);
+        return $this->facts->getDiscountPercent($product);
     }
 
     /**

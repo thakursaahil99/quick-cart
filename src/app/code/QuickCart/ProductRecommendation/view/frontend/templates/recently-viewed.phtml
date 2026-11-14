@@ -1,0 +1,12 @@
+<?php
+/**
+ * QuickCart_ProductRecommendation - "Recently viewed" placeholder (filled over AJAX).
+ *
+ * @var \QuickCart\ProductRecommendation\Block\RecentlyViewedContainer $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<div class="qc-recent" data-role="qc-recently-viewed"
+     data-mage-init='<?= $escaper->escapeHtmlAttr(
+         '{"QuickCart_ProductRecommendation/js/recently-viewed": ' . $block->getJsConfig() . '}'
+     ) ?>'></div>

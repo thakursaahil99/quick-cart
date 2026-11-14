@@ -1,5 +1,6 @@
 // /**
-//  * QuickCart footer: floating newsletter card, link columns, bottom bar.
+//  * QuickCart footer: floating newsletter card (envelope art, perks, wide form),
+//  * link columns, bottom bar.
 //  */
 
 & when (@media-common = true) {
@@ -59,91 +60,229 @@
         }
     }
 
+    //  Newsletter: light card that straddles the page and the dark footer.
     .qc-footer__newsletter {
         position: relative;
-        top: -56px;
+        top: -64px;
+        isolation: isolate;
         display: grid;
         gap: 22px;
         align-items: center;
-        margin: 0 0 -20px;
-        padding: 30px 26px;
+        margin: 0 0 -28px;
+        padding: 28px 22px;
+        overflow: hidden;
+        border: 1px solid @qc-line;
         border-radius: @qc-radius-xl;
         background:
-            radial-gradient(520px 260px at 92% 0%, rgba(245, 158, 11, .4), transparent 60%),
-            linear-gradient(135deg, @qc-primary, #1E3A8A);
-        box-shadow: 0 30px 60px -30px rgba(37, 99, 235, .9);
-        color: @qc-white;
+            radial-gradient(460px 260px at 100% 0%, rgba(37, 99, 235, .13), transparent 70%),
+            radial-gradient(380px 240px at 0% 100%, rgba(245, 158, 11, .14), transparent 70%),
+            @qc-white;
+        box-shadow: 0 40px 80px -40px rgba(15, 23, 42, .6);
+        color: @qc-ink;
+
+        //  Dot pattern, fading in towards the form
+        &:before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            background-image: radial-gradient(rgba(37, 99, 235, .16) 1px, transparent 1.2px);
+            background-size: 18px 18px;
+            -webkit-mask-image: linear-gradient(100deg, transparent 35%, #000 90%);
+            mask-image: linear-gradient(100deg, transparent 35%, #000 90%);
+        }
 
         h2 {
-            margin: 0 0 6px;
-            color: @qc-white;
-            font-size: ~'clamp(24px, 2.4vw, 32px)';
+            margin: 0 0 8px;
+            color: @qc-ink;
+            font-family: @qc-font-display;
+            font-size: ~'clamp(26px, 2.6vw, 36px)';
             font-weight: 800;
+            line-height: 1.12;
+            letter-spacing: -.03em;
         }
 
         p {
             margin: 0;
-            color: #DBEAFE;
+            color: @qc-ink-2;
         }
 
         .qc-eyebrow {
-            color: #FDE68A;
+            margin-bottom: 8px;
+            color: @qc-primary;
+        }
+    }
+
+    .qc-newsletter__accent {
+        background: linear-gradient(90deg, @qc-primary, #7C3AED);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    //  Envelope with a notification ping
+    .qc-newsletter__art {
+        position: relative;
+        display: none;
+        width: 96px;
+        height: 96px;
+    }
+
+    .qc-newsletter__icon {
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 100%;
+        border-radius: 28px;
+        background: linear-gradient(140deg, @qc-primary-light, #1E3A8A);
+        box-shadow: @qc-shadow-brand, inset 0 1px 0 rgba(255, 255, 255, .3);
+        color: @qc-white;
+        rotate: -8deg;
+        animation: qc-float 6s ease-in-out infinite;
+
+        svg {
+            .qc-icon-stroke(44px, 1.6);
+        }
+    }
+
+    .qc-newsletter__ping {
+        position: absolute;
+        top: -4px;
+        right: -6px;
+        width: 22px;
+        height: 22px;
+        border: 3px solid @qc-white;
+        border-radius: 50%;
+        background: @qc-accent;
+
+        &:after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border: 2px solid @qc-accent;
+            border-radius: 50%;
+            animation: qc-ping 2.2s ease-out infinite;
+        }
+    }
+
+    .qc-newsletter__perks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin: 0;
+            padding: 7px 12px 7px 10px;
+            border-radius: @qc-radius-pill;
+            background: @qc-primary-soft;
+            color: @qc-primary-dark;
+            font-size: 13.5px;
+            font-weight: 600;
         }
 
-        .block.newsletter {
+        svg {
+            .qc-icon-stroke(16px, 1.9);
+        }
+    }
+
+    //  Form: wide email field + primary button, error text flows under the field.
+    .qc-newsletter__form {
+        min-width: 0;
+    }
+
+    .qc-footer__newsletter .block.newsletter {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+
+        .title {
+            display: none;
+        }
+
+        .form.subscribe {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
             width: 100%;
-            max-width: 520px;
+        }
+
+        .field.newsletter {
+            flex: 1;
+            min-width: 0;
+            max-width: none;
             margin: 0;
-            justify-self: end;
 
-            .title {
-                display: none;
+            .control:before {
+                z-index: 1;
+                margin-left: 16px;
+                color: @qc-muted;
+                font-size: 18px;
+                line-height: 54px;
             }
+        }
 
-            .form.subscribe {
-                display: flex;
-                width: 100%;
+        input {
+            height: 54px;
+            margin: 0;
+            padding: 0 18px 0 46px;
+            border: 1px solid @qc-line;
+            border-radius: @qc-radius-pill;
+            background: @qc-surface;
+            color: @qc-ink;
+            font-size: 16px; // 16px stops iOS zooming into the field
+
+            &:focus {
+                border-color: @qc-primary;
+                background: @qc-white;
             }
+        }
 
-            .field {
-                flex: 1;
-                margin: 0;
+        div.mage-error {
+            margin: 6px 0 0 18px;
+            font-size: 13px;
+        }
 
-                .control:before {
-                    color: @qc-muted;
-                    line-height: 54px;
-                    margin-left: 6px;
-                }
+        .actions {
+            display: block;
+            width: auto;
+        }
+
+        .action.subscribe {
+            height: 54px;
+            margin: 0;
+            padding: 0 26px;
+            border: 0;
+            border-radius: @qc-radius-pill;
+            background: @qc-primary;
+            box-shadow: @qc-shadow-brand;
+            color: @qc-white;
+            font-size: 15px;
+            font-weight: 700;
+
+            &:hover,
+            &:focus {
+                background: @qc-primary-dark;
+                color: @qc-white;
             }
+        }
+    }
 
-            input {
-                height: 54px;
-                padding-left: 44px;
-                border: 0;
-                border-radius: @qc-radius-pill 0 0 @qc-radius-pill;
-                font-size: 15px;
-            }
+    .qc-footer__newsletter .qc-newsletter__note {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin: 12px 0 0 18px;
+        color: @qc-muted;
+        font-size: 13px;
 
-            .actions {
-                display: table-cell;
-                width: auto;
-            }
-
-            .action.subscribe {
-                height: 54px;
-                margin-left: -1px;
-                padding: 0 26px;
-                border: 0;
-                border-radius: 0 @qc-radius-pill @qc-radius-pill 0;
-                background: @qc-accent;
-                box-shadow: none;
-                color: @qc-secondary;
-                font-weight: 800;
-
-                &:hover {
-                    background: #FBBF24;
-                }
-            }
+        svg {
+            .qc-icon-stroke(14px, 2);
         }
     }
 
@@ -213,8 +352,9 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .qc-footer__newsletter {
-        grid-template-columns: 1fr 1fr;
-        padding: 42px 52px;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 36px;
+        padding: 40px 44px;
     }
 
     .qc-footer__grid {
@@ -228,5 +368,30 @@
 
     .footer.content .block.newsletter .field {
         margin-right: 0;
+    }
+}
+
+//  Wide screens: the envelope art gets its own column.
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .qc-footer__newsletter {
+        grid-template-columns: auto minmax(0, 1.15fr) minmax(0, 1fr);
+        gap: 40px;
+        padding: 44px 52px;
+    }
+
+    .qc-newsletter__art {
+        display: block;
+    }
+}
+
+//  Phones: field and button stack, each full width.
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .qc-footer__newsletter .block.newsletter .form.subscribe {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .qc-footer__newsletter .block.newsletter .action.subscribe {
+        width: 100%;
     }
 }

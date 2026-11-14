@@ -367,7 +367,13 @@ return [
         'PayPal_BraintreeGiftWrapping' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'PayPal_BraintreeReward' => 1,
+        'QuickCart_Core' => 1,
+        'QuickCart_CheckoutEnhancement' => 1,
         'QuickCart_CatalogEnhancement' => 1,
+        'QuickCart_OrderTracking' => 1,
+        'QuickCart_ProductRecommendation' => 1,
+        'QuickCart_CustomApi' => 1,
+        'QuickCart_SalesDashboard' => 1,
         'QuickCart_DemoData' => 1,
         'QuickCart_WindowsCompat' => 1
     ]

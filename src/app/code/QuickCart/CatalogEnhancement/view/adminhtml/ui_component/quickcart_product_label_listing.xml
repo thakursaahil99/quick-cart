@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">quickcart_product_label_listing.quickcart_product_label_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Label</label>
+            </button>
+        </buttons>
+        <spinner>quickcart_product_label_columns</spinner>
+        <deps>
+            <dep>quickcart_product_label_listing.quickcart_product_label_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="quickcart_product_label_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">label_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>QuickCart_CatalogEnhancement::product_labels</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"
+                      name="quickcart_product_label_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>label_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters">
+            <filterSelect name="store_id" provider="${ $.parentName }">
+                <settings>
+                    <captionValue>0</captionValue>
+                    <options class="QuickCart\Core\Ui\Component\Listing\Column\StoreOptions"/>
+                    <label translate="true">Store View</label>
+                    <dataScope>store_id</dataScope>
+                    <imports>
+                        <link name="visible">ns = ${ $.ns }, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+        </filters>
+        <massaction name="listing_massaction">
+            <action name="enable">
+                <settings>
+                    <url path="*/*/massStatus">
+                        <param name="status">1</param>
+                    </url>
+                    <type>enable</type>
+                    <label translate="true">Enable</label>
+                </settings>
+            </action>
+            <action name="disable">
+                <settings>
+                    <url path="*/*/massStatus">
+                        <param name="status">0</param>
+                    </url>
+                    <type>disable</type>
+                    <label translate="true">Disable</label>
+                </settings>
+            </action>
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete the selected labels?</message>
+                        <title translate="true">Delete labels</title>
+                    </confirm>
+                    <url path="*/*/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="quickcart_product_label_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>label_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="label_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="sort_order">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Priority</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="text" component="QuickCart_CatalogEnhancement/js/grid/columns/label-preview">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Label</label>
+            </settings>
+        </column>
+        <column name="name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+        <column name="condition_type" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="QuickCart\CatalogEnhancement\Model\Label\ConditionType"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Applies To</label>
+            </settings>
+        </column>
+        <column name="condition_value">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Condition</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store">
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="from_date" class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <timezone>false</timezone>
+                <dateFormat>MMM d, y</dateFormat>
+                <label translate="true">Active From</label>
+            </settings>
+        </column>
+        <column name="to_date" class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <timezone>false</timezone>
+                <dateFormat>MMM d, y</dateFormat>
+                <label translate="true">Active To</label>
+            </settings>
+        </column>
+        <column name="is_active" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magento\Config\Model\Config\Source\Enabledisable"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Modified</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="QuickCart\Core\Ui\Component\Listing\Column\RowActions">
+            <argument name="data" xsi:type="array">
+                <item name="qcActions" xsi:type="array">
+                    <item name="idField" xsi:type="string">label_id</item>
+                    <item name="titleField" xsi:type="string">name</item>
+                    <item name="editPath" xsi:type="string">quickcart_catalog/label/edit</item>
+                    <item name="deletePath" xsi:type="string">quickcart_catalog/label/delete</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>label_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

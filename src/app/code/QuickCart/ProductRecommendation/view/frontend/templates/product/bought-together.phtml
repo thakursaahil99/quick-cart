@@ -1,0 +1,78 @@
+<?php
+/**
+ * QuickCart_ProductRecommendation - "Frequently bought together" on the product page.
+ *
+ * @var \QuickCart\ProductRecommendation\Block\Product\BoughtTogether $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$product = $block->getProduct();
+$companions = $block->getCompanions();
+if (!$product || !$companions) {
+    return;
+}
+?>
+<section class="qc-fbt" id="qc-fbt" aria-labelledby="qc-fbt-title" data-qc-reveal>
+    <header class="qc-fbt__head">
+        <p class="qc-eyebrow"><?= $escaper->escapeHtml(__('Complete the set')) ?></p>
+        <h2 class="qc-fbt__title" id="qc-fbt-title"><?= $escaper->escapeHtml(__('Frequently bought together')) ?></h2>
+    </header>
+    <div class="qc-fbt__body">
+        <ol class="qc-fbt__items">
+            <li class="qc-fbt__item qc-fbt__item--main">
+                <div class="qc-fbt__media">
+                    <?= $block->getImage($product, 'product_comparison_list')->toHtml() ?>
+                </div>
+                <div class="qc-fbt__info">
+                    <span class="qc-fbt__tag"><?= $escaper->escapeHtml(__('This item')) ?></span>
+                    <span class="qc-fbt__name"><?= $escaper->escapeHtml($product->getName()) ?></span>
+                    <span class="qc-fbt__price">
+                        <?php if ($block->isMainProductConfigurable()): ?>
+                            <?= $escaper->escapeHtml(__('From %1', $block->getFormattedPrice($product))) ?>
+                        <?php else: ?>
+                            <?= $escaper->escapeHtml($block->getFormattedPrice($product)) ?>
+                        <?php endif; ?>
+                    </span>
+                </div>
+            </li>
+            <?php foreach ($companions as $companion): ?>
+                <li class="qc-fbt__plus" aria-hidden="true">+</li>
+                <li class="qc-fbt__item" data-role="fbt-row">
+                    <label class="qc-fbt__select">
+                        <input type="checkbox" class="qc-fbt__check" data-role="fbt-item" checked
+                               value="<?= (int)$companion->getId() ?>"
+                               data-price="<?= $escaper->escapeHtmlAttr((string)$block->getPriceAmount($companion)) ?>"
+                               aria-label="<?= $escaper->escapeHtmlAttr(__('Add %1', $companion->getName())) ?>">
+                        <span class="qc-fbt__tick" aria-hidden="true"></span>
+                    </label>
+                    <a class="qc-fbt__media" href="<?= $escaper->escapeUrl($companion->getProductUrl()) ?>"
+                       tabindex="-1" aria-hidden="true">
+                        <?= $block->getImage($companion, 'product_comparison_list')->toHtml() ?>
+                    </a>
+                    <div class="qc-fbt__info">
+                        <a class="qc-fbt__name" href="<?= $escaper->escapeUrl($companion->getProductUrl()) ?>">
+                            <?= $escaper->escapeHtml($companion->getName()) ?>
+                        </a>
+                        <span class="qc-fbt__price"><?= $escaper->escapeHtml($block->getFormattedPrice($companion)) ?></span>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+        <aside class="qc-fbt__summary" aria-live="polite">
+            <span class="qc-fbt__summary-label" data-role="count"></span>
+            <strong class="qc-fbt__total" data-role="total"></strong>
+            <button type="button" class="action primary qc-btn qc-fbt__add" data-role="add">
+                <span><?= $escaper->escapeHtml(__('Add selected to cart')) ?></span>
+            </button>
+            <?php if ($block->isMainProductConfigurable()): ?>
+                <p class="qc-fbt__hint"><?= $escaper->escapeHtml(__('Choose this item\'s options above first.')) ?></p>
+            <?php endif; ?>
+        </aside>
+    </div>
+</section>
+<script type="text/x-magento-init">
+{
+    "#qc-fbt": {
+        "QuickCart_ProductRecommendation/js/bought-together": <?= /* @noEscape */ $block->getJsConfig() ?>
+    }
+}
+</script>

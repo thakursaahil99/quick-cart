@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="QuickCart_SalesDashboard::css/dashboard.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Backend\Block\Template" name="qc.sales.report.products"
+                   template="QuickCart_SalesDashboard::report/products.phtml">
+                <arguments>
+                    <argument name="analytics" xsi:type="object">QuickCart\SalesDashboard\ViewModel\Analytics</argument>
+                </arguments>
+                <block class="Magento\Backend\Block\Template" name="qc.sales.filters"
+                       template="QuickCart_SalesDashboard::filters.phtml">
+                    <arguments>
+                        <argument name="analytics" xsi:type="object">QuickCart\SalesDashboard\ViewModel\Analytics</argument>
+                        <argument name="export_route" xsi:type="string">quickcart_sales/report/products</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

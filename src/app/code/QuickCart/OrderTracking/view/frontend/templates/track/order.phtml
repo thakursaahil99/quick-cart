@@ -1,0 +1,51 @@
+<?php
+/**
+ * QuickCart_OrderTracking - tracking page of one order (header, timeline, items).
+ *
+ * Shows only what the person who knows the order number and contact already knows:
+ * items, totals and the delivery area (no street address or payment details).
+ *
+ * @var \QuickCart\OrderTracking\Block\TrackedOrder $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$order = $block->getOrder();
+if (!$order) {
+    return;
+}
+?>
+<section class="qc-track-order">
+    <header class="qc-track-order__head">
+        <div>
+            <p class="qc-eyebrow"><?= $escaper->escapeHtml(__('Tracking')) ?></p>
+            <h1 class="qc-track__title"><?= $escaper->escapeHtml(__('Order #%1', $order->getIncrementId())) ?></h1>
+            <p class="qc-track-order__meta">
+                <?= $escaper->escapeHtml(__('Placed on %1', $block->getOrderDate($order))) ?>
+                <?php if ($area = $block->getDeliveryArea($order)): ?>
+                    · <?= $escaper->escapeHtml(__('Delivering to %1', $area)) ?>
+                <?php endif; ?>
+            </p>
+        </div>
+        <a class="qc-link-arrow" href="<?= $escaper->escapeUrl($block->getUrl('track')) ?>">
+            <?= $escaper->escapeHtml(__('Track another order')) ?>
+        </a>
+    </header>
+
+    <?= $block->getChildHtml('qc.track.timeline') ?>
+
+    <div class="qc-track-order__items">
+        <h3 class="qc-timeline__heading"><?= $escaper->escapeHtml(__('In this order')) ?></h3>
+        <ul>
+            <?php foreach ($order->getAllVisibleItems() as $item): ?>
+                <li>
+                    <span class="qc-track-order__name"><?= $escaper->escapeHtml($item->getName()) ?></span>
+                    <span class="qc-track-order__qty"><?= $escaper->escapeHtml(__('Qty %1', (float)$item->getQtyOrdered())) ?></span>
+                    <span class="qc-track-order__price"><?= $escaper->escapeHtml($block->formatOrderPrice((float)$item->getRowTotalInclTax(), $order)) ?></span>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <p class="qc-track-order__total">
+            <span><?= $escaper->escapeHtml(__('Order total')) ?></span>
+            <strong><?= $escaper->escapeHtml($block->formatOrderPrice((float)$order->getGrandTotal(), $order)) ?></strong>
+        </p>
+    </div>
+</section>

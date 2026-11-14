@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="QuickCart_Core::quickcart" title="QuickCart" translate="title" module="QuickCart_Core"
+             sortOrder="25" resource="QuickCart_Core::quickcart"/>
+        <add id="QuickCart_Core::settings" title="Settings" translate="title" module="QuickCart_Core"
+             sortOrder="900" parent="QuickCart_Core::quickcart" resource="QuickCart_Core::config"/>
+        <add id="QuickCart_Core::settings_config" title="Configuration" translate="title" module="QuickCart_Core"
+             sortOrder="10" parent="QuickCart_Core::settings" action="adminhtml/system_config/edit/section/quickcart_catalog"
+             resource="QuickCart_Core::config"/>
+    </menu>
+</config>

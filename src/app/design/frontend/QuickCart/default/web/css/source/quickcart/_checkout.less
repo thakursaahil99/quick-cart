@@ -1,0 +1,416 @@
+// /**
+//  * QuickCart reviews, cart, checkout, success page and order details.
+//  */
+
+& when (@media-common = true) {
+    //  Star ratings on cards
+    .qc-card,
+    .products-grid {
+        .product-reviews-summary {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 2px 0 0;
+
+            .rating-summary {
+                display: block;
+                margin: 0;
+            }
+
+            .reviews-actions {
+                margin: 0;
+                font-size: 13px;
+
+                a {
+                    color: @qc-muted;
+                }
+            }
+        }
+    }
+
+    //  Review list on the product page
+    .review-list .review-item {
+        margin: 0 0 14px;
+        padding: 20px 22px;
+        border: 1px solid @qc-line;
+        border-radius: @qc-radius;
+        background: @qc-white;
+
+        .review-title {
+            margin-bottom: 8px;
+            font-family: @qc-font-display;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .review-details {
+            color: @qc-muted;
+            font-size: 14px;
+        }
+    }
+
+    .review-form .action.submit.primary {
+        border-radius: @qc-radius-pill;
+    }
+
+    //  Free-delivery meter (mini cart + cart page)
+    .qc-free-delivery {
+        margin: 14px 0;
+        padding: 14px 16px;
+        border-radius: @qc-radius;
+        background: @qc-primary-soft;
+    }
+
+    .qc-free-delivery__text {
+        margin: 0 0 10px;
+        color: @qc-ink-2;
+        font-size: 15px;
+
+        strong {
+            color: @qc-ink;
+        }
+    }
+
+    .qc-free-delivery__track {
+        position: relative;
+        height: 8px;
+        overflow: hidden;
+        border-radius: @qc-radius-pill;
+        background: rgba(37, 99, 235, .14);
+    }
+
+    .qc-free-delivery__bar {
+        position: absolute;
+        inset: 0 auto 0 0;
+        border-radius: @qc-radius-pill;
+        background: linear-gradient(90deg, @qc-primary, #8B5CF6, @qc-accent);
+        transition: width .7s @qc-ease;
+    }
+
+    .qc-free-delivery.is-unlocked {
+        background: @qc-success-soft;
+
+        .qc-free-delivery__text strong {
+            color: @qc-success;
+        }
+
+        .qc-free-delivery__bar {
+            background: linear-gradient(90deg, #22C55E, @qc-success);
+        }
+    }
+
+    //  Cart page
+    .checkout-cart-index {
+        .page-title-wrapper .page-title {
+            margin: 6px 0 18px;
+            font-size: ~'clamp(30px, 3vw, 42px)';
+        }
+
+        .cart-container .form-cart {
+            padding: 6px 22px 20px;
+            border: 1px solid @qc-line;
+            border-radius: @qc-radius-lg;
+            background: @qc-white;
+            box-sizing: border-box;
+        }
+
+        .cart.table-wrapper {
+            .item-info td {
+                padding-top: 22px;
+                padding-bottom: 22px;
+            }
+
+            .product-item-name a {
+                color: @qc-ink;
+                font-size: 17px;
+                font-weight: 700;
+            }
+
+            .input-text.qty {
+                width: 64px;
+                height: 46px;
+                border-radius: @qc-radius-sm;
+                font-weight: 700;
+                text-align: center;
+            }
+
+            .price {
+                font-weight: 700;
+            }
+        }
+
+        .cart.main.actions .action,
+        .cart.actions .action {
+            border-radius: @qc-radius-pill;
+        }
+
+        .block.discount {
+            margin-top: 18px;
+            padding: 6px 22px 18px;
+            border: 1px solid @qc-line;
+            border-radius: @qc-radius-lg;
+            background: @qc-white;
+        }
+    }
+
+    .qc-cart-free-delivery .qc-free-delivery {
+        margin: 0 0 18px;
+        padding: 18px 22px;
+    }
+
+    .cart-summary .checkout-methods-items .action.primary.checkout {
+        min-height: 56px;
+        font-size: 17px;
+    }
+
+    //  "Available offers" (cart sidebar)
+    .qc-offers {
+        margin: 18px 0;
+        padding: 16px;
+        border: 1px dashed rgba(245, 158, 11, .7);
+        border-radius: @qc-radius;
+        background: @qc-accent-soft;
+    }
+
+    .qc-offers__title {
+        margin: 0 0 12px;
+        font-family: @qc-font-display;
+        font-size: 17px;
+        font-weight: 800;
+    }
+
+    .qc-offers__list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .qc-offer {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2px 10px;
+        align-items: center;
+        margin: 0;
+        padding: 12px;
+        border-radius: @qc-radius-sm;
+        background: @qc-white;
+    }
+
+    .qc-offer__code {
+        color: @qc-ink;
+        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+        font-weight: 800;
+        letter-spacing: .06em;
+    }
+
+    .qc-offer__text {
+        grid-column: 1;
+        color: @qc-muted;
+        font-size: 13px;
+    }
+
+    .qc-offer .qc-offer__apply {
+        grid-row: ~'1 / span 2';
+        grid-column: 2;
+        min-height: 36px;
+        padding: 0 16px;
+        border: 0;
+        border-radius: @qc-radius-pill;
+        background: @qc-secondary;
+        box-shadow: none;
+        color: @qc-white;
+        font-size: 13px;
+        font-weight: 700;
+
+        &:hover {
+            background: @qc-primary;
+        }
+    }
+
+    //  Checkout
+    .checkout-index-index {
+        .page-title-wrapper .page-title {
+            font-size: ~'clamp(28px, 3vw, 38px)';
+        }
+
+        .opc-progress-bar-item > span {
+            font-weight: 700;
+        }
+
+        .opc-wrapper .step-title {
+            padding-bottom: 12px;
+            border-bottom: 1px solid @qc-line;
+            font-family: @qc-font-display;
+            font-weight: 800;
+        }
+
+        .opc-wrapper .shipping-address-item {
+            border-radius: @qc-radius;
+
+            &.selected-item {
+                border-color: @qc-primary;
+            }
+        }
+
+        .table-checkout-shipping-method {
+            tbody tr {
+                cursor: pointer;
+            }
+
+            tbody td {
+                padding-top: 14px;
+                padding-bottom: 14px;
+            }
+        }
+
+        .payment-method {
+            margin-bottom: 10px;
+            padding: 4px 18px;
+            border: 1px solid @qc-line;
+            border-radius: @qc-radius;
+            background: @qc-white;
+
+            &._active {
+                border-color: @qc-primary;
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+            }
+        }
+
+        .opc-block-summary {
+            border: 1px solid @qc-line;
+            background: @qc-white;
+
+            > .title {
+                font-family: @qc-font-display;
+                font-weight: 800;
+            }
+        }
+
+        .action.primary.checkout,
+        .action.continue.primary {
+            min-height: 52px;
+            padding: 0 32px;
+            border-radius: @qc-radius-pill;
+            font-size: 16px;
+        }
+    }
+
+    .qc-delivery-details {
+        margin: 0 0 28px;
+        padding: 20px 22px 6px;
+        border: 1px solid @qc-line;
+        border-radius: @qc-radius-lg;
+        background: @qc-surface;
+
+        .legend {
+            margin-bottom: 14px;
+            font-family: @qc-font-display;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        textarea {
+            border-radius: @qc-radius-sm;
+        }
+
+        .field-note {
+            color: @qc-muted;
+            font-size: 13px;
+        }
+    }
+
+    //  Success page + delivery details on orders
+    .checkout-onepage-success {
+        .page-title-wrapper {
+            text-align: center;
+
+            .page-title {
+                margin-top: 40px;
+            }
+
+            &:before {
+                content: '\2713';
+                display: grid;
+                place-items: center;
+                width: 76px;
+                height: 76px;
+                margin: 30px auto 0;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #22C55E, @qc-success);
+                box-shadow: 0 18px 40px -16px rgba(21, 128, 61, .7);
+                color: @qc-white;
+                font-size: 38px;
+                font-weight: 800;
+                animation: qc-pop .8s @qc-ease-back both;
+            }
+        }
+
+        .checkout-success {
+            max-width: 640px;
+            margin: 0 auto 24px;
+            padding: 26px 30px;
+            border: 1px solid @qc-line;
+            border-radius: @qc-radius-lg;
+            background: @qc-white;
+            text-align: center;
+            font-size: 17px;
+
+            .actions-toolbar {
+                display: flex;
+                justify-content: center;
+
+                .action.primary.continue {
+                    float: none;
+                }
+            }
+        }
+
+        .qc-order-meta {
+            max-width: 640px;
+            margin: 0 auto 30px;
+        }
+    }
+
+    .qc-order-meta {
+        margin: 24px 0;
+        padding: 20px 24px;
+        border: 1px solid @qc-line;
+        border-radius: @qc-radius-lg;
+        background: @qc-white;
+    }
+
+    .qc-order-meta__title {
+        margin: 0 0 12px;
+        font-size: 20px;
+    }
+
+    .qc-order-meta__list {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 8px 18px;
+        margin: 0;
+
+        dt {
+            color: @qc-muted;
+            font-weight: 600;
+        }
+
+        dd {
+            margin: 0;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .checkout-index-index .opc-sidebar .opc-block-summary {
+        border-radius: @qc-radius-lg;
+        box-shadow: @qc-shadow-sm;
+    }
+
+    .checkout-cart-index .cart-summary {
+        position: sticky;
+        top: 120px;
+    }
+}

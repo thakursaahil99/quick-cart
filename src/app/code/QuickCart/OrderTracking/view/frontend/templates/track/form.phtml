@@ -1,0 +1,50 @@
+<?php
+/**
+ * QuickCart_OrderTracking - order tracking lookup form.
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<section class="qc-track" data-qc-reveal>
+    <div class="qc-track__intro">
+        <p class="qc-eyebrow"><?= $escaper->escapeHtml(__('Order tracking')) ?></p>
+        <h1 class="qc-track__title"><?= $escaper->escapeHtml(__('Where is my order?')) ?></h1>
+        <p class="qc-track__lead">
+            <?= $escaper->escapeHtml(__('Enter your order number and the email address or mobile number you used at checkout to see live delivery updates.')) ?>
+        </p>
+        <ul class="qc-track__perks">
+            <li><?= $escaper->escapeHtml(__('Live status from packing to doorstep')) ?></li>
+            <li><?= $escaper->escapeHtml(__('Courier and tracking number once shipped')) ?></li>
+            <li><?= $escaper->escapeHtml(__('Estimated delivery date')) ?></li>
+        </ul>
+    </div>
+    <form class="qc-track__form form" method="post" data-mage-init='{"validation": {}}'
+          action="<?= $escaper->escapeUrl($block->getUrl('track/index/lookup')) ?>">
+        <?= $block->getBlockHtml('formkey') ?>
+        <fieldset class="fieldset">
+            <div class="field required">
+                <label class="label" for="qc-track-order"><span><?= $escaper->escapeHtml(__('Order number')) ?></span></label>
+                <div class="control">
+                    <input type="text" class="input-text" id="qc-track-order" name="order_number"
+                           autocomplete="off" inputmode="numeric" maxlength="50" placeholder="000000123"
+                           data-validate='{"required": true}'>
+                </div>
+                <div class="note"><?= $escaper->escapeHtml(__('You will find it in your order confirmation email.')) ?></div>
+            </div>
+            <div class="field required">
+                <label class="label" for="qc-track-contact"><span><?= $escaper->escapeHtml(__('Email or mobile number')) ?></span></label>
+                <div class="control">
+                    <input type="text" class="input-text" id="qc-track-contact" name="contact"
+                           autocomplete="email" maxlength="254" placeholder="you@example.com / 98765 43210"
+                           data-validate='{"required": true}'>
+                </div>
+            </div>
+        </fieldset>
+        <div class="actions-toolbar">
+            <button type="submit" class="action primary qc-btn qc-track__submit">
+                <span><?= $escaper->escapeHtml(__('Track order')) ?></span>
+            </button>
+        </div>
+    </form>
+</section>

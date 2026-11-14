@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="QuickCart\CheckoutEnhancement\Api\Data\CheckoutMetaInterface"
+                type="QuickCart\CheckoutEnhancement\Model\CheckoutMeta"/>
+    <preference for="QuickCart\CheckoutEnhancement\Api\CheckoutMetaRepositoryInterface"
+                type="QuickCart\CheckoutEnhancement\Model\CheckoutMetaRepository"/>
+
+    <!-- Storefront, guest and REST checkouts all save the shipping step through this service. -->
+    <type name="Magento\Checkout\Api\ShippingInformationManagementInterface">
+        <plugin name="quickcart_save_checkout_meta"
+                type="QuickCart\CheckoutEnhancement\Plugin\Checkout\SaveCheckoutMeta"/>
+    </type>
+
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="quickcart_order_checkout_meta"
+                type="QuickCart\CheckoutEnhancement\Plugin\Sales\AddCheckoutMetaToOrder"/>
+    </type>
+
+    <type name="QuickCart\CheckoutEnhancement\ViewModel\OrderCheckoutMeta">
+        <arguments>
+            <argument name="checkoutSession" xsi:type="object">Magento\Checkout\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
+</config>

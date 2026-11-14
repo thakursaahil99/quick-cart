@@ -1,0 +1,417 @@
+// /**
+//  * QuickCart order tracking: /track form, tracking page and the timeline on the
+//  * customer's order page (QuickCart_OrderTracking).
+//  */
+
+& when (@media-common = true) {
+    //  Lookup form
+    .qc-track {
+        display: grid;
+        gap: 28px;
+        max-width: 1120px;
+        margin: 20px auto 60px;
+    }
+
+    .qc-track__title {
+        margin: 0 0 10px;
+        font-family: @qc-font-display;
+        font-size: ~'clamp(30px, 3.4vw, 46px)';
+        font-weight: 800;
+        letter-spacing: -.02em;
+        line-height: 1.1;
+    }
+
+    .qc-track__lead {
+        max-width: 520px;
+        margin: 0 0 20px;
+        color: @qc-ink-2;
+        font-size: 17px;
+        line-height: 1.6;
+    }
+
+    .qc-track__perks {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            position: relative;
+            margin: 0;
+            padding-left: 30px;
+            color: @qc-ink-2;
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 3px;
+                left: 0;
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                background: @qc-success-soft;
+                box-shadow: inset 0 0 0 5px @qc-success;
+            }
+        }
+    }
+
+    .qc-track__form {
+        padding: 28px;
+        border: 1px solid @qc-line;
+        border-radius: @qc-radius-xl;
+        background: @qc-white;
+        box-shadow: @qc-shadow-md;
+
+        .fieldset {
+            margin-bottom: 10px;
+        }
+
+        .input-text {
+            height: 52px;
+            border-radius: @qc-radius;
+            font-size: 16px;
+        }
+    }
+
+    .qc-track__submit.action.primary {
+        width: 100%;
+        min-height: 54px;
+        font-size: 16px;
+        font-weight: 800;
+    }
+
+    //  Tracking page
+    .qc-track-order {
+        max-width: 1120px;
+        margin: 20px auto 60px;
+    }
+
+    .qc-track-order__head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px 24px;
+        margin-bottom: 22px;
+    }
+
+    .qc-track-order__meta {
+        margin: 0;
+        color: @qc-muted;
+    }
+
+    .qc-track-order__items {
+        margin-top: 24px;
+        padding: 24px;
+        border: 1px solid @qc-line;
+        border-radius: @qc-radius-xl;
+        background: @qc-white;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto auto;
+            gap: 16px;
+            margin: 0;
+            padding: 12px 0;
+            border-bottom: 1px solid @qc-line;
+        }
+    }
+
+    .qc-track-order__name {
+        font-weight: 600;
+    }
+
+    .qc-track-order__qty {
+        color: @qc-muted;
+    }
+
+    .qc-track-order__total {
+        display: flex;
+        justify-content: space-between;
+        margin: 16px 0 0;
+        font-size: 18px;
+    }
+
+    //  Timeline card (tracking page + My Orders)
+    .qc-timeline {
+        margin: 0 0 30px;
+        padding: 26px;
+        border: 1px solid @qc-line;
+        border-radius: @qc-radius-xl;
+        background: @qc-white;
+        box-shadow: @qc-shadow-sm;
+    }
+
+    .qc-timeline__summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px 40px;
+        margin-bottom: 28px;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .qc-timeline__label {
+        color: @qc-muted;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+    }
+
+    .qc-timeline__eta {
+        margin-top: 4px !important;
+        font-family: @qc-font-display;
+        font-size: 22px;
+        font-weight: 800;
+    }
+
+    .qc-timeline__track {
+        margin-top: 4px !important;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .qc-timeline__heading {
+        margin: 28px 0 14px;
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .qc-status {
+        display: inline-block;
+        margin-top: 6px;
+        padding: 6px 14px;
+        border-radius: @qc-radius-pill;
+        background: @qc-primary-soft;
+        color: @qc-primary;
+        font-weight: 800;
+    }
+
+    .qc-status--delivered {
+        background: @qc-success-soft;
+        color: @qc-success;
+    }
+
+    .qc-status--canceled,
+    .qc-status--closed,
+    .qc-status--on_hold {
+        background: #FEE2E2;
+        color: #B91C1C;
+    }
+
+    //  Progress steps with an animated fill (--qc-progress set inline)
+    .qc-steps {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            top: 13px;
+            left: ~'calc(100% / 12)';
+            height: 4px;
+            border-radius: 4px;
+        }
+
+        &:before {
+            right: ~'calc(100% / 12)';
+            background: @qc-line;
+        }
+
+        &:after {
+            width: ~'calc((100% - 100% / 6) * var(--qc-progress, 0) / 100)';
+            background: linear-gradient(90deg, @qc-primary, @qc-accent);
+            transform-origin: left center;
+            animation: qc-steps-fill 1.2s @qc-ease .2s both;
+        }
+    }
+
+    .qc-steps__item {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        margin: 0;
+        text-align: center;
+    }
+
+    .qc-steps__dot {
+        width: 30px;
+        height: 30px;
+        border: 4px solid @qc-line;
+        border-radius: 50%;
+        background: @qc-white;
+        box-sizing: border-box;
+    }
+
+    .qc-steps__name {
+        color: @qc-muted;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .qc-steps__date {
+        color: @qc-muted;
+        font-size: 12px;
+    }
+
+    .qc-steps__item.is-done {
+        .qc-steps__dot {
+            border-color: @qc-primary;
+            background: @qc-primary;
+            box-shadow: inset 0 0 0 5px @qc-white;
+        }
+
+        .qc-steps__name {
+            color: @qc-ink;
+        }
+    }
+
+    .qc-steps__item.is-current {
+        .qc-steps__dot {
+            border-color: @qc-accent;
+            background: @qc-accent;
+            box-shadow: 0 0 0 6px @qc-accent-soft;
+            animation: qc-steps-pulse 2s ease-in-out infinite;
+        }
+
+        .qc-steps__name {
+            color: @qc-ink;
+        }
+    }
+
+    //  Updates list
+    .qc-events {
+        position: relative;
+        margin: 0;
+        padding: 0 0 0 26px;
+        list-style: none;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            bottom: 8px;
+            left: 7px;
+            width: 2px;
+            background: @qc-line;
+        }
+    }
+
+    .qc-events__item {
+        position: relative;
+        display: grid;
+        gap: 2px;
+        margin: 0 0 18px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: -24px;
+            width: 12px;
+            height: 12px;
+            border: 2px solid @qc-white;
+            border-radius: 50%;
+            background: @qc-muted;
+            box-shadow: 0 0 0 2px @qc-line;
+        }
+
+        &.is-latest:before {
+            background: @qc-primary;
+            box-shadow: 0 0 0 4px @qc-primary-soft;
+        }
+    }
+
+    .qc-events__date,
+    .qc-events__location {
+        color: @qc-muted;
+        font-size: 13px;
+    }
+
+    .qc-events__comment {
+        color: @qc-ink-2;
+    }
+
+    @keyframes qc-steps-fill {
+        from {
+            transform: scaleX(0);
+        }
+    }
+
+    @keyframes qc-steps-pulse {
+        50% {
+            box-shadow: 0 0 0 10px @qc-accent-soft;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .qc-steps:after,
+        .qc-steps__item.is-current .qc-steps__dot {
+            animation: none;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    //  Vertical steps on phones
+    .qc-steps {
+        grid-template-columns: 1fr;
+        gap: 14px;
+
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+
+    .qc-steps__item {
+        flex-direction: row;
+        gap: 12px;
+        text-align: left;
+    }
+
+    .qc-steps__dot {
+        flex: 0 0 26px;
+        width: 26px;
+        height: 26px;
+    }
+
+    .qc-steps__date {
+        margin-left: auto;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .qc-track {
+        grid-template-columns: minmax(0, 1fr) 440px;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .qc-track__form {
+        padding: 34px;
+    }
+
+    .qc-timeline {
+        padding: 34px;
+    }
+}

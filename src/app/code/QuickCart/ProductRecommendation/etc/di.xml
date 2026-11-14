@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="QuickCart\ProductRecommendation\Api\Data\RecommendationInterface"
+                type="QuickCart\ProductRecommendation\Model\Recommendation"/>
+    <preference for="QuickCart\ProductRecommendation\Api\RecommendationRepositoryInterface"
+                type="QuickCart\ProductRecommendation\Model\RecommendationRepository"/>
+
+    <!-- bin/magento quickcart:recommendations:rebuild (proxy: no heavy objects on every CLI call) -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="quickcart_recommendations_rebuild" xsi:type="object">QuickCart\ProductRecommendation\Console\Command\RebuildCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="QuickCart\ProductRecommendation\Console\Command\RebuildCommand">
+        <arguments>
+            <argument name="appState" xsi:type="object">Magento\Framework\App\State\Proxy</argument>
+            <argument name="rebuilder" xsi:type="object">QuickCart\ProductRecommendation\Model\Rebuilder\Proxy</argument>
+        </arguments>
+    </type>
+
+    <!-- Admin grid data source -->
+    <type name="QuickCart\ProductRecommendation\Model\ResourceModel\Recommendation\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">quickcart_product_recommendation</argument>
+            <argument name="resourceModel" xsi:type="string">QuickCart\ProductRecommendation\Model\ResourceModel\Recommendation</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="quickcart_product_recommendation_listing_data_source" xsi:type="string">QuickCart\ProductRecommendation\Model\ResourceModel\Recommendation\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,21 @@
+{
+    "name": "quickcart/module-checkout-enhancement",
+    "description": "QuickCart: delivery instructions + GSTIN at checkout, Indian address validation, free-delivery progress.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "103.0.*",
+        "magento/module-checkout": "100.4.*",
+        "magento/module-quote": "101.2.*",
+        "magento/module-sales": "103.0.*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "QuickCart\\CheckoutEnhancement\\": ""
+        }
+    }
+}

@@ -1,0 +1,80 @@
+<?php
+/**
+ * QuickCart_OrderTracking - progress steps, estimated delivery, tracking numbers and
+ * timeline of an order. Used on the tracking page and the customer's order page.
+ *
+ * @var \QuickCart\OrderTracking\Block\TrackedOrder $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \QuickCart\OrderTracking\ViewModel\Timeline $timeline */
+$timeline = $block->getData('timeline');
+$order = $block->getOrder();
+if (!$timeline || !$order || !$timeline->isEnabled($order)) {
+    return;
+}
+$data = $timeline->build($order);
+?>
+<section class="qc-timeline<?= $data['off_track'] ? ' qc-timeline--off' : '' ?>"
+         aria-label="<?= $escaper->escapeHtmlAttr(__('Delivery progress')) ?>"
+         style="--qc-progress: <?= (int)$data['progress'] ?>">
+    <div class="qc-timeline__summary">
+        <div>
+            <p class="qc-timeline__label"><?= $escaper->escapeHtml(__('Status')) ?></p>
+            <p class="qc-timeline__status">
+                <span class="qc-status qc-status--<?= $escaper->escapeHtmlAttr($data['off_track'] ?: $data['milestone']) ?>">
+                    <?= $escaper->escapeHtml($data['off_track_label'] ?: $data['status_label']) ?>
+                </span>
+            </p>
+        </div>
+        <?php if ($data['delivered_on']): ?>
+            <div>
+                <p class="qc-timeline__label"><?= $escaper->escapeHtml(__('Delivered on')) ?></p>
+                <p class="qc-timeline__eta"><?= $escaper->escapeHtml($data['delivered_on']) ?></p>
+            </div>
+        <?php elseif ($data['eta']): ?>
+            <div>
+                <p class="qc-timeline__label"><?= $escaper->escapeHtml(__('Estimated delivery')) ?></p>
+                <p class="qc-timeline__eta"><?= $escaper->escapeHtml($data['eta']) ?></p>
+            </div>
+        <?php endif; ?>
+        <?php foreach ($data['tracks'] as $track): ?>
+            <div>
+                <p class="qc-timeline__label"><?= $escaper->escapeHtml($track['carrier']) ?></p>
+                <p class="qc-timeline__track"><?= $escaper->escapeHtml($track['number']) ?></p>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+    <?php if (!$data['off_track']): ?>
+        <ol class="qc-steps">
+            <?php foreach ($data['steps'] as $step): ?>
+                <li class="qc-steps__item is-<?= $escaper->escapeHtmlAttr($step['state']) ?>"
+                    <?= $step['state'] === 'current' ? 'aria-current="step"' : '' ?>>
+                    <span class="qc-steps__dot" aria-hidden="true"></span>
+                    <span class="qc-steps__name"><?= $escaper->escapeHtml($step['label']) ?></span>
+                    <?php if ($step['date']): ?>
+                        <span class="qc-steps__date"><?= $escaper->escapeHtml($step['date']) ?></span>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    <?php endif; ?>
+
+    <?php if ($data['events']): ?>
+        <h3 class="qc-timeline__heading"><?= $escaper->escapeHtml(__('Updates')) ?></h3>
+        <ol class="qc-events" data-qc-stagger>
+            <?php foreach ($data['events'] as $index => $event): ?>
+                <li class="qc-events__item<?= $index === 0 ? ' is-latest' : '' ?>">
+                    <span class="qc-events__date"><?= $escaper->escapeHtml($event['date']) ?></span>
+                    <strong class="qc-events__title"><?= $escaper->escapeHtml($event['title']) ?></strong>
+                    <?php if ($event['comment']): ?>
+                        <span class="qc-events__comment"><?= $escaper->escapeHtml($event['comment']) ?></span>
+                    <?php endif; ?>
+                    <?php if ($event['location']): ?>
+                        <span class="qc-events__location"><?= $escaper->escapeHtml($event['location']) ?></span>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    <?php endif; ?>
+</section>

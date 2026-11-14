@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="QuickCart_SalesDashboard::analytics" title="Sales Analytics" translate="title"
+             module="QuickCart_SalesDashboard" sortOrder="5" parent="QuickCart_Core::quickcart"
+             resource="QuickCart_SalesDashboard::analytics"/>
+        <add id="QuickCart_SalesDashboard::dashboard" title="Sales Dashboard" translate="title"
+             module="QuickCart_SalesDashboard" sortOrder="10" parent="QuickCart_SalesDashboard::analytics"
+             action="quickcart_sales/dashboard/index" resource="QuickCart_SalesDashboard::dashboard"/>
+        <add id="QuickCart_SalesDashboard::report_daily" title="Date-wise Sales Report" translate="title"
+             module="QuickCart_SalesDashboard" sortOrder="20" parent="QuickCart_SalesDashboard::analytics"
+             action="quickcart_sales/report/daily" resource="QuickCart_SalesDashboard::reports"/>
+        <add id="QuickCart_SalesDashboard::report_products" title="Best-selling Products" translate="title"
+             module="QuickCart_SalesDashboard" sortOrder="30" parent="QuickCart_SalesDashboard::analytics"
+             action="quickcart_sales/report/products" resource="QuickCart_SalesDashboard::reports"/>
+        <add id="QuickCart_SalesDashboard::targets" title="Sales Targets" translate="title"
+             module="QuickCart_SalesDashboard" sortOrder="40" parent="QuickCart_SalesDashboard::analytics"
+             action="quickcart_sales/target/index" resource="QuickCart_SalesDashboard::targets"/>
+    </menu>
+</config>

@@ -21,6 +21,8 @@ use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Pricing\Render;
 use Magento\Framework\Url\Helper\Data as UrlHelper;
+use Magento\Review\Model\ResourceModel\Review\Summary as ReviewSummary;
+use Magento\Review\Model\Review;
 use Magento\Widget\Block\BlockInterface;
 use QuickCart\CatalogEnhancement\Model\ProductSource\SourcePool;
 use QuickCart\CatalogEnhancement\ViewModel\ProductBadges;
@@ -56,7 +58,9 @@ class ProductCarousel extends AbstractProduct implements BlockInterface, Identit
      * @param ProductBadges $badges
      * @param HttpContext $httpContext
      * @param UrlHelper $urlHelper
+     * @param ReviewSummary $reviewSummary
      * @param array $data
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
         Context $context,
@@ -66,6 +70,7 @@ class ProductCarousel extends AbstractProduct implements BlockInterface, Identit
         private readonly ProductBadges $badges,
         private readonly HttpContext $httpContext,
         private readonly UrlHelper $urlHelper,
+        private readonly ReviewSummary $reviewSummary,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -90,24 +95,49 @@ class ProductCarousel extends AbstractProduct implements BlockInterface, Identit
         if ($this->productCollection !== null) {
             return $this->productCollection;
         }
-        try {
-            $source = $this->sourcePool->get($this->getSourceCode());
-        } catch (NoSuchEntityException $e) {
-            $this->_logger->warning($e->getMessage());
-            return null;
-        }
 
         $collection = $this->collectionFactory->create();
         $collection->setVisibility($this->productVisibility->getVisibleInCatalogIds());
         $this->_addProductAttributesAndPrices($collection)
             ->addStoreFilter()
             ->addAttributeToFilter('status', Status::STATUS_ENABLED);
-        $source->apply($collection);
+        if (!$this->applyProductSelection($collection)) {
+            return null;
+        }
+        // Star ratings in one query (same approach as the category product list).
+        $this->reviewSummary->appendSummaryFieldsToCollection(
+            $collection,
+            (int)$this->_storeManager->getStore()->getId(),
+            Review::ENTITY_PRODUCT_CODE
+        );
         $collection->setPageSize($this->getProductsCount())->setCurPage(1);
+        $this->badges->preload($collection);
 
         $this->productCollection = $collection;
 
         return $this->productCollection;
+    }
+
+    /**
+     * Narrow and order the storefront collection; false when there is nothing to show.
+     *
+     * The widget uses the configured merchandising source. Subclasses (e.g. the
+     * recommendation rails) select products their own way.
+     *
+     * @param Collection $collection
+     * @return bool
+     */
+    protected function applyProductSelection(Collection $collection): bool
+    {
+        try {
+            $source = $this->sourcePool->get($this->getSourceCode());
+        } catch (NoSuchEntityException $e) {
+            $this->_logger->warning($e->getMessage());
+            return false;
+        }
+        $source->apply($collection);
+
+        return true;
     }
 
     /**
@@ -148,7 +178,7 @@ class ProductCarousel extends AbstractProduct implements BlockInterface, Identit
      * Badges for a product card.
      *
      * @param Product $product
-     * @return array<int, array{code: string, label: string}>
+     * @return array<int, array{id: int, code: string, label: string, style: string}>
      */
     public function getBadges(Product $product): array
     {

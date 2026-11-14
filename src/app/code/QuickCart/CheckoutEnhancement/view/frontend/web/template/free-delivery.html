@@ -1,0 +1,16 @@
+<div class="qc-free-delivery" visible="isVisible" css="'is-unlocked': isUnlocked">
+    <p class="qc-free-delivery__text" aria-live="polite">
+        <!-- ko if: isUnlocked -->
+        <strong translate="'You have unlocked free delivery!'"></strong>
+        <!-- /ko -->
+        <!-- ko ifnot: isUnlocked -->
+        <span translate="'Add'"></span>
+        <strong text="remaining"></strong>
+        <span translate="'more for free delivery'"></span>
+        <!-- /ko -->
+    </p>
+    <div class="qc-free-delivery__track" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+         attr="'aria-valuenow': percent">
+        <span class="qc-free-delivery__bar" data-bind="style: {width: percent() + '%'}"></span>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <quickcart_checkout>
+            <fields>
+                <delivery_note>1</delivery_note>
+                <gstin>1</gstin>
+            </fields>
+            <validation>
+                <indian_address>1</indian_address>
+            </validation>
+            <cart>
+                <free_delivery_meter>1</free_delivery_meter>
+            </cart>
+        </quickcart_checkout>
+    </default>
+</config>

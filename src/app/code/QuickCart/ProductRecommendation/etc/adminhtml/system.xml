@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="quickcart_recommendation" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Recommendations</label>
+            <tab>quickcart</tab>
+            <resource>QuickCart_ProductRecommendation::config</resource>
+            <group id="bought_together" translate="label comment" sortOrder="10" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Frequently Bought Together</label>
+                <comment>Mined nightly from order history (cron), or run: bin/magento quickcart:recommendations:rebuild</comment>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show on Product Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="max_items" translate="label comment" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Companion Products</label>
+                    <comment>1 to 4 products shown next to the viewed product.</comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-1-4</validate>
+                </field>
+                <field id="lookback_days" translate="label comment" type="text" sortOrder="30" showInDefault="1"
+                       canRestore="1">
+                    <label>Order History Window (days)</label>
+                    <comment>Orders placed in this many days are analysed (7 to 730).</comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-7-730</validate>
+                </field>
+                <field id="min_orders" translate="label comment" type="text" sortOrder="40" showInDefault="1"
+                       canRestore="1">
+                    <label>Minimum Shared Orders</label>
+                    <comment>A pair is recommended once at least this many orders contain both products.</comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-1-50</validate>
+                </field>
+                <field id="crosssell_fallback" translate="label comment" type="select" sortOrder="50"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Fill with Cross-sell Products</label>
+                    <comment>Top up with the product's cross-sells while order history is still thin.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="similar" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Similar Products ("More like this")</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show on Product Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="max_items" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Products in Rail</label>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-2-12</validate>
+                </field>
+            </group>
+            <group id="recently_viewed" translate="label comment" sortOrder="30" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Recently Viewed</label>
+                <comment>History is kept in the shopper's browser (localStorage); nothing is stored on the server.</comment>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Recently Viewed</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="max_items" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Products in Rail</label>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-2-12</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

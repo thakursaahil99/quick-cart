@@ -1,6 +1,6 @@
 {
     "name": "quickcart/module-demo-data",
-    "description": "QuickCart: demo catalogue, CMS content and store configuration installed through data patches.",
+    "description": "QuickCart: demo catalogue, CMS content and store configuration installed through data patches, plus a demo order history generator.",
     "type": "magento2-module",
     "license": "proprietary",
     "require": {
@@ -9,8 +9,14 @@
         "magento/module-catalog": "104.0.*",
         "magento/module-cms": "104.0.*",
         "magento/module-configurable-product": "100.4.*",
+        "magento/module-customer": "103.0.*",
+        "magento/module-quote": "101.2.*",
+        "magento/module-sales": "103.0.*",
         "magento/module-theme": "101.1.*",
-        "quickcart/module-catalog-enhancement": "*"
+        "quickcart/module-catalog-enhancement": "*",
+        "quickcart/module-order-tracking": "*",
+        "quickcart/module-product-recommendation": "*",
+        "quickcart/module-sales-dashboard": "*"
     },
     "autoload": {
         "files": [

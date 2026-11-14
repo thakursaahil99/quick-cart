@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="QuickCart_Core::quickcart">
+                    <resource id="QuickCart_OrderTracking::tracking" title="Order Tracking" translate="title"
+                              sortOrder="30">
+                        <resource id="QuickCart_OrderTracking::tracking_save" title="Add Tracking Updates"
+                                  translate="title" sortOrder="10"/>
+                        <resource id="QuickCart_OrderTracking::tracking_delete" title="Delete Tracking Updates"
+                                  translate="title" sortOrder="20"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="QuickCart_Core::config">
+                                <resource id="QuickCart_OrderTracking::config" title="Order Tracking"
+                                          translate="title" sortOrder="30"/>
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

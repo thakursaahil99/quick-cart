@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!--
+        Own table instead of extra columns on core tables. quote_id is SET NULL on delete
+        (Magento purges old quotes) so data linked to an order survives; deleting an order
+        removes its row.
+    -->
+    <table name="quickcart_checkout_meta" resource="default" engine="innodb"
+           comment="QuickCart checkout details (delivery instructions, GSTIN) per quote and order">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="int" name="quote_id" unsigned="true" nullable="true" comment="Quote ID"/>
+        <column xsi:type="int" name="order_id" unsigned="true" nullable="true" comment="Order ID"/>
+        <column xsi:type="varchar" name="delivery_note" nullable="true" length="255" comment="Delivery Instructions"/>
+        <column xsi:type="varchar" name="gstin" nullable="true" length="15" comment="Customer GSTIN"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="QUICKCART_CHECKOUT_META_QUOTE_ID">
+            <column name="quote_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="QUICKCART_CHECKOUT_META_ORDER_ID">
+            <column name="order_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="QUICKCART_CHECKOUT_META_QUOTE_ID_QUOTE_ENTITY_ID"
+                    table="quickcart_checkout_meta" column="quote_id" referenceTable="quote"
+                    referenceColumn="entity_id" onDelete="SET NULL"/>
+        <constraint xsi:type="foreign" referenceId="QUICKCART_CHECKOUT_META_ORDER_ID_SALES_ORDER_ENTITY_ID"
+                    table="quickcart_checkout_meta" column="order_id" referenceTable="sales_order"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+</schema>

@@ -1,0 +1,28 @@
+<?php
+/**
+ * QuickCart_CheckoutEnhancement - delivery details on the customer order view
+ * and the checkout success page (argument "source" = "last").
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \QuickCart\CheckoutEnhancement\ViewModel\OrderCheckoutMeta $viewModel */
+$viewModel = $block->getData('view_model');
+$meta = $block->getData('source') === 'last' ? $viewModel->getForLastOrder() : $viewModel->getForCurrentOrder();
+if (!$viewModel->hasContent($meta)) {
+    return;
+}
+?>
+<section class="qc-order-meta" aria-labelledby="qc-order-meta-title">
+    <h2 class="qc-order-meta__title" id="qc-order-meta-title"><?= $escaper->escapeHtml(__('Delivery details')) ?></h2>
+    <dl class="qc-order-meta__list">
+        <?php if ($meta->getDeliveryNote()): ?>
+            <dt><?= $escaper->escapeHtml(__('Delivery instructions')) ?></dt>
+            <dd><?= /* @noEscape */ nl2br($escaper->escapeHtml($meta->getDeliveryNote())) ?></dd>
+        <?php endif; ?>
+        <?php if ($meta->getGstin()): ?>
+            <dt><?= $escaper->escapeHtml(__('GSTIN')) ?></dt>
+            <dd><?= $escaper->escapeHtml($meta->getGstin()) ?></dd>
+        <?php endif; ?>
+    </dl>
+</section>

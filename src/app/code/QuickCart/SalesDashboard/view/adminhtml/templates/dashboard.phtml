@@ -1,0 +1,292 @@
+<?php
+/**
+ * QuickCart_SalesDashboard - admin sales dashboard.
+ *
+ * @var \Magento\Backend\Block\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \QuickCart\SalesDashboard\ViewModel\Analytics $analytics */
+$analytics = $block->getData('analytics');
+$data = $analytics->getDashboard();
+$period = $data['period'];
+$revenue = $data['revenue_chart'];
+$orders = $data['orders_chart'];
+$deltaHtml = static function (?array $delta, string $compare) use ($escaper): string {
+    if (!$delta) {
+        return '<span class="qc-delta qc-delta--neutral">' . $escaper->escapeHtml(__('No earlier data')) . '</span>';
+    }
+    $arrow = ['up' => '▲', 'down' => '▼', 'flat' => '■'][$delta['direction']];
+
+    return sprintf(
+        '<span class="qc-delta qc-delta--%s"><span aria-hidden="true">%s</span> %s <span class="qc-delta__vs">%s</span></span>',
+        $escaper->escapeHtmlAttr($delta['tone']),
+        $arrow,
+        $escaper->escapeHtml($delta['text']),
+        $escaper->escapeHtml($compare)
+    );
+};
+?>
+<div class="qc-dash" id="qc-dash">
+    <?= $block->getChildHtml('qc.sales.filters') ?>
+
+    <section class="qc-dash__top">
+        <div class="qc-card qc-hero">
+            <p class="qc-card__label"><?= $escaper->escapeHtml($data['hero']['label']) ?></p>
+            <p class="qc-hero__value"><?= $escaper->escapeHtml($data['hero']['value']) ?></p>
+            <?= /* @noEscape */ $deltaHtml($data['hero']['delta'], $data['compare_label']) ?>
+            <p class="qc-hero__note">
+                <?= $escaper->escapeHtml(__('Base currency %1, after refunds, cancelled orders excluded. Discounts given: %2.', $data['currency'], $data['discount'])) ?>
+            </p>
+        </div>
+        <div class="qc-card qc-target">
+            <?php if ($target = $data['target']): ?>
+                <div class="qc-target__head">
+                    <p class="qc-card__label"><?= $escaper->escapeHtml(__('%1 target', $target['month'])) ?></p>
+                    <a href="<?= $escaper->escapeUrl($analytics->getUrl('quickcart_sales/target/index')) ?>"><?= $escaper->escapeHtml(__('Manage targets')) ?></a>
+                </div>
+                <?php foreach ([
+                    ['label' => __('Revenue'), 'value' => $target['revenue'], 'goal' => $target['revenue_target'], 'pct' => $target['revenue_pct']],
+                    ['label' => __('Orders'), 'value' => $target['orders'], 'goal' => $target['orders_target'], 'pct' => $target['orders_pct']],
+                ] as $meter): ?>
+                    <div class="qc-meter" role="meter" aria-valuemin="0" aria-valuemax="100"
+                         aria-valuenow="<?= (float)min(100, $meter['pct']) ?>"
+                         aria-label="<?= $escaper->escapeHtmlAttr(__('%1: %2 of %3', $meter['label'], $meter['value'], $meter['goal'])) ?>">
+                        <div class="qc-meter__row">
+                            <span><?= $escaper->escapeHtml($meter['label']) ?></span>
+                            <strong><?= $escaper->escapeHtml((string)$meter['value']) ?></strong>
+                            <span class="qc-meter__goal"><?= $escaper->escapeHtml(__('of %1 · %2%', $meter['goal'], $meter['pct'])) ?></span>
+                        </div>
+                        <div class="qc-meter__track">
+                            <span class="qc-meter__fill<?= $meter['pct'] >= 100 ? ' is-done' : '' ?>" style="width: <?= (float)min(100, $meter['pct']) ?>%"></span>
+                            <span class="qc-meter__pace" style="left: <?= (float)$target['elapsed_pct'] ?>%" title="<?= $escaper->escapeHtmlAttr(__('Month elapsed')) ?>"></span>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <p class="qc-target__projection">
+                    <?= $escaper->escapeHtml(__('At this pace: %1 by month end (%2% of target), %3 days left.', $target['projected'], $target['projected_pct'], $target['days_left'])) ?>
+                </p>
+            <?php else: ?>
+                <p class="qc-card__label"><?= $escaper->escapeHtml(__('Monthly target')) ?></p>
+                <p class="qc-target__empty"><?= $escaper->escapeHtml(__('No target set for this month.')) ?></p>
+                <a class="action-secondary" href="<?= $escaper->escapeUrl($analytics->getUrl('quickcart_sales/target/new')) ?>"><?= $escaper->escapeHtml(__('Set a target')) ?></a>
+            <?php endif; ?>
+        </div>
+    </section>
+
+    <section class="qc-dash__tiles" aria-label="<?= $escaper->escapeHtmlAttr(__('Key figures')) ?>">
+        <?php foreach ($data['tiles'] as $tile): ?>
+            <div class="qc-card qc-tile">
+                <p class="qc-card__label"><?= $escaper->escapeHtml($tile['label']) ?></p>
+                <p class="qc-tile__value"><?= $escaper->escapeHtml($tile['value']) ?></p>
+                <?= /* @noEscape */ $deltaHtml($tile['delta'], '') ?>
+                <?php if ($tile['spark']): ?>
+                    <svg class="qc-tile__spark" viewBox="0 0 120 34" aria-hidden="true" focusable="false">
+                        <path d="<?= $escaper->escapeHtmlAttr($tile['spark']['area']) ?>" class="qc-spark__area"/>
+                        <path d="<?= $escaper->escapeHtmlAttr($tile['spark']['line']) ?>" class="qc-spark__line"/>
+                    </svg>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    </section>
+
+    <section class="qc-card qc-chart-card">
+        <header class="qc-chart-card__head">
+            <div>
+                <h2><?= $escaper->escapeHtml(__('Net revenue by day')) ?></h2>
+                <p><?= $escaper->escapeHtml(__('%1 in %2 days', $revenue['total'], $period['days'])) ?></p>
+            </div>
+        </header>
+        <div class="qc-chart" data-role="line-chart" tabindex="0"
+             aria-label="<?= $escaper->escapeHtmlAttr(__('Revenue chart: use the arrow keys to step through days')) ?>"
+             data-points="<?= $escaper->escapeHtmlAttr($analytics->toJson(array_map(
+                 static fn (array $p) => [
+                     'x' => $p['x'],
+                     'y' => $p['y'],
+                     'title' => $p['label'],
+                     'value' => $p['value'],
+                     'note' => (string)__('%1 orders', $p['orders']),
+                 ],
+                 $revenue['points']
+             ))) ?>">
+            <svg viewBox="0 0 <?= (int)$revenue['width'] ?> <?= (int)$revenue['height'] ?>" role="img"
+                 aria-label="<?= $escaper->escapeHtmlAttr(__('Net revenue by day, %1 total. Data table below.', $revenue['total'])) ?>">
+                <?php foreach ($revenue['ticks'] as $tick): ?>
+                    <line class="qc-grid" x1="<?= (float)$revenue['box']['x'] ?>" x2="<?= (float)($revenue['box']['x'] + $revenue['box']['width']) ?>"
+                          y1="<?= (float)$tick['y'] ?>" y2="<?= (float)$tick['y'] ?>"/>
+                    <text class="qc-axis" x="<?= (float)$revenue['box']['x'] - 10 ?>" y="<?= (float)$tick['y'] + 4 ?>" text-anchor="end"><?= $escaper->escapeHtml($tick['label']) ?></text>
+                <?php endforeach; ?>
+                <?php foreach ($revenue['x_labels'] as $label): ?>
+                    <text class="qc-axis" x="<?= (float)$label['x'] ?>" y="<?= (int)$revenue['height'] - 6 ?>" text-anchor="middle"><?= $escaper->escapeHtml($label['label']) ?></text>
+                <?php endforeach; ?>
+                <path class="qc-line__area" d="<?= $escaper->escapeHtmlAttr($revenue['area']) ?>"/>
+                <path class="qc-line__stroke" d="<?= $escaper->escapeHtmlAttr($revenue['line']) ?>"/>
+                <?php if ($revenue['points']): ?>
+                    <?php $last = end($revenue['points']); ?>
+                    <circle class="qc-line__end" cx="<?= (float)$last['x'] ?>" cy="<?= (float)$last['y'] ?>" r="4"/>
+                <?php endif; ?>
+                <line class="qc-crosshair" data-role="crosshair" y1="<?= (float)$revenue['box']['y'] ?>"
+                      y2="<?= (float)($revenue['box']['y'] + $revenue['box']['height']) ?>" x1="0" x2="0"/>
+                <circle class="qc-line__dot" data-role="dot" r="5" cx="0" cy="0"/>
+                <rect class="qc-hit" data-role="hit" x="<?= (float)$revenue['box']['x'] ?>" y="0"
+                      width="<?= (float)$revenue['box']['width'] ?>" height="<?= (int)$revenue['height'] ?>"/>
+            </svg>
+            <div class="qc-tooltip" data-role="tooltip" aria-hidden="true" hidden></div>
+        </div>
+        <details class="qc-table-view">
+            <summary><?= $escaper->escapeHtml(__('View as table')) ?></summary>
+            <table class="data-grid">
+                <thead><tr><th><?= $escaper->escapeHtml(__('Day')) ?></th><th><?= $escaper->escapeHtml(__('Orders')) ?></th><th><?= $escaper->escapeHtml(__('Net revenue')) ?></th></tr></thead>
+                <tbody>
+                <?php foreach ($revenue['points'] as $point): ?>
+                    <tr><td><?= $escaper->escapeHtml($point['label']) ?></td><td><?= (int)$point['orders'] ?></td><td><?= $escaper->escapeHtml($point['value']) ?></td></tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </details>
+    </section>
+
+    <div class="qc-dash__grid">
+        <section class="qc-card qc-chart-card">
+            <header class="qc-chart-card__head"><h2><?= $escaper->escapeHtml(__('Orders by day')) ?></h2></header>
+            <div class="qc-chart" data-role="bar-chart">
+                <svg viewBox="0 0 <?= (int)$orders['width'] ?> <?= (int)$orders['height'] ?>" role="img"
+                     aria-label="<?= $escaper->escapeHtmlAttr(__('Orders placed per day')) ?>">
+                    <?php foreach ($orders['ticks'] as $tick): ?>
+                        <line class="qc-grid" x1="<?= (float)$orders['box']['x'] ?>" x2="<?= (float)($orders['box']['x'] + $orders['box']['width']) ?>"
+                              y1="<?= (float)$tick['y'] ?>" y2="<?= (float)$tick['y'] ?>"/>
+                        <text class="qc-axis" x="<?= (float)$orders['box']['x'] - 10 ?>" y="<?= (float)$tick['y'] + 4 ?>" text-anchor="end"><?= $escaper->escapeHtml($tick['label']) ?></text>
+                    <?php endforeach; ?>
+                    <?php foreach ($orders['x_labels'] as $label): ?>
+                        <text class="qc-axis" x="<?= (float)$label['x'] ?>" y="<?= (int)$orders['height'] - 6 ?>" text-anchor="middle"><?= $escaper->escapeHtml($label['label']) ?></text>
+                    <?php endforeach; ?>
+                    <?php foreach ($orders['columns'] as $column): ?>
+                        <g class="qc-col" tabindex="0" data-tip="<?= $escaper->escapeHtmlAttr($analytics->toJson([
+                            'title' => $column['label'],
+                            'value' => (string)__('%1 orders', $column['orders']),
+                            'note' => $column['canceled'] ? (string)__('%1 cancelled', $column['canceled']) : '',
+                        ])) ?>">
+                            <rect class="qc-hit" x="<?= (float)$column['x'] - 1 ?>" y="<?= (float)$orders['box']['y'] ?>"
+                                  width="<?= (float)$column['width'] + 2 ?>" height="<?= (float)$orders['box']['height'] ?>"/>
+                            <?php if ($column['path']): ?>
+                                <path class="qc-col__bar" d="<?= $escaper->escapeHtmlAttr($column['path']) ?>"/>
+                            <?php endif; ?>
+                        </g>
+                    <?php endforeach; ?>
+                </svg>
+                <div class="qc-tooltip" data-role="tooltip" aria-hidden="true" hidden></div>
+            </div>
+        </section>
+
+        <section class="qc-card">
+            <header class="qc-chart-card__head">
+                <h2><?= $escaper->escapeHtml(__('Order status mix')) ?></h2>
+                <p><?= $escaper->escapeHtml(__('%1 orders', $data['status']['total'])) ?></p>
+            </header>
+            <?php if ($data['status']['segments']): ?>
+                <div class="qc-segbar" role="img" data-role="bar-chart"
+                     aria-label="<?= $escaper->escapeHtmlAttr(implode(', ', array_map(
+                         static fn (array $s) => sprintf('%s %d (%s%%)', $s['label'], $s['orders'], $s['share']),
+                         $data['status']['segments']
+                     ))) ?>">
+                    <?php foreach ($data['status']['segments'] as $segment): ?>
+                        <span class="qc-segbar__part" tabindex="0"
+                              style="flex-basis: <?= (float)$segment['share'] ?>%; background: <?= $escaper->escapeHtmlAttr($segment['color']) ?>; color: <?= $escaper->escapeHtmlAttr($segment['ink']) ?>"
+                              data-tip="<?= $escaper->escapeHtmlAttr($analytics->toJson([
+                                  'title' => $segment['label'],
+                                  'value' => (string)__('%1 orders', $segment['orders']),
+                                  'note' => $segment['share'] . '%',
+                              ])) ?>"><?php if ($segment['share'] >= 9): ?><?= $escaper->escapeHtml($segment['share'] . '%') ?><?php endif; ?></span>
+                    <?php endforeach; ?>
+                    <div class="qc-tooltip" data-role="tooltip" aria-hidden="true" hidden></div>
+                </div>
+                <ul class="qc-legend">
+                    <?php foreach ($data['status']['segments'] as $segment): ?>
+                        <li><span class="qc-legend__swatch" style="background: <?= $escaper->escapeHtmlAttr($segment['color']) ?>"></span>
+                            <?= $escaper->escapeHtml($segment['label']) ?>
+                            <strong><?= (int)$segment['orders'] ?></strong>
+                            <span class="qc-muted"><?= $escaper->escapeHtml($segment['share'] . '%') ?></span></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php else: ?>
+                <p class="qc-muted"><?= $escaper->escapeHtml(__('No orders in this period.')) ?></p>
+            <?php endif; ?>
+
+            <h3 class="qc-subhead"><?= $escaper->escapeHtml(__('Payment methods')) ?></h3>
+            <ul class="qc-list">
+                <?php foreach ($data['payments'] as $payment): ?>
+                    <li>
+                        <span><?= $escaper->escapeHtml($payment['label']) ?></span>
+                        <span class="qc-muted"><?= $escaper->escapeHtml(__('%1 orders · %2%', $payment['orders'], $payment['share'])) ?></span>
+                        <strong><?= $escaper->escapeHtml($payment['revenue']) ?></strong>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </section>
+    </div>
+
+    <div class="qc-dash__grid">
+        <section class="qc-card">
+            <header class="qc-chart-card__head">
+                <h2><?= $escaper->escapeHtml(__('Top products by net revenue')) ?></h2>
+                <a href="<?= $escaper->escapeUrl($analytics->getPeriodUrl('quickcart_sales/report/products')) ?>"><?= $escaper->escapeHtml(__('Full report')) ?></a>
+            </header>
+            <?php if (!$data['top_products']): ?>
+                <p class="qc-muted"><?= $escaper->escapeHtml(__('No sales in this period.')) ?></p>
+            <?php endif; ?>
+            <ol class="qc-bars" data-role="bar-chart">
+                <?php foreach ($data['top_products'] as $product): ?>
+                    <li class="qc-bars__row" tabindex="0" data-tip="<?= $escaper->escapeHtmlAttr($analytics->toJson([
+                        'title' => $product['name'],
+                        'value' => $product['revenue_full'],
+                        'note' => (string)__('%1 units in %2 orders', (float)$product['qty'], $product['orders']),
+                    ])) ?>">
+                        <span class="qc-bars__name"><?= $escaper->escapeHtml($product['name']) ?>
+                            <span class="qc-muted"><?= $escaper->escapeHtml($product['sku']) ?></span></span>
+                        <span class="qc-bars__track"><span class="qc-bars__bar" style="width: <?= (float)$product['bar'] ?>%"></span></span>
+                        <span class="qc-bars__value"><?= $escaper->escapeHtml($product['revenue_label']) ?></span>
+                    </li>
+                <?php endforeach; ?>
+                <li class="qc-tooltip" data-role="tooltip" aria-hidden="true" hidden></li>
+            </ol>
+        </section>
+
+        <section class="qc-card">
+            <header class="qc-chart-card__head">
+                <h2><?= $escaper->escapeHtml(__('Recent orders')) ?></h2>
+                <a href="<?= $escaper->escapeUrl($analytics->getUrl('sales/order/index')) ?>"><?= $escaper->escapeHtml(__('All orders')) ?></a>
+            </header>
+            <table class="qc-table">
+                <thead><tr>
+                    <th><?= $escaper->escapeHtml(__('Order')) ?></th>
+                    <th><?= $escaper->escapeHtml(__('Customer')) ?></th>
+                    <th><?= $escaper->escapeHtml(__('Status')) ?></th>
+                    <th class="qc-num"><?= $escaper->escapeHtml(__('Total')) ?></th>
+                </tr></thead>
+                <tbody>
+                <?php foreach ($data['recent'] as $order): ?>
+                    <tr>
+                        <td><a href="<?= $escaper->escapeUrl($analytics->getOrderUrl($order['id'])) ?>">#<?= $escaper->escapeHtml($order['number']) ?></a>
+                            <span class="qc-muted"><?= $escaper->escapeHtml($order['date']) ?></span></td>
+                        <td><?= $escaper->escapeHtml($order['customer']) ?><?php if ($order['guest']): ?> <span class="qc-muted"><?= $escaper->escapeHtml(__('(guest)')) ?></span><?php endif; ?></td>
+                        <td><span class="qc-state qc-state--<?= $escaper->escapeHtmlAttr($order['state']) ?>"><?= $escaper->escapeHtml($order['status']) ?></span></td>
+                        <td class="qc-num"><?= $escaper->escapeHtml($order['total']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <p class="qc-dash__links">
+        <a href="<?= $escaper->escapeUrl($analytics->getPeriodUrl('quickcart_sales/report/daily')) ?>"><?= $escaper->escapeHtml(__('Date-wise sales report')) ?></a>
+        <a href="<?= $escaper->escapeUrl($analytics->getPeriodUrl('quickcart_sales/report/daily', ['export' => 'csv'])) ?>"><?= $escaper->escapeHtml(__('Export days (CSV)')) ?></a>
+        <a href="<?= $escaper->escapeUrl($analytics->getPeriodUrl('quickcart_sales/report/products', ['export' => 'csv'])) ?>"><?= $escaper->escapeHtml(__('Export products (CSV)')) ?></a>
+    </p>
+</div>
+<script type="text/x-magento-init">
+{
+    "#qc-dash": {
+        "QuickCart_SalesDashboard/js/dashboard": {}
+    }
+}
+</script>
