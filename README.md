@@ -19,11 +19,11 @@ It changes no Magento core files.
 | ✅ | **Phase 5:** Custom modules: product labels admin, recommendations (bought together, similar, recently viewed), order tracking, checkout settings |
 | ✅ | **Phase 6:** REST API (`QuickCart_CustomApi`): products, categories, orders, customers and a Postman collection |
 | ✅ | **Phase 7:** Admin sales dashboard (KPIs, revenue/orders charts, status mix, top products, targets), date-wise & best-seller reports with CSV export, demo order history generator |
-| ⏳ | Phase 8: Testing, optimization & final documentation |
+| ✅ | **Phase 8:** 156 unit tests, REST smoke test, PHPCS-clean, DI compilation checked, performance & security notes, [deployment guide](docs/deployment.md) |
 
 ---
 
-## Features built so far
+## Features
 
 **Storefront (theme `QuickCart/default`, Luma child)**
 - Brand identity: SVG logo (wordmark converted to outlines), favicon, brand palette
@@ -99,6 +99,10 @@ Framer Motion, loaded through RequireJS):
   showing a progress stepper, estimated delivery (business days), courier, tracking number
   and updates. The same timeline appears on *My Account › My Orders*.
 
+**Sales analytics (Phase 7)**: see `QuickCart_SalesDashboard` below.
+
+![Sales dashboard](docs/screenshots/admin-dashboard.png)
+
 | Product labels (admin) | Order tracking page |
 | --- | --- |
 | ![Labels](docs/screenshots/admin-labels.png) | ![Tracking](docs/screenshots/tracking.png) |
@@ -123,9 +127,9 @@ Framer Motion, loaded through RequireJS):
 | Animation | Motion 14.7 (MIT) | Vendored in `web/js/vendor/motion.js` |
 
 **Cache/session store:** local development uses Magento's file cache and its built-in
-full-page cache, because Redis/Valkey publish no native Windows builds. On Linux,
-deployments use Valkey/Redis for cache, page cache and sessions (Phase 8 documents
-this).
+full-page cache, because Redis/Valkey publish no native Windows builds. Production on
+Linux uses Valkey/Redis for cache, page cache and sessions, with optional Varnish; see
+[docs/deployment.md](docs/deployment.md).
 
 ---
 
@@ -144,7 +148,8 @@ this).
 │   ├── app/design/frontend/QuickCart/default/   Theme
 │   └── app/etc/config.php      Module list / shared deployment config
 ├── tools/design-assets/        Node build: product illustrations, logo, fixtures, vendored Motion + fonts
-└── docs/                       Screenshots and phase notes
+├── tools/qa/api-smoke.mjs      REST API smoke test (no dependencies)
+└── docs/                       Screenshots, deployment.md (production guide), postman/ (API collection)
 ```
 
 `src/vendor`, `generated`, `var`, `pub/static`, `pub/media`, `app/etc/env.php` and every
@@ -231,12 +236,51 @@ devstack\qc mysql                  :: MySQL client on the quickcart database
 devstack\qc magento quickcart:recommendations:rebuild   :: recompute bought-together + similar products
 ```
 
-Unit tests (PHPUnit 12) run from `src/dev/tests/unit`:
+### Testing and code quality
 
-```bat
-cd src\dev\tests\unit
-..\..\..\..\devstack\qc php ../../../vendor/bin/phpunit -c phpunit.xml.dist ../../../app/code/QuickCart
-```
+| Check | Command | Status |
+| ----- | ------- | ------ |
+| Unit tests (PHPUnit 12, 156 tests) | `cd src\dev\tests\unit` then `..\..\..\..\devstack\qc php ../../../vendor/bin/phpunit -c phpunit.xml.dist ../../../app/code/QuickCart` | all pass |
+| Coding standard (Magento2, severity 7) | `cd src` then `..\devstack\qc php vendor/bin/phpcs --standard=Magento2 --extensions=php --severity=7 app/code/QuickCart` | 0 errors, 0 warnings |
+| REST API smoke test (22 checks) | `node tools/qa/api-smoke.mjs` (set `QC_ADMIN_USER` / `QC_ADMIN_PASSWORD` for the admin endpoints) | all pass |
+| Production DI compilation | `bin/magento setup:di:compile` (on Linux, see [deployment](docs/deployment.md)) | On Windows, 8 of 9 steps pass (code generation, all interceptors, area configuration). The last step fails in Magento core, which writes a file named `primary\|global\|plugin-list.php`, and `\|` is not allowed in Windows file names. Run the full compile on Linux. |
+
+The unit tests cover the logic that decides outcomes:
+- label matching and validation;
+- recommendation ranking and similarity scoring;
+- order-tracking milestones, estimated delivery and contact matching;
+- tracking updates and status rules;
+- API input sanitising (sorting, paging, LIKE escaping, date ranges, rate limiting);
+- dashboard periods, chart geometry, money formatting, formula-safe CSV and target
+  validation;
+- checkout validation and the Windows adapters.
+
+Each phase was also verified end to end in a real browser, through headless Chrome
+scripts: checkout, the bought-together add-to-cart, recently viewed, `/track`, every admin
+grid and form, and the dashboard tooltips.
+
+### Performance and security in the code
+
+- **Caching:**
+  - Storefront pages stay fully cacheable. Per-visitor parts (recently viewed, free-delivery
+    meter) load from localStorage, customer-data sections or AJAX.
+  - Widgets are block-cached and carry product cache tags.
+  - Saving a label or rebuilding recommendations cleans only the affected cache tags.
+- **Queries:**
+  - Product lists batch-load prices, review summaries, URL rewrites and label data.
+  - Dashboard and report figures are a handful of grouped queries on indexed columns
+    (`sales_order.created_at`).
+  - Recommendations are precomputed nightly instead of being worked out per page view.
+- **Security:**
+  - ACL on every admin screen and API endpoint; admin URL secret keys stay on.
+  - CSRF form keys on every POST; all template output is escaped.
+  - Typed, validated input with prepared SQL; LIKE wildcards are escaped.
+  - Guest order lookups are rate limited and reveal no address or payment data.
+  - CSV exports are protected against formula injection.
+  - Customer API routes take the customer ID from the token only.
+- **Production setup:** see [docs/deployment.md](docs/deployment.md) for production mode,
+  OPcache, Valkey/Redis, Varnish, cron, indexers on schedule, TLS, 2FA and a hardening
+  checklist.
 
 ### Regenerating design assets
 

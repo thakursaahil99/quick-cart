@@ -39,7 +39,9 @@ class Dashboard
         'refunded' => ['label' => 'Refunded', 'color' => '#e87ba4', 'ink' => '#0b0b0b', 'states' => [Order::STATE_CLOSED]],
     ];
 
-    private const CHART_WIDTH = 760;
+    // viewBox widths close to the rendered card widths, so axis text stays ~11px.
+    private const CHART_WIDTH = 1240;
+    private const ORDERS_WIDTH = 760;
     private const CHART_HEIGHT = 240;
     private const ORDERS_HEIGHT = 150;
     private const PLOT_LEFT = 64;
@@ -271,7 +273,7 @@ class Dashboard
      */
     private function revenueChart(array $daily, array $values, string $currency): array
     {
-        $box = $this->plotBox(self::CHART_HEIGHT);
+        $box = $this->plotBox(self::CHART_HEIGHT, self::CHART_WIDTH);
         $ticks = $this->geometry->niceTicks((float)max([0.0, ...$values]));
         $top = (float)end($ticks);
         $line = $this->geometry->line($values, $box, $top);
@@ -307,7 +309,7 @@ class Dashboard
      */
     private function ordersChart(array $daily, array $values): array
     {
-        $box = $this->plotBox(self::ORDERS_HEIGHT);
+        $box = $this->plotBox(self::ORDERS_HEIGHT, self::ORDERS_WIDTH);
         $ticks = $this->geometry->niceTicks((float)max([0, ...$values]), 3);
         $top = (float)end($ticks);
         $days = array_keys($daily);
@@ -321,7 +323,7 @@ class Dashboard
         }
 
         return [
-            'width' => self::CHART_WIDTH,
+            'width' => self::ORDERS_WIDTH,
             'height' => self::ORDERS_HEIGHT,
             'box' => $box,
             'columns' => $columns,
@@ -461,17 +463,18 @@ class Dashboard
     }
 
     /**
-     * Plot box inside a chart of the given height.
+     * Plot box inside a chart of the given size (viewBox units).
      *
      * @param int $height
+     * @param int $width
      * @return array{x: float, y: float, width: float, height: float}
      */
-    private function plotBox(int $height): array
+    private function plotBox(int $height, int $width): array
     {
         return [
             'x' => (float)self::PLOT_LEFT,
             'y' => (float)self::PLOT_TOP,
-            'width' => (float)(self::CHART_WIDTH - self::PLOT_LEFT - self::PLOT_RIGHT),
+            'width' => (float)($width - self::PLOT_LEFT - self::PLOT_RIGHT),
             'height' => (float)($height - self::PLOT_TOP - self::PLOT_BOTTOM),
         ];
     }

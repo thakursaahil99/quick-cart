@@ -177,7 +177,12 @@ class Generator
             } catch (\Throwable $e) {
                 $stats['failed']++;
                 $this->logger->warning('QuickCart demo order failed: ' . $e->getMessage());
-                $progress(sprintf('skipped: %s (%s:%d)', $e->getMessage(), basename($e->getFile()), $e->getLine()));
+                $progress(sprintf(
+                    'skipped: %s (%s:%d)',
+                    $e->getMessage(),
+                    preg_replace('#^.*[\\\\/]#', '', $e->getFile()),
+                    $e->getLine()
+                ));
             }
         }
 
